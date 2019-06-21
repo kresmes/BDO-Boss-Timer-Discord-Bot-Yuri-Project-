@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Discord.Addons.Preconditions</name>
+    </assembly>
+    <members>
+        <member name="T:Discord.Addons.Preconditions.MinimumOnlineUsersAttribute">
+            <summary>
+                Sets how many users must be online in order to run the command.
+                This precondition ignores BOT accounts.
+            </summary>
+        </member>
+        <member name="M:Discord.Addons.Preconditions.MinimumOnlineUsersAttribute.#ctor(System.UInt32)">
+            <summary>
+                Sets how many users must be online in order to run the command.
+            </summary>
+            <param name="minimumUsers">
+                The minimum amount of users that must be online.
+            </param>
+        </member>
+        <member name="M:Discord.Addons.Preconditions.MinimumOnlineUsersAttribute.CheckPermissionsAsync(Discord.Commands.ICommandContext,Discord.Commands.CommandInfo,System.IServiceProvider)">
+            <inheritdoc />
+        </member>
+        <member name="T:Discord.Addons.Preconditions.RatelimitAttribute">
+            <summary> Sets how often a user is allowed to use this command
+            or any command in this module. </summary>
+            <remarks>This is backed by an in-memory collection
+            and will not persist with restarts.</remarks>
+        </member>
+        <member name="M:Discord.Addons.Preconditions.RatelimitAttribute.#ctor(System.UInt32,System.Double,Discord.Addons.Preconditions.Measure,Discord.Addons.Preconditions.RatelimitFlags)">
+            <summary> Sets how often a user is allowed to use this command. </summary>
+            <param name="times">The number of times a user may use the command within a certain period.</param>
+            <param name="period">The amount of time since first invoke a user has until the limit is lifted.</param>
+            <param name="measure">The scale in which the <paramref name="period"/> parameter should be measured.</param>
+            <param name="flags">Flags to set behavior of the ratelimit.</param>
+        </member>
+        <member name="M:Discord.Addons.Preconditions.RatelimitAttribute.#ctor(System.UInt32,System.TimeSpan,Discord.Addons.Preconditions.RatelimitFlags)">
+            <summary> Sets how often a user is allowed to use this command. </summary>
+            <param name="times">The number of times a user may use the command within a certain period.</param>
+            <param name="period">The amount of time since first invoke a user has until the limit is lifted.</param>
+            <param name="flags">Flags to set bahavior of the ratelimit.</param>
+        </member>
+        <member name="M:Discord.Addons.Preconditions.RatelimitAttribute.CheckPermissionsAsync(Discord.Commands.ICommandContext,Discord.Commands.CommandInfo,System.IServiceProvider)">
+            <inheritdoc />
+        </member>
+        <member name="T:Discord.Addons.Preconditions.Measure">
+            <summary> Sets the scale of the period parameter. </summary>
+        </member>
+        <member name="F:Discord.Addons.Preconditions.Measure.Days">
+            <summary> Period is measured in days. </summary>
+        </member>
+        <member name="F:Discord.Addons.Preconditions.Measure.Hours">
+            <summary> Period is measured in hours. </summary>
+        </member>
+        <member name="F:Discord.Addons.Preconditions.Measure.Minutes">
+            <summary> Period is measured in minutes. </summary>
+        </member>
+        <member name="T:Discord.Addons.Preconditions.RatelimitFlags">
+            <summary> Used to set behavior of the ratelimit </summary>
+        </member>
+        <member name="F:Discord.Addons.Preconditions.RatelimitFlags.None">
+            <summary> Set none of the flags. </summary>
+        </member>
+        <member name="F:Discord.Addons.Preconditions.RatelimitFlags.NoLimitInDMs">
+            <summary> Set whether or not there is no limit to the command in DMs. </summary>
+        </member>
+        <member name="F:Discord.Addons.Preconditions.RatelimitFlags.NoLimitForAdmins">
+            <summary> Set whether or not there is no limit to the command for guild admins. </summary>
+        </member>
+        <member name="F:Discord.Addons.Preconditions.RatelimitFlags.ApplyPerGuild">
+            <summary> Set whether or not to apply a limit per guild. </summary>
+        </member>
+        <member name="T:Discord.Addons.Preconditions.RequireLowerHierarchyAttribute">
+            <summary>
+                Indicates that the user passed as an argument requires to be lower than the bot in the Hierarchy.
+            </summary>
+        </member>
+        <member name="M:Discord.Addons.Preconditions.RequireLowerHierarchyAttribute.CheckPermissionsAsync(Discord.Commands.ICommandContext,Discord.Commands.ParameterInfo,System.Object,System.IServiceProvider)">
+            <inheritdoc />
+        </member>
+        <member name="T:Discord.Addons.Preconditions.RequireRoleAttribute">
+            <summary>
+                Sets a specific role the invoking user must have.
+            </summary>
+        </member>
+        <member name="M:Discord.Addons.Preconditions.RequireRoleAttribute.#ctor(System.UInt64)">
+            <param name="requiredRole">
+                The ID for the role.
+            </param>
+        </member>
+        <member name="M:Discord.Addons.Preconditions.RequireRoleAttribute.CheckPermissionsAsync(Discord.Commands.ICommandContext,Discord.Commands.CommandInfo,System.IServiceProvider)">
+            <inheritdoc />
+        </member>
+        <member name="T:Discord.Addons.Preconditions.UserMustBeInVoiceAttribute">
+            <summary>
+                Indicates that this command should only be used while the user is in a voice channel.
+            </summary>
+        </member>
+        <member name="M:Discord.Addons.Preconditions.UserMustBeInVoiceAttribute.CheckPermissionsAsync(Discord.Commands.ICommandContext,Discord.Commands.CommandInfo,System.IServiceProvider)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>

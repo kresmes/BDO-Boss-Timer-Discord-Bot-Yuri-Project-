@@ -1,0 +1,718 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DiscordInteractivity</name>
+    </assembly>
+    <members>
+        <member name="T:DiscordInteractivity.Attributes.CooldownAttribute">
+            <summary>
+            Sets a ratelimit for a command or a module for each user.
+            </summary>
+        </member>
+        <member name="P:DiscordInteractivity.Attributes.CooldownAttribute.Count">
+            <summary>
+            Gets the number of times in which the user is allowed to invoke this command in the given timespan.
+            </summary>
+        </member>
+        <member name="P:DiscordInteractivity.Attributes.CooldownAttribute.Every">
+            <summary>
+            Gets the timespan in which the user is allowed to invoke this command <see cref="P:DiscordInteractivity.Attributes.CooldownAttribute.Count"/> times.
+            </summary>
+        </member>
+        <member name="F:DiscordInteractivity.Attributes.CooldownAttribute.IsToBeCleared">
+            <summary>
+            Gets whether the cooldown cache of this command should be auto cleared every 10 minutes or not.
+            </summary>
+        </member>
+        <member name="E:DiscordInteractivity.Attributes.CooldownAttribute.UserOnCooldown">
+            <summary>
+            This event gets fired as soon as a command is not executed because a user is on cooldown.
+            </summary>
+        </member>
+        <member name="M:DiscordInteractivity.Attributes.CooldownAttribute.#ctor(System.Int32,System.Int32,DiscordInteractivity.Enums.CooldownMeasure)">
+            <summary>
+            Attaches a cooldown per user to your command.
+            </summary>
+            <param name="count">The number of times in which the user is allowed to invoke this command in the given timespan.</param>
+            <param name="every">The timespan in which the user is allowed to invoke this command <see cref="P:DiscordInteractivity.Attributes.CooldownAttribute.Count"/> times.</param>
+            <param name="measure">The <see cref="T:DiscordInteractivity.Enums.CooldownMeasure"/> to convert <paramref name="every"/> with.</param>
+        </member>
+        <member name="T:DiscordInteractivity.Attributes.RequireChannelAttribute">
+            <summary>
+            Requires the command to be executed in a specific channel.
+            </summary>
+        </member>
+        <member name="M:DiscordInteractivity.Attributes.RequireChannelAttribute.#ctor(System.UInt64[])">
+            <summary>
+            Creates a new <see cref="T:DiscordInteractivity.Attributes.RequireChannelAttribute"/> with the channel ids provided.
+            </summary>
+            <param name="channelIds">Channels where the command can be executed in.</param>
+        </member>
+        <member name="T:DiscordInteractivity.Attributes.RequireRoleAttribute">
+            <summary>
+            Requires a user to match these roles in order to execute a command.
+            </summary>
+        </member>
+        <member name="F:DiscordInteractivity.Attributes.RequireRoleAttribute.MatchAllRoles">
+            <summary>
+            Determines whether all role ids provided must match the user or not.
+            </summary>
+        </member>
+        <member name="M:DiscordInteractivity.Attributes.RequireRoleAttribute.#ctor(System.UInt64[])">
+            <summary>
+            Creates a new <see cref="T:DiscordInteractivity.Attributes.RequireRoleAttribute"/> with the role ids provided.
+            </summary>
+            <param name="roleIds">The roles which the user needs to match.</param>
+        </member>
+        <member name="T:DiscordInteractivity.Configs.InteractivityServiceConfig">
+            <summary>
+            The config for a interactivity service handler.
+            </summary>
+        </member>
+        <member name="P:DiscordInteractivity.Configs.InteractivityServiceConfig.DiscordClient">
+            <summary>
+            Gets or sets the Discord client that the <see cref="T:DiscordInteractivity.Core.InteractivityService"/> is going to use.
+            </summary>
+        </member>
+        <member name="P:DiscordInteractivity.Configs.InteractivityServiceConfig.CommandPrefixes">
+            <summary>
+            Gets or sets the command prefixes that are going to be ignored by commands.
+            </summary>
+        </member>
+        <member name="P:DiscordInteractivity.Configs.InteractivityServiceConfig.HasMentionPrefix">
+            <summary>
+            Gets or sets whether the Bot is also listening on his mention as a prefix or not.
+            </summary>
+        </member>
+        <member name="P:DiscordInteractivity.Configs.InteractivityServiceConfig.SetExtensionReferenceAutomatically">
+            <summary>
+            Gets or sets whether the <see cref="T:DiscordInteractivity.Core.InteractivityExtensions"/> should automatically update the instance of the <see cref="T:DiscordInteractivity.Core.InteractivityService"/> or not.
+            </summary>
+        </member>
+        <member name="P:DiscordInteractivity.Configs.InteractivityServiceConfig.StartEmoji">
+            <summary>
+            Gets or sets the <see cref="T:Discord.Emoji"/> that will be displayed on the <see cref="T:DiscordInteractivity.Pager.Paginator"/> in order to jump to the first page.
+            </summary>
+        </member>
+        <member name="P:DiscordInteractivity.Configs.InteractivityServiceConfig.BacktEmoji">
+            <summary>
+            Gets or sets the <see cref="T:Discord.Emoji"/> that will be displayed on the <see cref="T:DiscordInteractivity.Pager.Paginator"/> in order to go to the page before.
+            </summary>
+        </member>
+        <member name="P:DiscordInteractivity.Configs.InteractivityServiceConfig.StopEmoji">
+            <summary>
+            Gets or sets the <see cref="T:Discord.Emoji"/> that will be displayed on the <see cref="T:DiscordInteractivity.Pager.Paginator"/> in order to stop the Paginator.
+            </summary>
+        </member>
+        <member name="P:DiscordInteractivity.Configs.InteractivityServiceConfig.ForwardEmoji">
+            <summary>
+            Gets or sets the <see cref="T:Discord.Emoji"/> that will be displayed on the <see cref="T:DiscordInteractivity.Pager.Paginator"/> in order to go to the next page.
+            </summary>
+        </member>
+        <member name="P:DiscordInteractivity.Configs.InteractivityServiceConfig.EndEmoji">
+            <summary>
+            Gets or sets the <see cref="T:Discord.Emoji"/> that will be displayed on the <see cref="T:DiscordInteractivity.Pager.Paginator"/> in order to jump to the last page.
+            </summary>
+        </member>
+        <member name="P:DiscordInteractivity.Configs.InteractivityServiceConfig.DefaultMessageTimeout">
+            <summary>
+            Gets or sets the default timeout for messages that get deleted after they are sent.
+            </summary>
+        </member>
+        <member name="P:DiscordInteractivity.Configs.InteractivityServiceConfig.DefaultWaitingTimeout">
+            <summary>
+            Gets or sets the default timeout for waiting on users.
+            </summary>
+        </member>
+        <member name="P:DiscordInteractivity.Configs.InteractivityServiceConfig.DefaultPagerTimeout">
+            <summary>
+            Gets or sets the default timeout for Paginators that get deleted after they are sent.
+            </summary>
+        </member>
+        <member name="P:DiscordInteractivity.Configs.InteractivityServiceConfig.SpamDuration">
+            <summary>
+            Gets or sets the <see cref="T:System.TimeSpan"/> before the spam detection resets the <seealso cref="P:DiscordInteractivity.Configs.InteractivityServiceConfig.SpamCount"/> of a user.
+            </summary>
+        </member>
+        <member name="P:DiscordInteractivity.Configs.InteractivityServiceConfig.SpamCount">
+            <summary>
+            Gets or sets the amount of messages need to be send in the <see cref="P:DiscordInteractivity.Configs.InteractivityServiceConfig.SpamDuration"/> in order to trigger the spam detection.
+            </summary>
+        </member>
+        <member name="P:DiscordInteractivity.Configs.InteractivityServiceConfig.SpamDetection">
+            <summary>
+            Gets or sets whether the spam protection should be enabled or not.
+            </summary>
+        </member>
+        <member name="T:DiscordInteractivity.Configs.ProfanityHandlerConfig">
+            <summary>
+            The config for a profanity handler.
+            </summary>
+        </member>
+        <member name="P:DiscordInteractivity.Configs.ProfanityHandlerConfig.ProfanityOptions">
+            <summary>
+            Get or sets the profanity detection options
+            </summary>
+        </member>
+        <member name="P:DiscordInteractivity.Configs.ProfanityHandlerConfig.ProfanityWords">
+            <summary>
+            Get or sets a Dictionary where the key contains a word which is considered inappropriate and the value sets the rating of the word.
+            </summary>
+        </member>
+        <member name="P:DiscordInteractivity.Configs.ProfanityHandlerConfig.ProfanityIndicators">
+            <summary>
+            Get or sets a List which contains words which are likely to be used in an inappropriate context.
+            </summary>
+        </member>
+        <member name="P:DiscordInteractivity.Configs.ProfanityHandlerConfig.CheckCommands">
+            <summary>
+            Gets or sets whether content with command prefixes should be checked or not.
+            </summary>
+        </member>
+        <member name="P:DiscordInteractivity.Configs.ProfanityHandlerConfig.TriggerOn">
+            <summary>
+            Gets or sets a trigger where the profanity filter should immediately hit. If the value is set to -1 it will always check all <see cref="P:DiscordInteractivity.Configs.ProfanityHandlerConfig.ProfanityWords"/>.
+            </summary>
+        </member>
+        <member name="P:DiscordInteractivity.Configs.ProfanityHandlerConfig.IndicatorAdditon">
+            <summary>
+            Gets or sets a value how much an <see cref="P:DiscordInteractivity.Configs.ProfanityHandlerConfig.ProfanityIndicators"/> should count to the profanity rating.
+            </summary>
+        </member>
+        <member name="P:DiscordInteractivity.Configs.ProfanityHandlerConfig.WordDistance">
+            <summary>
+            Gets or sets the distance in the Damerau-Levenshtein algorithm.
+            </summary>
+        </member>
+        <member name="P:DiscordInteractivity.Configs.ProfanityHandlerConfig.ScanNewMessages">
+            <summary>
+             Gets or sets whether the ProfanityFilter should Scan new messages or not.
+            </summary>
+        </member>
+        <member name="P:DiscordInteractivity.Core.Handlers.SpamHandler.IsDisposed">
+            <summary>
+            Determines whether this instance is already Disposed or not.
+            </summary>
+        </member>
+        <member name="T:DiscordInteractivity.Core.Interactivity">
+            <summary>
+            Inherit from this class to get all sort of useful features.
+            </summary>
+        </member>
+        <member name="T:DiscordInteractivity.Core.Interactivity`1">
+            <summary>
+            Inherit from this class to get all sort of useful features.
+            </summary>
+        </member>
+        <member name="P:DiscordInteractivity.Core.Interactivity`1.InteractivityService">
+            <summary>
+            Your <see cref="P:DiscordInteractivity.Core.Interactivity`1.InteractivityService"/> instance you provided in the dependency injection.
+            </summary>
+        </member>
+        <member name="M:DiscordInteractivity.Core.Interactivity`1.ReplyAndDeleteAsync(System.String,System.Boolean,Discord.Embed,System.Nullable{System.TimeSpan},Discord.RequestOptions)">
+            <summary>
+            Sends a message to current channel and deletes it after the <see cref="T:System.TimeSpan"/> elapsed.
+            </summary>
+            <param name="text">The message to be sent.</param>
+            <param name="isTTS">Determines whether the message should be read aloud by Discord or not.</param>
+            <param name="embed">The <see cref="T:Discord.Embed"/> to be sent.</param>
+            <param name="timeOut">The <see cref="T:System.TimeSpan"/> it needs to wait before deleting the message.</param>
+            <param name="options">The options to be used while sending the request.</param>
+            <exception cref="T:System.InvalidOperationException"/>
+        </member>
+        <member name="M:DiscordInteractivity.Core.Interactivity`1.ReplyAndDeleteFileAsync(System.String,System.String,System.Boolean,Discord.Embed,System.Nullable{System.TimeSpan},Discord.RequestOptions)">
+            <summary>
+            Sends a file to the current channel with an optional caption and deletes it after the <see cref="T:System.TimeSpan"/> elapsed.
+            </summary>
+            <param name="filePath">The file path of the file to be sent.</param>		
+            <param name="text">The message to be sent.</param>
+            <param name="isTTS">Determines whether the message should be read aloud by Discord or not.</param>
+            <param name="embed">The <see cref="T:Discord.Embed"/> to be sent.</param>
+            <param name="timeOut">The <see cref="T:System.TimeSpan"/> it needs to wait before deleting the message.</param>
+            <param name="options">The options to be used while sending the request.</param>
+            <exception cref="T:System.InvalidOperationException"/>
+        </member>
+        <member name="M:DiscordInteractivity.Core.Interactivity`1.ReplyAndDeleteFileAsync(System.IO.Stream,System.String,System.String,System.Boolean,Discord.Embed,System.Nullable{System.TimeSpan},Discord.RequestOptions)">
+            <summary>
+            Sends a file to the current channel with an optional caption and deletes it after the <see cref="T:System.TimeSpan"/> elapsed.
+            </summary>
+            <param name="stream">The stream of the file to be sent.</param>	
+            <param name="filename">The name of the attachment.</param>
+            <param name="text">The message to be sent.</param>
+            <param name="isTTS">Determines whether the message should be read aloud by Discord or not.</param>
+            <param name="embed">The <see cref="T:Discord.Embed"/> to be sent.</param>
+            <param name="timeOut">The <see cref="T:System.TimeSpan"/> it needs to wait before deleting the message.</param>
+            <param name="options">The options to be used while sending the request.</param>
+            <exception cref="T:System.InvalidOperationException"/>
+        </member>
+        <member name="M:DiscordInteractivity.Core.Interactivity`1.ReplyPaginatorAsync(DiscordInteractivity.Pager.Paginator,System.Nullable{System.TimeSpan},Discord.RequestOptions)">
+            <summary>
+            Sends a <see cref="T:DiscordInteractivity.Pager.Paginator"/> to the current channel and deletes it after the <see cref="T:System.TimeSpan"/> elapsed.
+            </summary>	
+            <param name="paginator">The <see cref="T:DiscordInteractivity.Pager.Paginator"/> to be sent.</param>
+            <param name="timeOut">The <see cref="T:System.TimeSpan"/> it needs to wait before deleting the <see cref="T:DiscordInteractivity.Pager.Paginator"/>.</param>
+            <param name="options">The options to be used while sending the request.</param>
+            <exception cref="T:System.InvalidOperationException"/>
+        </member>
+        <member name="M:DiscordInteractivity.Core.Interactivity`1.WaitForMessageAsync(Discord.IUser,System.Boolean,System.Nullable{System.TimeSpan})">
+            <summary>
+            Waits for an <see cref="T:Discord.IUser"/> to sent a message in a specific channel.
+            </summary>
+            <param name="user">The <see cref="T:Discord.IUser"/> to be waited for.</param>
+            <param name="ignoreCommands">Determines whether messages with Command Prefixes should be ignored.</param>
+            <param name="timeOut">The <see cref="T:System.TimeSpan"/> it waits for the user.</param>
+            <exception cref="T:System.InvalidOperationException"/>
+        </member>
+        <member name="M:DiscordInteractivity.Core.Interactivity`1.WaitForReactionAsync(Discord.IUser,System.Nullable{System.TimeSpan})">
+            <summary>
+            Waits for an <see cref="T:Discord.IUser"/> to react in a specific channel.
+            </summary>
+            <param name="user">The <see cref="T:Discord.IUser"/> to be waited for.</param>
+            <param name="timeOut">The <see cref="T:System.TimeSpan"/> it waits for the user.</param>
+            <exception cref="T:System.InvalidOperationException"/>
+        </member>
+        <member name="M:DiscordInteractivity.Core.Interactivity`1.GetUptime">
+            <summary>
+            Return the duration of the bot since the start of the Applications.
+            </summary>
+        </member>
+        <member name="M:DiscordInteractivity.Core.Interactivity`1.GetBotAuthor">
+            <summary>
+            Return the author of the Bot author.
+            </summary>
+        </member>
+        <member name="M:DiscordInteractivity.Core.Interactivity`1.GetCopyrightInfo">
+            <summary>
+            Return the copyright info.
+            </summary>
+        </member>
+        <member name="T:DiscordInteractivity.Core.InteractivityExtensions">
+            <summary>
+            Provides all sort of useful extensions.
+            </summary>
+        </member>
+        <member name="M:DiscordInteractivity.Core.InteractivityExtensions.TryDeleteAsync(Discord.IDeletable,Discord.RequestOptions)">
+            <summary>
+            Trys to delete the object and returns if it was successfull or not
+            </summary>
+            <param name="deletable">The object to be deleted.</param>
+            <param name="options">The options to be used while sending the request.</param>
+        </member>
+        <member name="M:DiscordInteractivity.Core.InteractivityExtensions.SendAndDeleteMessageAsync(Discord.IMessageChannel,System.String,System.Boolean,Discord.Embed,System.Nullable{System.TimeSpan},Discord.RequestOptions)">
+            <summary>
+            Sends a message to an <see cref="T:Discord.IMessageChannel"/> and deletes it after the <see cref="T:System.TimeSpan"/> elapsed.
+            </summary>
+            <param name="channel">The <see cref="T:Discord.IMessageChannel"/> where the message should be send in.</param>
+            <param name="text">The message to be sent.</param>
+            <param name="isTTS">Determines whether the message should be read aloud by Discord or not.</param>
+            <param name="embed">The <see cref="T:Discord.Embed"/> to be sent.</param>
+            <param name="timeOut">The <see cref="T:System.TimeSpan"/> it needs to wait before deleting the message.</param>
+            <param name="options">The options to be used while sending the request.</param>
+            <exception cref="T:System.InvalidOperationException"/>
+        </member>
+        <member name="M:DiscordInteractivity.Core.InteractivityExtensions.SendAndDeleteFileAsync(Discord.IMessageChannel,System.String,System.String,System.Boolean,Discord.Embed,System.Nullable{System.TimeSpan},Discord.RequestOptions)">
+            <summary>
+            Sends a file to an <see cref="T:Discord.IMessageChannel"/> with an optional caption and deletes it after the <see cref="T:System.TimeSpan"/> elapsed.
+            </summary>
+            <param name="filePath">The file path of the file to be sent.</param>
+            <param name="channel">The <see cref="T:Discord.IMessageChannel"/> where the message should be send in.</param>
+            <param name="text">The message to be sent.</param>
+            <param name="isTTS">Determines whether the message should be read aloud by Discord or not.</param>
+            <param name="embed">The <see cref="T:Discord.Embed"/> to be sent.</param>
+            <param name="timeOut">The <see cref="T:System.TimeSpan"/> it needs to wait before deleting the message.</param>
+            <param name="options">The options to be used while sending the request.</param>
+            <exception cref="T:System.InvalidOperationException"/>
+        </member>
+        <member name="M:DiscordInteractivity.Core.InteractivityExtensions.SendAndDeleteFileAsync(Discord.IMessageChannel,System.IO.Stream,System.String,System.String,System.Boolean,Discord.Embed,System.Nullable{System.TimeSpan},Discord.RequestOptions)">
+            <summary>
+            Sends a file to an <see cref="T:Discord.IMessageChannel"/> with an optional caption and deletes it after the <see cref="T:System.TimeSpan"/> elapsed.
+            </summary>
+            <param name="stream">The stream of the file to be sent.</param>
+            <param name="filename">The name of the attachment.</param>
+            <param name="channel">The <see cref="T:Discord.IMessageChannel"/> where the message should be send in.</param>
+            <param name="text">The message to be sent.</param>
+            <param name="isTTS">Determines whether the message should be read aloud by Discord or not.</param>
+            <param name="embed">The <see cref="T:Discord.Embed"/> to be sent.</param>
+            <param name="timeOut">The <see cref="T:System.TimeSpan"/> it needs to wait before deleting the message.</param>
+            <param name="options">The options to be used while sending the request.</param>
+            <exception cref="T:System.InvalidOperationException"/>
+        </member>
+        <member name="M:DiscordInteractivity.Core.InteractivityExtensions.SendPaginatorAsync(Discord.IMessageChannel,DiscordInteractivity.Pager.Paginator,System.Nullable{System.TimeSpan},Discord.RequestOptions)">
+            <summary>
+            Sends a <see cref="T:DiscordInteractivity.Pager.Paginator"/> to an <see cref="T:Discord.IMessageChannel"/> and deletes it after the <see cref="T:System.TimeSpan"/> elapsed.
+            </summary>
+            <param name="channel">The <see cref="T:Discord.IMessageChannel"/> where the message should be send in.</param>
+            <param name="paginator">The <see cref="T:DiscordInteractivity.Pager.Paginator"/> to be sent.</param>
+            <param name="timeOut">The <see cref="T:System.TimeSpan"/> it needs to wait before deleting the <see cref="T:DiscordInteractivity.Pager.Paginator"/>.</param>
+            <param name="options">The options to be used while sending the request.</param>
+            <exception cref="T:System.InvalidOperationException"/>
+        </member>
+        <member name="M:DiscordInteractivity.Core.InteractivityExtensions.WaitForMessageAsync(Discord.IMessageChannel,Discord.IUser,System.Boolean,System.Nullable{System.TimeSpan})">
+            <summary>
+            Waits for an <see cref="T:Discord.IUser"/> to sent a message in a specific channel.
+            </summary>
+            <param name="channel">The <see cref="T:Discord.IMessageChannel"/> where the message should be waited for.</param>
+            <param name="user">The <see cref="T:Discord.IUser"/> to be waited for.</param>
+            <param name="ignoreCommands">Determines whether messages with Command Prefixes should be ignored.</param>
+            <param name="timeOut">The <see cref="T:System.TimeSpan"/> it waits for the user.</param>
+            <exception cref="T:System.InvalidOperationException"/>
+        </member>
+        <member name="M:DiscordInteractivity.Core.InteractivityExtensions.WaitForReactionAsync(Discord.IMessageChannel,Discord.IUser,System.Nullable{System.TimeSpan})">
+            <summary>
+            Waits for an <see cref="T:Discord.IUser"/> to react in a specific channel.
+            </summary>
+            <param name="channel">The <see cref="T:Discord.IMessageChannel"/> where the reaction should be waited for.</param>
+            <param name="user">The <see cref="T:Discord.IUser"/> to be waited for.</param>
+            <param name="timeOut">The <see cref="T:System.TimeSpan"/> it waits for the user.</param>
+            <exception cref="T:System.InvalidOperationException"/>
+        </member>
+        <member name="M:DiscordInteractivity.Core.InteractivityExtensions.SetInteractivityInstance(DiscordInteractivity.Core.InteractivityService)">
+            <summary>
+            Sets the internal <see cref="T:DiscordInteractivity.Core.InteractivityService"/> instance which is needed for the extension methods.
+            </summary>
+        </member>
+        <member name="T:DiscordInteractivity.Core.InteractivityService">
+            <summary>
+            The core class of DiscordInteractivity which is needed in order to enable most of the features.
+            </summary>
+        </member>
+        <member name="E:DiscordInteractivity.Core.InteractivityService.ProfanityAlert">
+            <summary>
+            This event gets fired when the ProfanityFilter detected any profanity message content.
+            </summary>
+        </member>
+        <member name="E:DiscordInteractivity.Core.InteractivityService.SpamDetected">
+            <summary>
+            This event gets fired as soon as the spam detection system detects any spam.
+            </summary>
+        </member>
+        <member name="P:DiscordInteractivity.Core.InteractivityService.IsDisposed">
+            <summary>
+            Determines whether this instance is already Disposed or not.
+            </summary>
+        </member>
+        <member name="M:DiscordInteractivity.Core.InteractivityService.#ctor(Discord.WebSocket.DiscordSocketClient)">
+            <summary>
+            Initializes the instance with the default <see cref="T:DiscordInteractivity.Configs.InteractivityServiceConfig"/> and a <seealso cref="T:Discord.WebSocket.DiscordSocketClient"/>.
+            </summary>
+            <param name="discordClient">The Bots <see cref="T:Discord.WebSocket.DiscordSocketClient"/>.</param>
+        </member>
+        <member name="M:DiscordInteractivity.Core.InteractivityService.#ctor(DiscordInteractivity.Configs.InteractivityServiceConfig)">
+            <summary>
+            Initializes the instance with a <see cref="T:DiscordInteractivity.Configs.InteractivityServiceConfig"/>.
+            </summary>
+            <param name="interactivityConfig">The config under which the <see cref="T:DiscordInteractivity.Core.InteractivityService"/> should operate.</param>
+        </member>
+        <member name="M:DiscordInteractivity.Core.InteractivityService.#ctor(DiscordInteractivity.Configs.InteractivityServiceConfig,DiscordInteractivity.Configs.ProfanityHandlerConfig)">
+            <summary>
+            If this constructor is used it will automatically activate a Profanity Filter.
+            </summary>
+            <param name="interactivityConfig">The config under which the <see cref="T:DiscordInteractivity.Core.InteractivityService"/> should operate.</param>
+            <param name="profanityConfig">The config under which the Profanity Filter should operate.</param>
+        </member>
+        <member name="M:DiscordInteractivity.Core.InteractivityService.GetUptime">
+            <summary>
+            Return the duration of the bot since the start of the Applications.
+            </summary>
+        </member>
+        <member name="M:DiscordInteractivity.Core.InteractivityService.GetBotAuthor">
+            <summary>
+            Return the author of the Bot author.
+            </summary>
+        </member>
+        <member name="M:DiscordInteractivity.Core.InteractivityService.GetCopyrightInfo">
+            <summary>
+            Return the copyright info.
+            </summary>
+        </member>
+        <member name="M:DiscordInteractivity.Core.InteractivityService.GetProfanityRating(System.String,DiscordInteractivity.Enums.ProfanityOptions)">
+            <summary>
+            Gets a ProfanityResult from the data provided in the <see cref="T:DiscordInteractivity.Configs.ProfanityHandlerConfig"/>.
+            </summary>
+            <param name="content">The content to be rated.</param>
+            <param name="options">Additional options which specify the way the rating works.</param>
+            <returns></returns>
+        </member>
+        <member name="M:DiscordInteractivity.Core.InteractivityService.Dispose">
+            <summary>
+            Disposes all members and unsubscribes from all events.
+            </summary>
+        </member>
+        <member name="T:DiscordInteractivity.Enums.CooldownMeasure">
+            <summary>
+            Time units.
+            </summary>
+        </member>
+        <member name="F:DiscordInteractivity.Enums.CooldownMeasure.Seconds">
+            <summary>
+            Equal to normal Seconds
+            </summary>
+        </member>
+        <member name="F:DiscordInteractivity.Enums.CooldownMeasure.Minutes">
+            <summary>
+            Equal to normal Minutes
+            </summary>
+        </member>
+        <member name="F:DiscordInteractivity.Enums.CooldownMeasure.Hours">
+            <summary>
+            Equal to normal Hours
+            </summary>
+        </member>
+        <member name="T:DiscordInteractivity.Enums.PaginatorFooter">
+            <summary>
+            Specifies which contents should be displayed in the footer of a <see cref="T:DiscordInteractivity.Pager.PaginatorBuilder"/>.
+            </summary>
+        </member>
+        <member name="F:DiscordInteractivity.Enums.PaginatorFooter.PaginatorAuthor">
+            <summary>
+            Displays the author of the <see cref="T:DiscordInteractivity.Pager.PaginatorBuilder"/> in the footer.
+            </summary>
+        </member>
+        <member name="F:DiscordInteractivity.Enums.PaginatorFooter.BotAuthor">
+            <summary>
+            Displays the author of the bot in the footer.
+            </summary>
+        </member>
+        <member name="F:DiscordInteractivity.Enums.PaginatorFooter.PageNumber">
+            <summary>
+            Displays the current page number in the footer.
+            </summary>
+        </member>
+        <member name="T:DiscordInteractivity.Enums.ProfanityMatch">
+            <summary>
+            Determines what kind of match the profanity content is.
+            </summary>
+        </member>
+        <member name="F:DiscordInteractivity.Enums.ProfanityMatch.FullMatch">
+            <summary>
+            The words match fully
+            </summary>
+        </member>
+        <member name="F:DiscordInteractivity.Enums.ProfanityMatch.SimilarMatch">
+            <summary>
+            The words are similar to each other.
+            </summary>
+        </member>
+        <member name="F:DiscordInteractivity.Enums.ProfanityMatch.PartlyMatch">
+            <summary>
+            The words match partly.
+            </summary>
+        </member>
+        <member name="F:DiscordInteractivity.Enums.ProfanityMatch.NoMatch">
+            <summary>
+            The words do not match.
+            </summary>
+        </member>
+        <member name="T:DiscordInteractivity.Enums.ProfanityOptions">
+            <summary>
+            Specifies which options the profanity hanlder uses.
+            </summary>
+        </member>
+        <member name="F:DiscordInteractivity.Enums.ProfanityOptions.CheckWithoutWhitespaces">
+            <summary>
+            Removes whitespaces from the content to scan.
+            </summary>
+        </member>
+        <member name="F:DiscordInteractivity.Enums.ProfanityOptions.RemoveNoneAlphanumericCharcaters">
+            <summary>
+            Removes none alphanumeric characters from the contenent to scan.
+            </summary>
+        </member>
+        <member name="F:DiscordInteractivity.Enums.ProfanityOptions.IgnoreDuplicateAssumptions">
+            <summary>
+            If there is a match to a word it won't try again to match anything to it.
+            </summary>
+        </member>
+        <member name="F:DiscordInteractivity.Enums.ProfanityOptions.Default">
+            <summary>
+            Are the default settings, which are mostly used.
+            </summary>
+        </member>
+        <member name="T:DiscordInteractivity.Enums.Result">
+            <summary>
+            A result information of a <see cref="T:DiscordInteractivity.Results.WaitingMessageResult"/> or a <seealso cref="T:DiscordInteractivity.Results.WaitingReactionResult"/>.
+            </summary>
+        </member>
+        <member name="F:DiscordInteractivity.Enums.Result.UserResponded">
+            <summary>
+            Determines that the user did respond.
+            </summary>
+        </member>
+        <member name="F:DiscordInteractivity.Enums.Result.TimedOut">
+            <summary>
+            Determines that the user did not respond.
+            </summary>
+        </member>
+        <member name="T:DiscordInteractivity.Pager.Page">
+            <summary>
+            This represents a page of a <see cref="T:DiscordInteractivity.Pager.PaginatorBuilder"/>.
+            </summary>
+        </member>
+        <member name="P:DiscordInteractivity.Pager.Page.Title">
+            <summary>
+            Gets or sets the title of this Page.
+            </summary>
+        </member>
+        <member name="P:DiscordInteractivity.Pager.Page.Color">
+            <summary>
+            Gets or sets the color of this Page.
+            </summary>
+        </member>
+        <member name="P:DiscordInteractivity.Pager.Page.Description">
+            <summary>
+            Gets or sets the description of this Page.
+            </summary>
+        </member>
+        <member name="P:DiscordInteractivity.Pager.Page.ThumbnailUrl">
+            <summary>
+            Gets or sets the thumbnail url of this Page.
+            </summary>
+        </member>
+        <member name="P:DiscordInteractivity.Pager.Page.ImageUrl">
+            <summary>
+            Gets or sets the image url of this Page.
+            </summary>
+        </member>
+        <member name="P:DiscordInteractivity.Pager.Page.Fields">
+            <summary>
+            Gets or sets the fields of this Page.
+            </summary>
+        </member>
+        <member name="T:DiscordInteractivity.Pager.Paginator">
+            <summary>
+            The finalized paginated message handler.
+            </summary>
+        </member>
+        <member name="P:DiscordInteractivity.Pager.Paginator.IsDisposed">
+            <summary>
+            Determines whether this instance is already Disposed or not.
+            </summary>
+        </member>
+        <member name="M:DiscordInteractivity.Pager.Paginator.Dispose">
+            <summary>
+            Unsubscribes from all events.
+            </summary>
+        </member>
+        <member name="T:DiscordInteractivity.Pager.PaginatorBuilder">
+            <summary>
+            The <see cref="T:DiscordInteractivity.Pager.PaginatorBuilder"/> is used to create paginated messages.
+            </summary>
+        </member>
+        <member name="P:DiscordInteractivity.Pager.PaginatorBuilder.Pages">
+            <summary>
+            Gets or sets the Pages which are used by the <see cref="T:DiscordInteractivity.Pager.Paginator"/>.
+            </summary>
+        </member>
+        <member name="P:DiscordInteractivity.Pager.PaginatorBuilder.Color">
+            <summary>
+            Gets or sets the default Embed color for all Pages.
+            </summary>
+        </member>
+        <member name="P:DiscordInteractivity.Pager.PaginatorBuilder.Title">
+            <summary>
+            Gets or sets the default Embed title for all Pages.
+            </summary>
+        </member>
+        <member name="P:DiscordInteractivity.Pager.PaginatorBuilder.ThumbnailUrl">
+            <summary>
+            Gets or sets the default Embed thumbnailurl for all Pages.
+            </summary>
+        </member>
+        <member name="P:DiscordInteractivity.Pager.PaginatorBuilder.ImageUrl">
+            <summary>
+            Gets or sets the default Embed imageUrl for all Pages.
+            </summary>
+        </member>
+        <member name="P:DiscordInteractivity.Pager.PaginatorBuilder.RemoveOtherReactions">
+            <summary>
+            Determines whether other reactions should be removed from the <see cref="T:DiscordInteractivity.Pager.Paginator"/> or not.
+            </summary>
+        </member>
+        <member name="P:DiscordInteractivity.Pager.PaginatorBuilder.PaginatorFooter">
+            <summary>
+            Gets or sets the footer of the <see cref="T:DiscordInteractivity.Pager.Paginator"/>.
+            </summary>
+        </member>
+        <member name="M:DiscordInteractivity.Pager.PaginatorBuilder.#ctor(Discord.IUser)">
+            <summary>
+            Creates a new PaginatorBuilder which is linked to an <see cref="T:Discord.IUser"/>.
+            </summary>
+            <param name="author">This is the User which this instance of the PaginatorBuilder is linked to.</param>
+        </member>
+        <member name="M:DiscordInteractivity.Pager.PaginatorBuilder.AddPage(DiscordInteractivity.Pager.Page)">
+            <summary>
+            Adds a page to the <see cref="P:DiscordInteractivity.Pager.PaginatorBuilder.Pages"/>.
+            </summary>
+        </member>
+        <member name="M:DiscordInteractivity.Pager.PaginatorBuilder.AddPages(System.Collections.Generic.List{DiscordInteractivity.Pager.Page})">
+            <summary>
+            Adds muliple pages to the <see cref="P:DiscordInteractivity.Pager.PaginatorBuilder.Pages"/>.
+            </summary>
+        </member>
+        <member name="M:DiscordInteractivity.Pager.PaginatorBuilder.Build">
+            <summary>
+            Build the <see cref="T:DiscordInteractivity.Pager.PaginatorBuilder"/> to get a <see cref="T:DiscordInteractivity.Pager.Paginator"/> instance.
+            </summary>
+        </member>
+        <member name="T:DiscordInteractivity.Results.ProfanityResult">
+            <summary>
+            This is the result of the profanity rating which contaisn information about the rating.
+            </summary>
+        </member>
+        <member name="P:DiscordInteractivity.Results.ProfanityResult.Message">
+            <summary>
+            Gets the original Message which contains most likley profanity content.
+            </summary>
+        </member>
+        <member name="F:DiscordInteractivity.Results.ProfanityResult.ProfanityRating">
+            <summary>
+            Gets the profanity rating to the message content which is based on the <see cref="F:DiscordInteractivity.Results.ProfanityResult.ProfanityIndicators"/> and <seealso cref="F:DiscordInteractivity.Results.ProfanityResult.ProfanityWords"/>. Higher score indicates that it is more likley to be profanity content.
+            </summary>
+        </member>
+        <member name="F:DiscordInteractivity.Results.ProfanityResult.ProfanityIndicators">
+            <summary>
+            Gets the <see cref="P:DiscordInteractivity.Configs.ProfanityHandlerConfig.ProfanityIndicators"/> which got found in the message content;
+            </summary>
+        </member>
+        <member name="F:DiscordInteractivity.Results.ProfanityResult.ProfanityWords">
+            <summary>
+            Gets the <see cref="P:DiscordInteractivity.Configs.ProfanityHandlerConfig.ProfanityWords"/> which are found in the message content.
+            </summary>
+        </member>
+        <member name="F:DiscordInteractivity.Results.ProfanityResult.ProfanityMatch">
+            <summary>
+            Determines what kind of Match the message content has.
+            </summary>
+        </member>
+        <member name="T:DiscordInteractivity.Results.WaitingMessageResult">
+            <summary>
+            The result of waiting on a message.
+            </summary>
+        </member>
+        <member name="P:DiscordInteractivity.Results.WaitingMessageResult.Message">
+            <summary>
+            The message that the user send.
+            </summary>
+        </member>
+        <member name="P:DiscordInteractivity.Results.WaitingMessageResult.Result">
+            <summary>
+            Contains additional informations about the result.
+            </summary>
+        </member>
+        <member name="T:DiscordInteractivity.Results.WaitingReactionResult">
+            <summary>
+            The result of waiting on a reaction.
+            </summary>
+        </member>
+        <member name="P:DiscordInteractivity.Results.WaitingReactionResult.Message">
+            <summary>
+            The reaction that the user added.
+            </summary>
+        </member>
+        <member name="P:DiscordInteractivity.Results.WaitingReactionResult.Result">
+            <summary>
+            Contains additional informations about the result.
+            </summary>
+        </member>
+    </members>
+</doc>

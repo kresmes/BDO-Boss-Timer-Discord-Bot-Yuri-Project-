@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DiscordMediatrModels</name>
+    </assembly>
+    <members>
+        <member name="T:DiscordMediatrModels.ClientAgnostic.DiscordEventMediatr">
+            <summary>
+            The singleton that registers all Discord events. Must only be instanciated once.
+            </summary>
+        </member>
+    </members>
+</doc>
