@@ -24,4 +24,5 @@ Note:: the Bot uses it resources From (https://mmotimer.com) and how it works it
 and it updates the time on discord every 5 seconds and u really should mute the channel has the bot since it post message every 5 seconds replacing the old 
 one, and use the button on topright of the app to send it to Try Hope u all like the project and ty for the support :D 
 
-if u have any issues or bugs please contact me at my discord (Kresmes#2712) and ill do my best to fix it
+if u have any issues or bugs please join our discord server (https://discord.gg/Z4EgG7w) and ill do my best to fix it 
+
