@@ -2,7 +2,8 @@
 BDO Boss Timer application made using vb.net all it need to work whit discord is Bot Token.
 How To Install::
 ((https://www.youtube.com/watch?v=kKVsnQLILco&feature=youtu.be))   
-Step 1:: extract and run Yuri Project    
+Step 1:: extract and run Yuri Project  
+Download Link ((https://github.com/kresmes/BDO-Boss-Timer-Discord-Bot-Yuri-Project-/releases))    
 Step 2:: Set Default Region    
 Step 3:: Create Bot and Get its token and Input it    
 Link For Bot Dev((https://discordapp.com/developers/applications/))   
