@@ -17,5 +17,5 @@ Step 9:: Connect and Type the command ((!$$run)) in the bot Channel
 Note::””When Using Only ALARMS((EXPERIMENTAL)) u can Check Time Remaining For Boss Spawn Using !tr command””   
 
 Join Our Discord For More Support And report any problems you encounter While Using Yuri and We'll do our best To fix any issues    
-https://discord.gg/Z4EgG7w   
+https://discord.gg/8SCcCJq  
 
