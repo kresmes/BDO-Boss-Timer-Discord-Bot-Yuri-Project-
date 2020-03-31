@@ -1,0 +1,934 @@
+﻿<Window x:Class="YPBBT_2._0.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:YPBBT_2._0"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="623" Width="1028.5" WindowStartupLocation="CenterScreen" MouseDown="Window_MouseDown" WindowStyle="None" ResizeMode="NoResize" Closing="Window_Closing">
+    <Window.Resources>
+
+    </Window.Resources>
+
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Window.Loaded">
+            <BeginStoryboard>
+                <Storyboard>
+                    <DoubleAnimation Storyboard.TargetProperty="(Window.Opacity)"
+                                 From="0.0" To="1.0" Duration="0:0:3"
+                                 AutoReverse="False"/>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Window.Triggers>
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="145*"/>
+            <RowDefinition Height="56*"/>
+            <RowDefinition Height="271*"/>
+            <RowDefinition Height="55*"/>
+            <RowDefinition Height="96*"/>
+        </Grid.RowDefinitions>
+
+        <MediaElement x:Name="mediaElement" Source="Resources/bckg1.mp4" Stretch="Fill" UnloadedBehavior="Manual" IsMuted="True" MediaEnded="mediaElement_MediaEnded" Grid.RowSpan="5"/>
+        <Rectangle Fill="#FF242834" Stroke="#00000000" Grid.Row="0" Height="27" VerticalAlignment="Top"/>
+
+        <TabControl Visibility="Visible" x:Name="tabcontrol1" Background="Transparent" Foreground="#00000000" BorderBrush="#00ACACAC" Grid.RowSpan="5">
+            <TabItem x:Name="Tab0" Header="TabItem">
+                <Grid Background="#00E5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="167*"/>
+                        <ColumnDefinition Width="72*"/>
+                        <ColumnDefinition Width="254*"/>
+                        <ColumnDefinition Width="260*"/>
+                        <ColumnDefinition Width="88*"/>
+                        <ColumnDefinition Width="181*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="26*"/>
+                        <RowDefinition Height="78*"/>
+                        <RowDefinition Height="11*"/>
+                        <RowDefinition Height="4*"/>
+                    </Grid.RowDefinitions>
+                    <Button x:Name="BossesListButton" Content="Bosses List" Margin="238,0,86,0" VerticalAlignment="Top" Height="64" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Center" Width="278" Grid.Column="2" Grid.ColumnSpan="3" Foreground="White" FontSize="20" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" BorderBrush="#00707070" Click="BossesListButton_Click">
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform AngleX="-23.114"/>
+                                <RotateTransform/>
+                                <TranslateTransform X="17.073"/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Background" Value="#FF21242A"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border Background="{TemplateBinding Background}">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#FF36393E"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Grid Margin="5,0,1,74.667" Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="6*"/>
+                            <ColumnDefinition Width="170*"/>
+                            <ColumnDefinition Width="323*"/>
+                            <ColumnDefinition Width="170*"/>
+                            <ColumnDefinition Width="10*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="38*"/>
+                            <RowDefinition Height="215*"/>
+                            <RowDefinition Height="32*"/>
+                            <RowDefinition Height="31*"/>
+                        </Grid.RowDefinitions>
+                        <Rectangle x:Name="ImgRec" Fill="#E51E2129" Stroke="#00000000" RadiusY="5.5" RadiusX="5.5" Grid.RowSpan="4" Grid.ColumnSpan="5"/>
+                        <Label x:Name="PbossLabel" HorizontalContentAlignment="Center" Content="Previous boss" FontSize="22" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Foreground="#FFF1F1F1" Background="#00000000" Grid.Column="1" Margin="1,0,0,0"/>
+                        <Label x:Name="CbossLabel" HorizontalContentAlignment="Center" Content="Next boss" FontSize="22" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Foreground="#FFF1F1F1" Background="#00000000" Grid.Column="2"/>
+                        <Label x:Name="LbossLabel" HorizontalContentAlignment="Center" Content="Followed by" FontSize="22" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Foreground="#FFF1F1F1" Background="#00000000" Grid.Column="3" Margin="0,0,1,0"/>
+                        <Image x:Name="NBImageBox" Cursor="Arrow" RenderOptions.BitmapScalingMode="HighQuality" Source="Resources/Boss.png" Grid.Column="2" Grid.Row="1"/>
+                        <Image x:Name="PBImageBox" Cursor="Arrow" RenderOptions.BitmapScalingMode="HighQuality" Margin="1,10,0,10" Source="Resources/Boss.png" Grid.Row="1" Grid.Column="1"/>
+                        <Image x:Name="LBImageBox" Cursor="Arrow" RenderOptions.BitmapScalingMode="HighQuality" Margin="0,10,1,10" Source="Resources/Boss.png" Grid.Column="3" Grid.Row="1"/>
+                        <Label x:Name="PbossNamLabel" HorizontalContentAlignment="Center" Content="Boss Name" FontSize="20" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Foreground="#FFF1F1F1" Background="#00000000" Grid.Column="1" Margin="4,0,0,0" Grid.Row="2"/>
+                        <Label x:Name="CbossNameLabel" HorizontalContentAlignment="Center" Content="Boss Name" FontSize="20" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Foreground="#FFF1F1F1" Background="#00000000" Grid.Column="2" Grid.Row="2"/>
+                        <Label x:Name="NBossNameLabel" HorizontalContentAlignment="Center" Content="Boss Name" FontSize="20" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Foreground="#FFF1F1F1" Background="#00000000" Grid.Column="3" Margin="0,0,1,0" Grid.Row="2"/>
+                        <Label x:Name="PreviousBossTimeLabel" HorizontalContentAlignment="Center" Content="00:00:00" FontSize="20" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Foreground="#FFC57171" Background="#00000000" Grid.Column="1" Margin="5,0" Grid.Row="3"/>
+                        <Label x:Name="CurrentBossTimeLabel" HorizontalContentAlignment="Center" Content="00:00:00" FontSize="20" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Foreground="#FF70BB88" Background="#00000000" Grid.Column="2" Margin="1,0,0,0" Grid.Row="3"/>
+                        <Label x:Name="NextBossTimeLabel" HorizontalContentAlignment="Center" Content="00:00:00" FontSize="20" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Foreground="#FF70BB88" Background="#00000000" Grid.Column="3" Margin="1,0,0,0" Grid.Row="3"/>
+                    </Grid>
+                    <Grid HorizontalAlignment="Left" Height="69" Margin="5,0,0,0.667" VerticalAlignment="Bottom" Width="668" Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Rectangle x:Name="rec" Fill="#E51E2129" Stroke="#00000000" RadiusY="5.5" RadiusX="5.5" Grid.RowSpan="1" Grid.ColumnSpan="2" Margin="0,-1,0,0" Grid.Row="0" Height="Auto" VerticalAlignment="Stretch"/>
+                        <Label x:Name="NILabel" HorizontalContentAlignment="Center" Content="Night in:" FontSize="20" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Foreground="#FFF1F1F1" Background="#00000000" Margin="0,0,0,32"/>
+                        <Label x:Name="NightInBdoTimeLabel" HorizontalContentAlignment="Center" Content="00:00:00" FontSize="20" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Foreground="#FFF1F1F1" Background="#00000000" Margin="0,37,0,1"/>
+                        <Label x:Name="IRILabel" HorizontalContentAlignment="Center" Content="Imperial reset in:" FontSize="20" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Foreground="#FFF1F1F1" Background="#00000000" Grid.Column="1" Margin="0,0,0,32"/>
+                        <Label x:Name="IRTimeLabel" HorizontalContentAlignment="Center" Content="00:00:00" FontSize="20" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Foreground="#FFF1F1F1" Background="#00000000" Margin="0,37,0,1" Grid.Column="1"/>
+                    </Grid>
+                    <Grid HorizontalAlignment="Left" Height="502" Margin="10,82,0,0" VerticalAlignment="Top" Width="157" Grid.RowSpan="4">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="31*"/>
+                            <RowDefinition Height="30*"/>
+                            <RowDefinition Height="31*"/>
+                            <RowDefinition Height="366*"/>
+                        </Grid.RowDefinitions>
+                        <Rectangle x:Name="rec_Copy" Fill="#E51E2129" Stroke="#00000000" RadiusY="5.5" RadiusX="5.5" Margin="0,0,0,9" Grid.Row="0" Height="Auto" VerticalAlignment="Stretch" Grid.RowSpan="4"/>
+                        <Label x:Name="SourceLabel" Content="Source:" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Foreground="#FFF1F1F1" Background="#00000000" Margin="0,4,10,0" FontSize="16"/>
+                        <ComboBox x:Name="SourceComboBox" HorizontalContentAlignment="Center" Margin="8,3,14,0" VerticalAlignment="Top" Background="#FFE8E8E8" BorderBrush="#00ACACAC" Foreground="#FF2D2F36" Grid.Row="1" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Height="20"/>
+                        <Label x:Name="RegionLabel" Content="Region:" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Foreground="#FFF1F1F1" Background="#00000000" Margin="1,1,9,1" FontSize="16" Grid.Row="2"/>
+                        <ComboBox x:Name="RegionComboBox" HorizontalContentAlignment="Center" Margin="9,1,13,0" VerticalAlignment="Top" Background="#FFE8E8E8" BorderBrush="#00ACACAC" Foreground="#FF2D2F36" Grid.Row="3" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" SelectionChanged="RegionComboBox_SelectionChanged" DropDownClosed="RegionComboBox_DropDownClosed" Height="20"/>
+                        <Label x:Name="soundLabel" Content="Sound:" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Foreground="#FFF1F1F1" Background="#00000000" Margin="1,26,9,343" FontSize="16" Grid.Row="3"/>
+                        <CheckBox x:Name="SoundOptionCheckBox" Content="Boss Spawn" Margin="8,0,0,287" VerticalAlignment="Bottom" Foreground="White" Click="SoundOptionCheckBox_Click" Grid.Row="3" FontSize="11"/>
+                        <Label x:Name="PlaySoundOnLabel" Content="Play Sound on:" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Foreground="#FFF1F1F1" Background="#00000000" Margin="1,62,0,307" Grid.Row="3" FontSize="14"/>
+                        <CheckBox x:Name="NTSoundOptionCheckBox" Content="Night Time" Margin="8,0,0,267" VerticalAlignment="Bottom" Foreground="White" Click="NTSoundOptionCheckBox_Click" Grid.Row="3" FontSize="11"/>
+                        <CheckBox x:Name="IRSoundOptionCheckBox" Content="Imperial Reset" Margin="8,0,0,247" VerticalAlignment="Bottom" Foreground="White" Grid.Row="3" Click="IRSoundOptionCheckBox_Click" FontSize="11"/>
+                        <Label x:Name="PostSettingsLabel" Content="Post Settings:" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Foreground="#FFF1F1F1" Background="#00000000" Margin="1,159,0,210" Grid.Row="3" FontSize="10"/>
+                        <CheckBox x:Name="DisplayTimeTableSetting" Content="Display Time Table" Margin="8,0,0,195" VerticalAlignment="Bottom" Foreground="White" Grid.Row="3" Click="DisplayTimeTableSetting_Click" FontSize="10"/>
+                    </Grid>
+                    <Button x:Name="TimeTableButton" Content="Time Table" Margin="12,0,17,0" RenderTransformOrigin="0.5,0.5" Height="64" VerticalAlignment="Top" Grid.Column="1" Grid.ColumnSpan="2" Foreground="White" FontSize="20" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" BorderBrush="#00707070" Click="TimeTableButton_Click" HorizontalAlignment="Center" Width="297">
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform AngleX="-23.114"/>
+                                <RotateTransform/>
+                                <TranslateTransform X="17.073"/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Background" Value="#FF21242A"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border Background="{TemplateBinding Background}">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#FF36393E"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button x:Name="SettingsButton" Content="Settings" VerticalAlignment="Top" Height="64" RenderTransformOrigin="0.5,0.5" Grid.Column="4" HorizontalAlignment="Center" Width="266" Foreground="White" FontSize="20" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" BorderBrush="#00707070" Click="SettingsButton_Click" Grid.ColumnSpan="2" Margin="3,0,0,0">
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform AngleX="-23.114"/>
+                                <RotateTransform/>
+                                <TranslateTransform X="17.073"/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Background" Value="#FF21242A"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border Background="{TemplateBinding Background}">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#FF36393E"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button x:Name="GitHub" Content="   YPBBT 2.0" Margin="-34,0,61,0" VerticalAlignment="Top" Height="64" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Center" Width="212" Grid.ColumnSpan="2"  FontSize="36" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" BorderBrush="#00707070" Foreground="#FFFDFDFD" Click="GitHub_Click">
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform AngleX="-23.114"/>
+                                <RotateTransform/>
+                                <TranslateTransform X="17.073"/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Background" Value="#CC21242A"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border Background="{TemplateBinding Background}">
+                                                <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#FF36393E"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Grid Grid.Column="5" HorizontalAlignment="Left" Height="502" Margin="4,82,0,0" VerticalAlignment="Top" Width="167" Grid.RowSpan="4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="84*"/>
+                            <ColumnDefinition Width="83*"/>
+                        </Grid.ColumnDefinitions>
+                        <Rectangle x:Name="rec_Copy1" Fill="#E51E2129" Stroke="#00000000" RadiusY="5.5" RadiusX="5.5" Margin="0,1,0,10" Grid.Row="0" Height="Auto" VerticalAlignment="Stretch" Grid.ColumnSpan="2"/>
+                        <Label x:Name="BotStatusLabel" Content="Bot Status:" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Foreground="#FFF1F1F1" Background="#00000000" Margin="0,11,0,461" FontSize="16" Grid.ColumnSpan="2"/>
+                        <Label x:Name="DiscordBotConnectionStatusLabel" Content="Disconnected" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Foreground="#FFBB3D3D" Background="#00000000" Margin="0,41,0,431" FontSize="14" Grid.ColumnSpan="2"/>
+                        <Label x:Name="BsAlarmLabel" Content="Boss Spawn &#xD;&#xA;Alarm:" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Foreground="#FFF1F1F1" Background="#00000000" Margin="0,90,0,368" FontSize="14" Grid.ColumnSpan="2"/>
+                        <CheckBox x:Name="BossSpawnAlarmCheckBox1" Content="Alarm 1" Margin="1,139,0,0" VerticalAlignment="Top" Foreground="White" Click="BossSpawnAlarmCheckBox1_Click" Grid.Column="1"/>
+                        <TextBox x:Name="BossSpawnAlarm1Textbox" Height="15" Margin="4,139,4,0" TextWrapping="NoWrap" VerticalAlignment="Top" FontSize="11" PreviewTextInput="NumberValidationTextBox" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" LostFocus="BossSpawnAlarm1Textbox_LostFocus" TextChanged="BossSpawnAlarm1Textbox_TextChanged">
+                            <TextBox.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="3"/>
+                                </Style>
+                            </TextBox.Resources>
+                        </TextBox>
+                        <CheckBox x:Name="BossSpawnAlarmCheckBox2" Content="Alarm 2" Margin="1,159,0,0" VerticalAlignment="Top" Foreground="White" Click="BossSpawnAlarmCheckBox2_Click" Grid.Column="1"/>
+                        <TextBox x:Name="BossSpawnAlarm2Textbox" Height="15" Margin="4,159,4,0" TextWrapping="NoWrap" VerticalAlignment="Top" FontSize="11" PreviewTextInput="NumberValidationTextBox" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" LostFocus="BossSpawnAlarm2Textbox_LostFocus" TextChanged="BossSpawnAlarm2Textbox_TextChanged">
+                            <TextBox.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="3"/>
+                                </Style>
+                            </TextBox.Resources>
+                        </TextBox>
+                        <CheckBox x:Name="BossSpawnAlarmCheckBox3" Content="Alarm 3" Margin="1,179,0,0" VerticalAlignment="Top" Foreground="White" Click="BossSpawnAlarmCheckBox3_Click" Grid.Column="1"/>
+                        <TextBox x:Name="BossSpawnAlarm3Textbox" Height="15" Margin="4,179,4,0" TextWrapping="NoWrap" VerticalAlignment="Top" FontSize="11" PreviewTextInput="NumberValidationTextBox" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" LostFocus="BossSpawnAlarm3Textbox_LostFocus" TextChanged="BossSpawnAlarm3Textbox_TextChanged">
+                            <TextBox.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="3"/>
+                                </Style>
+                            </TextBox.Resources>
+                        </TextBox>
+                        <Label x:Name="NTAlarmLabel" Content="Night Time&#xD;&#xA; Alarm:" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Foreground="#FFF1F1F1" Background="#00000000" Margin="0,209,0,251" FontSize="14" Grid.ColumnSpan="2"/>
+                        <CheckBox x:Name="NightTimeAlarmCheckBox1" Content="Alarm 1" Margin="1,256,0,0" VerticalAlignment="Top" Foreground="White" Grid.Column="1" Click="NightTimeAlarmCheckBox1_Click"/>
+                        <TextBox x:Name="NightTimeAlarm1Textbox" Height="15" Margin="4,256,4,0" TextWrapping="NoWrap" VerticalAlignment="Top" FontSize="11" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" PreviewTextInput="NumberValidationTextBox" LostFocus="NightTimeAlarm1Textbox_LostFocus" TextChanged="NightTimeAlarm1Textbox_TextChanged">
+                            <TextBox.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="3"/>
+                                </Style>
+                            </TextBox.Resources>
+                        </TextBox>
+                        <CheckBox x:Name="NightTimeAlarmCheckBox2" Content="Alarm 2" Margin="1,276,0,0" VerticalAlignment="Top" Foreground="White" Grid.Column="1" Click="NightTimeAlarmCheckBox2_Click"/>
+                        <TextBox x:Name="NightTimeAlarm2Textbox" Height="15" Margin="4,276,4,0" TextWrapping="NoWrap" VerticalAlignment="Top" FontSize="11" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" PreviewTextInput="NumberValidationTextBox" LostFocus="NightTimeAlarm2Textbox_LostFocus" TextChanged="NightTimeAlarm2Textbox_TextChanged">
+                            <TextBox.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="3"/>
+                                </Style>
+                            </TextBox.Resources>
+                        </TextBox>
+                        <CheckBox x:Name="NightTimeAlarmCheckBox3" Content="Alarm 3" Margin="1,296,0,0" VerticalAlignment="Top" Foreground="White" Grid.Column="1" Click="NightTimeAlarmCheckBox3_Click"/>
+                        <TextBox x:Name="NightTimeAlarm3Textbox" Height="15" Margin="4,296,4,0" TextWrapping="NoWrap" VerticalAlignment="Top" FontSize="11" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" PreviewTextInput="NumberValidationTextBox" LostFocus="NightTimeAlarm3Textbox_LostFocus" TextChanged="NightTimeAlarm3Textbox_TextChanged">
+                            <TextBox.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="3"/>
+                                </Style>
+                            </TextBox.Resources>
+                        </TextBox>
+                        <Label x:Name="IRAlarmLabel" Content="Imperial Reset&#xD;&#xA; Alarm:" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Foreground="#FFF1F1F1" Background="#00000000" Margin="0,322,0,135" Grid.ColumnSpan="2"/>
+                        <CheckBox x:Name="ImperialResetCheckBox1" Content="Alarm 1" Margin="1,372,0,0" VerticalAlignment="Top" Foreground="White" Grid.Column="1" Click="ImperialResetCheckBox1_Click"/>
+                        <TextBox x:Name="ImperialResetAlarm1Textbox" Height="15" Margin="4,372,4,0" TextWrapping="NoWrap" VerticalAlignment="Top" FontSize="11" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" PreviewTextInput="NumberValidationTextBox" LostFocus="ImperialResetAlarm1Textbox_LostFocus" TextChanged="ImperialResetAlarm1Textbox_TextChanged">
+                            <TextBox.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="3"/>
+                                </Style>
+                            </TextBox.Resources>
+                        </TextBox>
+                        <CheckBox x:Name="ImperialResetCheckBox2" Content="Alarm 2" Margin="1,392,0,0" VerticalAlignment="Top" Foreground="White" Grid.Column="1" Click="ImperialResetCheckBox2_Click"/>
+                        <TextBox x:Name="ImperialResetAlarm2Textbox" Height="15" Margin="4,392,4,0" TextWrapping="NoWrap" VerticalAlignment="Top" FontSize="11" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" PreviewTextInput="NumberValidationTextBox" LostFocus="ImperialResetAlarm2Textbox_LostFocus" TextChanged="ImperialResetAlarm2Textbox_TextChanged">
+                            <TextBox.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="3"/>
+                                </Style>
+                            </TextBox.Resources>
+                        </TextBox>
+                        <CheckBox x:Name="ImperialResetCheckBox3" Content="Alarm 3" Margin="1,412,0,0" VerticalAlignment="Top" Foreground="White" Grid.Column="1" Click="ImperialResetCheckBox3_Click"/>
+                        <TextBox x:Name="ImperialResetAlarm3Textbox" Height="15" Margin="4,412,4,0" TextWrapping="NoWrap" VerticalAlignment="Top" FontSize="11" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" PreviewTextInput="NumberValidationTextBox" LostFocus="ImperialResetAlarm3Textbox_LostFocus" TextChanged="ImperialResetAlarm3Textbox_TextChanged">
+                            <TextBox.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="3"/>
+                                </Style>
+                            </TextBox.Resources>
+                        </TextBox>
+                    </Grid>
+                    <Button x:Name="SendTotrayButton" Content="Send to tray" Margin="163,0,214,9" VerticalAlignment="Bottom" Height="27" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="3" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" BorderBrush="#00707070" Foreground="#FFFDFDFD" HorizontalAlignment="Center" Width="116" Click="SendTotrayButton_Click">
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform AngleX="-23.114"/>
+                                <RotateTransform/>
+                                <TranslateTransform X="17.073"/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Background" Value="#FF21242A"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border Background="{TemplateBinding Background}">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#FF36393E"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button x:Name="appRestartButton" Content="Restart" Margin="41,0,97,9" VerticalAlignment="Bottom" Height="27" RenderTransformOrigin="0.5,0.5" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" BorderBrush="#00707070" Foreground="#FFFDFDFD" HorizontalAlignment="Center" Width="116" Grid.Column="2" Click="appRestartButton_Click">
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform AngleX="-23.114"/>
+                                <RotateTransform/>
+                                <TranslateTransform X="17.073"/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Background" Value="#FF21242A"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border Background="{TemplateBinding Background}">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#FF36393E"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button x:Name="DisconnectDiscordBot" Content="Disconnect" Margin="213,95,19,0" VerticalAlignment="Top" Height="27" RenderTransformOrigin="0.5,0.5" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" BorderBrush="#00707070" Foreground="#FFFDFDFD" HorizontalAlignment="Center" Width="116" Grid.Column="3" Grid.ColumnSpan="2" Click="DisconnectDiscordBot_Click">
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform AngleX="-23.114"/>
+                                <RotateTransform/>
+                                <TranslateTransform X="17.073"/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Background" Value="#FF21242A"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border Background="{TemplateBinding Background}">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#FF36393E"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button x:Name="ConnectDiscordBotButton" Content="Connect" Margin="0,0,48,8" VerticalAlignment="Bottom" Height="27" RenderTransformOrigin="0.5,0.5" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" BorderBrush="#00707070" Foreground="#FFFDFDFD" HorizontalAlignment="Right" Width="116" Grid.Column="3" Click="ConnectDiscordBotButton_Click">
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform AngleX="-23.114"/>
+                                <RotateTransform/>
+                                <TranslateTransform X="17.073"/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Background" Value="#FF21242A"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border Background="{TemplateBinding Background}">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#FF36393E"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button x:Name="StartPostingButton" Content="Start" Margin="159,0,165,2" VerticalAlignment="Bottom" Height="40" RenderTransformOrigin="0.5,0.5"  FontSize="20" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" BorderBrush="#00707070" Foreground="#FFFDFDFD" HorizontalAlignment="Center" Width="190" Grid.Column="2" Grid.ColumnSpan="2" Click="StartPostingButton_Click">
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform AngleX="-23.114"/>
+                                <RotateTransform/>
+                                <TranslateTransform X="17.073"/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Background" Value="#FF3DBB73"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border Background="{TemplateBinding Background}">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#71c796"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button x:Name="IoverlayModeButton" Content="Ingame Overlay Mode" Margin="5,0,1,1" FontFamily="/Menu Manager;component/font/#Droid Sans" Foreground="#FF424242" FontWeight="Bold" BorderBrush="#19707070" Grid.Column="1" Height="50" VerticalAlignment="Bottom" Grid.Row="2" Grid.ColumnSpan="4" FontSize="20" RenderTransformOrigin="0.5,0.5" Click="IoverlayModeButton_Click">
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="3"/>
+
+                            </Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Background" Value="#FF3DBB73"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border Background="{TemplateBinding Background}">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#71c796"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Resources>
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-0.084"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
+
+                    </Button>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="tab1" Header="TabItem">
+                <Grid Background="#00E5E5E5">
+
+                    <Button x:Name="TimeTableBackButton" Cursor="Hand" VerticalAlignment="Top" Height="61" FontFamily="/Menu Manager;component/font/#Droid Sans" Margin="0,49,934,0" Background="#0013A76B" Foreground="#00000000" BorderBrush="#00707070" Click="TimeTableBackButton_Click">
+
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Background" Value="#FF13A76B"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border Background="{TemplateBinding Background}">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#FF056644"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Height="59" Width="70" Source="Resources/back.png" RenderOptions.BitmapScalingMode="HighQuality" Stretch="Uniform" Cursor="Hand"/>
+                        </StackPanel>
+
+                    </Button>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="tab2" Header="TabItem">
+                <Grid Background="#00E5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid HorizontalAlignment="Left" Height="509" Margin="10,76,0,0" VerticalAlignment="Top" Width="1002">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="429*"/>
+                            <ColumnDefinition Width="452*"/>
+                            <ColumnDefinition Width="37*"/>
+                            <ColumnDefinition Width="84*"/>
+                        </Grid.ColumnDefinitions>
+                        <Rectangle Fill="#E51E2129" Stroke="#00000000" RadiusY="5.5" RadiusX="5.5" Margin="0,3,0,0" Grid.ColumnSpan="4"/>
+                        <Image x:Name="AddSaveBossPictureBox" Cursor="Hand" RenderOptions.BitmapScalingMode="HighQuality" Source="Resources/Boss.png" Margin="1,10,0,313" Grid.Column="1" Grid.ColumnSpan="3"/>
+                        <Label x:Name="BossListLabel"  Content="Bosses List" FontSize="22" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Foreground="#FFF1F1F1" Background="#00000000" Margin="0,10,4,461"/>
+                        <ListBox HorizontalContentAlignment="Center" x:Name="BossCollectionListBox" Height="428" Margin="10,53,14,0" VerticalAlignment="Top" SelectionChanged="BossCollectionListBox_SelectionChanged" FontSize="16" Background="Transparent" Foreground="White" BorderBrush="#E5000000"/>
+                        <Label x:Name="BossListBossNameLabel"  Content="Boss Name" FontSize="18" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Foreground="#FFF1F1F1" Background="#00000000" Margin="0,211,4,265" Grid.Column="1" Grid.ColumnSpan="3"/>
+                        <TextBox x:Name="AddSaveBossNameTextBox" Grid.Column="1" Height="26" Margin="10,249,2,0" TextWrapping="NoWrap" VerticalAlignment="Top" FontSize="16" TextChanged="AddSaveBossNameTextBox_TextChanged_1" Grid.ColumnSpan="2">
+                            <TextBox.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="3"/>
+                                </Style>
+                            </TextBox.Resources>
+                        </TextBox>
+                        <Label x:Name="DILBLLabel"  Content="Display Image Link" FontSize="18" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Foreground="#FFF1F1F1" Background="#00000000" Margin="0,285,0,191" Grid.Column="1" Grid.ColumnSpan="3"/>
+                        <TextBox x:Name="DisplayImageLinkextBox" BorderThickness="2" Grid.Column="1" Height="26" Margin="10,323,2,0" TextWrapping="NoWrap" VerticalAlignment="Top" FontSize="16" Grid.ColumnSpan="2">
+                            <TextBox.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="3"/>
+                                </Style>
+                            </TextBox.Resources>
+                        </TextBox>
+                        <Label x:Name="BSLLLabel"  Content="Boss Spawn Location Link" FontSize="18" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Foreground="#FFF1F1F1" Background="#00000000" Margin="0,356,0,120" Grid.Column="1" Grid.ColumnSpan="3"/>
+                        <TextBox x:Name="BossSpawnLocationLinkTextBox" Grid.Column="1" Height="26" Margin="10,394,2,0" TextWrapping="NoWrap" VerticalAlignment="Top" FontSize="16" Grid.ColumnSpan="2">
+                            <TextBox.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="3"/>
+                                </Style>
+                            </TextBox.Resources>
+                        </TextBox>
+                        <Button x:Name="AddSaveBossButton" Content="Add/Save" Margin="0,0,3,28" FontFamily="/Menu Manager;component/font/#Droid Sans" Foreground="#FF424242" FontWeight="Bold" BorderBrush="#19707070" Grid.Column="1" Height="30" VerticalAlignment="Bottom" Click="AddSaveBossButton_Click" HorizontalAlignment="Right" Width="109">
+                            <Button.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="3"/>
+
+                                </Style>
+                                <Style TargetType="{x:Type Button}">
+                                    <Setter Property="Background" Value="#FF3DBB73"/>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type Button}">
+                                                <Border Background="{TemplateBinding Background}">
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#71c796"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Resources>
+
+                        </Button>
+                        <Button x:Name="AddnewBossTestImgLinkButton" Content="Test" HorizontalAlignment="Left" Margin="2,0,0,158" Width="72" FontFamily="/Menu Manager;component/font/#Droid Sans" Foreground="#FF424242" FontWeight="Bold" BorderBrush="#19707070" Grid.Column="3" Height="28" VerticalAlignment="Bottom" Click="AddnewBossTestImgLinkButton_Click" RenderTransformOrigin="0.521,0.321">
+                            <Button.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="3"/>
+
+                                </Style>
+                                <Style TargetType="{x:Type Button}">
+                                    <Setter Property="Background" Value="#FF3DBB73"/>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type Button}">
+                                                <Border Background="{TemplateBinding Background}">
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#71c796"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Resources>
+
+                        </Button>
+                        <Button x:Name="RemoveBossButton" Content="Remove" Margin="0,0,10,28" FontFamily="/Menu Manager;component/font/#Droid Sans" Foreground="#FF424242" FontWeight="Bold" BorderBrush="#19707070" HorizontalAlignment="Right" Width="109" Height="30" VerticalAlignment="Bottom" Grid.Column="2" Click="RemoveBossButton_Click" Grid.ColumnSpan="2">
+                            <Button.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="3"/>
+                                </Style>
+                                <Style TargetType="{x:Type Button}">
+                                    <Setter Property="Background" Value="#FFBB3D3D"/>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type Button}">
+                                                <Border Background="{TemplateBinding Background}">
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#ed7272"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                    </Grid>
+                    <Button x:Name="BossListButton" Cursor="Hand" VerticalAlignment="Top" Height="61" FontFamily="/Menu Manager;component/font/#Droid Sans" Margin="0,15,934,0" Background="#0013A76B" Foreground="#00000000" BorderBrush="#00707070" Click="BossListButton_Click">
+
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Background" Value="#FF13A76B"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border Background="{TemplateBinding Background}">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#FF056644"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Height="59" Width="70" Source="Resources/back.png" RenderOptions.BitmapScalingMode="HighQuality" Stretch="Uniform" Cursor="Hand"/>
+                        </StackPanel>
+
+                    </Button>
+
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="tab3" Header="TabItem">
+                <Grid Background="#00E5E5E5">
+                    <Button x:Name="GobackSettingsButton" Cursor="Hand" VerticalAlignment="Top" Height="61" FontFamily="/Menu Manager;component/font/#Droid Sans" Margin="0,15,934,0" Background="#0013A76B" Foreground="#00000000" BorderBrush="#00707070" Click="GobackSettingsButton_Click">
+
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Background" Value="#FF13A76B"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border Background="{TemplateBinding Background}">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#FF056644"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Height="59" Width="70" Source="Resources/back.png" RenderOptions.BitmapScalingMode="HighQuality" Stretch="Uniform" Cursor="Hand"/>
+                        </StackPanel>
+
+                    </Button>
+                    <Grid Margin="10,81,0,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="391*"/>
+                            <ColumnDefinition Width="59*"/>
+                            <ColumnDefinition Width="124*"/>
+                            <ColumnDefinition Width="233*"/>
+                            <ColumnDefinition Width="49*"/>
+                            <ColumnDefinition Width="157*"/>
+                        </Grid.ColumnDefinitions>
+                        <Rectangle Fill="#E51E2129" Stroke="#00000000" RadiusY="5.5" RadiusX="5.5" Margin="0,0,10,-2" Grid.ColumnSpan="6"/>
+                        <Label x:Name="LanguageSLabel"  Content="Language" FontSize="18" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Foreground="#FFF1F1F1" Background="#00000000" Margin="0,45,272,426"/>
+                        <Label x:Name="SettingsLabel"  Content="Settings" FontSize="22" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Foreground="#FFF1F1F1" Background="#00000000" Margin="0,0,4.5,464" Grid.ColumnSpan="3"/>
+                        <Label x:Name="ClientIDLABEL"  Content="Client ID" FontSize="18" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Foreground="#FFF1F1F1" Background="#00000000" Margin="0,108,3,364"/>
+                        <TextBox x:Name="CidTextbox" Height="26" Margin="10,146,3,0" TextWrapping="NoWrap" VerticalAlignment="Top" FontSize="16" PreviewTextInput="NumberValidationTextBox">
+                            <TextBox.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="3"/>
+                                </Style>
+                            </TextBox.Resources>
+                        </TextBox>
+                        <Label x:Name="TokenLabel"  Content="Token" FontSize="18" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Foreground="#FFF1F1F1" Background="#00000000" Margin="0,180,3,292"/>
+                        <TextBox x:Name="TokenTextbox" Height="26" Margin="10,218,3,0" TextWrapping="NoWrap" VerticalAlignment="Top" FontSize="16">
+                            <TextBox.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="3"/>
+                                </Style>
+                            </TextBox.Resources>
+                        </TextBox>
+                        <Label x:Name="ServerIDLAbel"  Content="Server ID" FontSize="18" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Foreground="#FFF1F1F1" Background="#00000000" Margin="0,256,3,214"/>
+                        <TextBox x:Name="SidTextbox" Height="26" Margin="10,294,3,0" TextWrapping="NoWrap" VerticalAlignment="Top" FontSize="16" PreviewTextInput="NumberValidationTextBox">
+                            <TextBox.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="3"/>
+                                </Style>
+                            </TextBox.Resources>
+                        </TextBox>
+                        <Label x:Name="ChannelIDLabel"  Content="Channel ID" FontSize="18" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Foreground="#FFF1F1F1" Background="#00000000" Margin="0,330,3,140"/>
+                        <TextBox x:Name="ChidTextbox" Height="26" Margin="10,368,3,0" TextWrapping="NoWrap" VerticalAlignment="Top" FontSize="16" PreviewTextInput="NumberValidationTextBox">
+                            <TextBox.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="3"/>
+                                </Style>
+                            </TextBox.Resources>
+                        </TextBox>
+                        <Label x:Name="BsPRLabel"  Content="Boss spawn Pinged Role" FontSize="18" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Foreground="#FFF1F1F1" Background="#00000000" Margin="16,108,1,364" Grid.Column="2" Grid.ColumnSpan="3"/>
+                        <TextBox x:Name="BSTextbox" Height="26" Margin="26,146,1,0" TextWrapping="NoWrap" VerticalAlignment="Top" FontSize="16" Grid.Column="2" Grid.ColumnSpan="3">
+                            <TextBox.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="3"/>
+                                </Style>
+                            </TextBox.Resources>
+                        </TextBox>
+                        <Label x:Name="NTPRLabel"  Content="Night Time Pinged Role" FontSize="18" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Foreground="#FFF1F1F1" Background="#00000000" Margin="16,180,1,292" Grid.Column="2" Grid.ColumnSpan="3"/>
+                        <TextBox x:Name="NTtextbox" Height="26" Margin="26,218,1,0" TextWrapping="NoWrap" VerticalAlignment="Top" FontSize="16" Grid.Column="2" Grid.ColumnSpan="3">
+                            <TextBox.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="3"/>
+                                </Style>
+                            </TextBox.Resources>
+                        </TextBox>
+                        <Label x:Name="IRPRLabel"  Content="Imperial Reset Pinged Role" FontSize="18" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Foreground="#FFF1F1F1" Background="#00000000" Margin="16,256,1,214" Grid.Column="2" Grid.ColumnSpan="3"/>
+                        <TextBox x:Name="IRTextbox" Height="26" Margin="26,294,1,0" TextWrapping="NoWrap" VerticalAlignment="Top" FontSize="16" Grid.Column="2" Grid.ColumnSpan="3">
+                            <TextBox.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="3"/>
+                                </Style>
+                            </TextBox.Resources>
+                        </TextBox>
+                        <Expander x:Name="LanguageExpander1" Header="&lt;lang&gt;" HorizontalAlignment="Left" Height="205" Margin="119,46,0,0" VerticalAlignment="Top" Width="207" Foreground="White" FontSize="18" FontFamily="/YPBBT 2.0;component/font/#Droid Sans">
+                            <Grid Background="#00E5E5E5">
+                                <ListBox x:Name="LanguageListBox" HorizontalContentAlignment="Center" Background="#FF21242B" FontSize="18" Foreground="White" SelectionChanged="ListBox_SelectionChanged">
+                                    <ListBoxItem Content="Français"/>
+                                    <ListBoxItem Content="English"/>
+                                    <ListBoxItem Content="Español"/>
+                                    <ListBoxItem Content="русский"/>
+                                    <ListBoxItem Content="日本人"/>
+                                    <ListBoxItem Content="한국어"/>
+                                </ListBox>
+                            </Grid>
+                        </Expander>
+                        <Label x:Name="BUDLAbel"  Content="Bot Update Discord Message Every (Seconds)" FontSize="14" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Foreground="#FFF1F1F1" Background="#00000000" Margin="16,330,10,140" Grid.Column="2" Grid.ColumnSpan="4"/>
+                        <TextBox x:Name="MIUTextbox" Height="26" Margin="26,368,3.5,0" TextWrapping="NoWrap" VerticalAlignment="Top" FontSize="16" PreviewTextInput="NumberValidationTextBox" TextChanged="MIUTextbox_TextChanged" Grid.Column="2">
+                            <TextBox.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="3"/>
+                                </Style>
+                            </TextBox.Resources>
+                        </TextBox>
+                        <Button x:Name="HrdResetAppButton" Content="HARD RESET" Margin="0,0,272,10" FontFamily="/Menu Manager;component/font/#Droid Sans" Foreground="#FF424242" FontWeight="Bold" BorderBrush="#19707070" HorizontalAlignment="Right" Width="109" Height="30" VerticalAlignment="Bottom" Click="HrdResetAppButton_Click">
+                            <Button.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="3"/>
+                                </Style>
+                                <Style TargetType="{x:Type Button}">
+                                    <Setter Property="Background" Value="#FFBB3D3D"/>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type Button}">
+                                                <Border Background="{TemplateBinding Background}">
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#ed7272"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                        <Label x:Name="HRWLabel"  Content="WARNING:: Hard Resting the app well delete all saved Settings and information." FontSize="14" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Foreground="#FFBB3D3D" Background="#00000000" Margin="124,468,10,10" Grid.ColumnSpan="6"/>
+                        <Button Content="?" HorizontalAlignment="Left" Margin="2,143,0,329" VerticalAlignment="Center" Width="41" Height="32" BorderBrush="#FF2D9587" Background="#FF2D9587" Foreground="#FFCBCBCB" FontSize="20" Click="Button_Click" Grid.Column="1">
+                            <Button.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="3"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                        <Button Content="?" HorizontalAlignment="Left" Margin="2,215,0,257" VerticalAlignment="Center" Width="41" Height="32" BorderBrush="#FF2D9587" Background="#FF2D9587" Foreground="#FFCBCBCB" FontSize="20" Click="Button_Click_1" Grid.Column="1">
+                            <Button.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="3"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                        <Button Content="?" HorizontalAlignment="Left" Margin="2,292,0,180" VerticalAlignment="Center" Width="41" Height="32" BorderBrush="#FF2D9587" Background="#FF2D9587" Foreground="#FFCBCBCB" FontSize="20" Click="Button_Click_4" Grid.Column="1">
+                            <Button.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="3"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                        <Button Content="?" HorizontalAlignment="Left" Margin="2,366,0,106" VerticalAlignment="Center" Width="41" Height="32" BorderBrush="#FF2D9587" Background="#FF2D9587" Foreground="#FFCBCBCB" FontSize="20" Click="Button_Click_5" Grid.Column="1">
+                            <Button.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="3"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                        <Button Content="?" HorizontalAlignment="Center" Margin="4,143,112,184" VerticalAlignment="Center" Width="41" Height="177" BorderBrush="#FF2D9587" Background="#FF2D9587" Foreground="#FFCBCBCB" FontSize="20" Click="Button_Click_6" Grid.Column="5">
+                            <Button.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="3"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                        <Slider x:Name="TransparacySlider" Grid.Column="2" Margin="16,85,2,0" VerticalAlignment="Top" Maximum="1" SmallChange="1" ValueChanged="Slider_ValueChanged" TickFrequency="0.1" Grid.ColumnSpan="2" LargeChange="0.1"/>
+                        <Label x:Name="OTLabel"  Content="Overlay Transperancy" FontSize="18" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Foreground="#FFF1F1F1" Background="#00000000" Margin="10,37,7,0" Grid.Column="2" Grid.ColumnSpan="3" Height="32" VerticalAlignment="Top"/>
+                        <Label x:Name="OverlayTransperancyValueLabel"  Content="000" FontSize="18" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Foreground="#FFF1F1F1" Background="#00000000" Margin="3,76,1,396" Grid.Column="4"/>
+                        <Label x:Name="RecLabel"  Content="Minimum recommended is 5" FontSize="18" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Foreground="#FFF1F1F1" Background="#00000000" Margin="0.5,364,10,106" Grid.Column="3" Grid.ColumnSpan="3"/>
+                        <Label x:Name="RMMLabel"  Content="Roles Mention Message stays after anouncing" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Foreground="#FFF1F1F1" Background="#00000000" Margin="19,401,10,69" Grid.Column="2" Grid.ColumnSpan="4" FontSize="14"/>
+                        <TextBox x:Name="RMmtextbox" Height="26" Margin="29,436,232,0" TextWrapping="NoWrap" VerticalAlignment="Top" FontSize="16" PreviewTextInput="NumberValidationTextBox" TextChanged="RMmtextbox_TextChanged" Grid.Column="2" Grid.ColumnSpan="2">
+                            <TextBox.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="3"/>
+                                </Style>
+                            </TextBox.Resources>
+                        </TextBox>
+                    </Grid>
+
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <Button x:Name="CloseappButton" Content="X" Margin="968,1,12,0" VerticalAlignment="Top" Height="24" RenderTransformOrigin="0.5,0.5" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" BorderBrush="#00707070" Foreground="#FFFDFDFD" HorizontalAlignment="Center" Width="48" Click="CloseappButton_Click">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleX="-23.114"/>
+                    <RotateTransform/>
+                    <TranslateTransform X="17.073"/>
+                </TransformGroup>
+            </Button.RenderTransform>
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="#FFBB3D3D"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#ed7272"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button x:Name="MinimizeButton" Content="_" Margin="920,1,60,0" VerticalAlignment="Top" Height="24" RenderTransformOrigin="0.5,0.5" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" BorderBrush="#00707070" Foreground="#FFFDFDFD" HorizontalAlignment="Center" Width="48" Click="MinimizeButton_Click">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleX="-23.114"/>
+                    <RotateTransform/>
+                    <TranslateTransform X="17.073"/>
+                </TransformGroup>
+            </Button.RenderTransform>
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="#FF3DBB73"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#71c796"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Grid Visibility="Hidden" x:Name="TimeTableGrid" Margin="10,143,16,10" Grid.RowSpan="5">
+            <Rectangle x:Name="gridviewbox" Fill="#E51E2129" Stroke="#00000000" RadiusY="5.5" RadiusX="5.5"/>
+
+            <DataGrid x:Name="gridview1" CanUserAddRows="false" BorderBrush="#00688CAF" RowHeaderWidth="0" Background="#00F0F0F0" VerticalGridLinesBrush="#00000000" GridLinesVisibility="Horizontal" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalGridLinesBrush="#FF1B1B1C" AlternatingRowBackground="#0025272D" RowBackground="#0025272D" RowHeight="40" HeadersVisibility="Row" Foreground="#FFD8D8D8" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Width="Auto" CanUserResizeColumns="False" ColumnWidth="*" Margin="10,48,10,10" GotFocus="gridview1_GotFocus">
+                <DataGrid.Resources>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#FF767676"/>
+                </DataGrid.Resources>
+
+            </DataGrid>
+            <Label x:Name="TimeTableLabel"  Content="&lt;region&gt;Time Table" FontSize="22" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Foreground="#FFF1F1F1" Background="#00000000" Margin="10,10,10,422"/>
+        </Grid>
+    </Grid>
+</Window>
