@@ -802,8 +802,8 @@ namespace YPBBT_2._0
                     try { gridview1.SelectedIndex = SharedDay; } catch (Exception) { }
                     if (File.Exists(System.IO.Directory.GetCurrentDirectory() + "/Resources/TimeTable.png"))
                     { File.Delete(System.IO.Directory.GetCurrentDirectory() + "/Resources/TimeTable.png"); }
-                    int width = int.Parse(gridview1.ActualWidth.ToString());
-                    int height = int.Parse(gridview1.ActualHeight.ToString());
+                    //int width = int.Parse(gridview1.ActualWidth.ToString());
+                    //int height = int.Parse(gridview1.ActualHeight.ToString());
                     RenderTargetBitmap renderTargetBitmap =
                    new RenderTargetBitmap(1920, 1080, 180, 250, PixelFormats.Pbgra32);
                     renderTargetBitmap.Render(gridview1);
