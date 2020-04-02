@@ -133,7 +133,7 @@
                         <ComboBox x:Name="RegionComboBox" HorizontalContentAlignment="Center" Margin="9,1,13,0" VerticalAlignment="Top" Background="#FFE8E8E8" BorderBrush="#00ACACAC" Foreground="#FF2D2F36" Grid.Row="3" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" SelectionChanged="RegionComboBox_SelectionChanged" DropDownClosed="RegionComboBox_DropDownClosed" Height="20"/>
                         <Label x:Name="soundLabel" Content="Sound:" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Foreground="#FFF1F1F1" Background="#00000000" Margin="1,26,9,343" FontSize="16" Grid.Row="3"/>
                         <CheckBox x:Name="SoundOptionCheckBox" Content="Boss Spawn" Margin="8,0,0,287" VerticalAlignment="Bottom" Foreground="White" Click="SoundOptionCheckBox_Click" Grid.Row="3" FontSize="11"/>
-                        <Label x:Name="PlaySoundOnLabel" Content="Play Sound on:" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Foreground="#FFF1F1F1" Background="#00000000" Margin="1,62,0,307" Grid.Row="3" FontSize="14"/>
+                        <Label x:Name="PlaySoundOnLabel" Content="Play Sound on:" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Foreground="#FFF1F1F1" Background="#00000000" Margin="1,62,0,307" Grid.Row="3"/>
                         <CheckBox x:Name="NTSoundOptionCheckBox" Content="Night Time" Margin="8,0,0,267" VerticalAlignment="Bottom" Foreground="White" Click="NTSoundOptionCheckBox_Click" Grid.Row="3" FontSize="11"/>
                         <CheckBox x:Name="IRSoundOptionCheckBox" Content="Imperial Reset" Margin="8,0,0,247" VerticalAlignment="Bottom" Foreground="White" Grid.Row="3" Click="IRSoundOptionCheckBox_Click" FontSize="11"/>
                         <Label x:Name="PostSettingsLabel" Content="Post Settings:" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Foreground="#FFF1F1F1" Background="#00000000" Margin="1,159,0,210" Grid.Row="3" FontSize="10"/>
@@ -235,7 +235,7 @@
                         <Label x:Name="BotStatusLabel" Content="Bot Status:" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Foreground="#FFF1F1F1" Background="#00000000" Margin="0,11,0,461" FontSize="16" Grid.ColumnSpan="2"/>
                         <Label x:Name="DiscordBotConnectionStatusLabel" Content="Disconnected" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Foreground="#FFBB3D3D" Background="#00000000" Margin="0,41,0,431" FontSize="14" Grid.ColumnSpan="2"/>
                         <Label x:Name="BsAlarmLabel" Content="Boss Spawn &#xD;&#xA;Alarm:" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Foreground="#FFF1F1F1" Background="#00000000" Margin="0,90,0,368" FontSize="14" Grid.ColumnSpan="2"/>
-                        <CheckBox x:Name="BossSpawnAlarmCheckBox1" Content="Alarm 1" Margin="1,139,0,0" VerticalAlignment="Top" Foreground="White" Click="BossSpawnAlarmCheckBox1_Click" Grid.Column="1"/>
+                        <CheckBox x:Name="BossSpawnAlarmCheckBox1" Content="Alarm 1" Margin="1,139,0,0" VerticalAlignment="Top" Foreground="White" Click="BossSpawnAlarmCheckBox1_Click" Grid.Column="1" FontSize="10"/>
                         <TextBox x:Name="BossSpawnAlarm1Textbox" Height="15" Margin="4,139,4,0" TextWrapping="NoWrap" VerticalAlignment="Top" FontSize="11" PreviewTextInput="NumberValidationTextBox" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" LostFocus="BossSpawnAlarm1Textbox_LostFocus" TextChanged="BossSpawnAlarm1Textbox_TextChanged">
                             <TextBox.Resources>
                                 <Style TargetType="{x:Type Border}">
@@ -243,7 +243,7 @@
                                 </Style>
                             </TextBox.Resources>
                         </TextBox>
-                        <CheckBox x:Name="BossSpawnAlarmCheckBox2" Content="Alarm 2" Margin="1,159,0,0" VerticalAlignment="Top" Foreground="White" Click="BossSpawnAlarmCheckBox2_Click" Grid.Column="1"/>
+                        <CheckBox x:Name="BossSpawnAlarmCheckBox2" Content="Alarm 2" Margin="1,159,0,0" VerticalAlignment="Top" Foreground="White" Click="BossSpawnAlarmCheckBox2_Click" Grid.Column="1" FontSize="10"/>
                         <TextBox x:Name="BossSpawnAlarm2Textbox" Height="15" Margin="4,159,4,0" TextWrapping="NoWrap" VerticalAlignment="Top" FontSize="11" PreviewTextInput="NumberValidationTextBox" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" LostFocus="BossSpawnAlarm2Textbox_LostFocus" TextChanged="BossSpawnAlarm2Textbox_TextChanged">
                             <TextBox.Resources>
                                 <Style TargetType="{x:Type Border}">
@@ -251,7 +251,7 @@
                                 </Style>
                             </TextBox.Resources>
                         </TextBox>
-                        <CheckBox x:Name="BossSpawnAlarmCheckBox3" Content="Alarm 3" Margin="1,179,0,0" VerticalAlignment="Top" Foreground="White" Click="BossSpawnAlarmCheckBox3_Click" Grid.Column="1"/>
+                        <CheckBox x:Name="BossSpawnAlarmCheckBox3" Content="Alarm 3" Margin="1,179,0,0" VerticalAlignment="Top" Foreground="White" Click="BossSpawnAlarmCheckBox3_Click" Grid.Column="1" FontSize="10"/>
                         <TextBox x:Name="BossSpawnAlarm3Textbox" Height="15" Margin="4,179,4,0" TextWrapping="NoWrap" VerticalAlignment="Top" FontSize="11" PreviewTextInput="NumberValidationTextBox" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" LostFocus="BossSpawnAlarm3Textbox_LostFocus" TextChanged="BossSpawnAlarm3Textbox_TextChanged">
                             <TextBox.Resources>
                                 <Style TargetType="{x:Type Border}">
@@ -260,7 +260,7 @@
                             </TextBox.Resources>
                         </TextBox>
                         <Label x:Name="NTAlarmLabel" Content="Night Time&#xD;&#xA; Alarm:" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Foreground="#FFF1F1F1" Background="#00000000" Margin="0,209,0,251" FontSize="14" Grid.ColumnSpan="2"/>
-                        <CheckBox x:Name="NightTimeAlarmCheckBox1" Content="Alarm 1" Margin="1,256,0,0" VerticalAlignment="Top" Foreground="White" Grid.Column="1" Click="NightTimeAlarmCheckBox1_Click"/>
+                        <CheckBox x:Name="NightTimeAlarmCheckBox1" Content="Alarm 1" Margin="1,256,0,0" VerticalAlignment="Top" Foreground="White" Grid.Column="1" Click="NightTimeAlarmCheckBox1_Click" FontSize="10"/>
                         <TextBox x:Name="NightTimeAlarm1Textbox" Height="15" Margin="4,256,4,0" TextWrapping="NoWrap" VerticalAlignment="Top" FontSize="11" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" PreviewTextInput="NumberValidationTextBox" LostFocus="NightTimeAlarm1Textbox_LostFocus" TextChanged="NightTimeAlarm1Textbox_TextChanged">
                             <TextBox.Resources>
                                 <Style TargetType="{x:Type Border}">
@@ -268,7 +268,7 @@
                                 </Style>
                             </TextBox.Resources>
                         </TextBox>
-                        <CheckBox x:Name="NightTimeAlarmCheckBox2" Content="Alarm 2" Margin="1,276,0,0" VerticalAlignment="Top" Foreground="White" Grid.Column="1" Click="NightTimeAlarmCheckBox2_Click"/>
+                        <CheckBox x:Name="NightTimeAlarmCheckBox2" Content="Alarm 2" Margin="1,276,0,0" VerticalAlignment="Top" Foreground="White" Grid.Column="1" Click="NightTimeAlarmCheckBox2_Click" FontSize="10"/>
                         <TextBox x:Name="NightTimeAlarm2Textbox" Height="15" Margin="4,276,4,0" TextWrapping="NoWrap" VerticalAlignment="Top" FontSize="11" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" PreviewTextInput="NumberValidationTextBox" LostFocus="NightTimeAlarm2Textbox_LostFocus" TextChanged="NightTimeAlarm2Textbox_TextChanged">
                             <TextBox.Resources>
                                 <Style TargetType="{x:Type Border}">
@@ -276,7 +276,7 @@
                                 </Style>
                             </TextBox.Resources>
                         </TextBox>
-                        <CheckBox x:Name="NightTimeAlarmCheckBox3" Content="Alarm 3" Margin="1,296,0,0" VerticalAlignment="Top" Foreground="White" Grid.Column="1" Click="NightTimeAlarmCheckBox3_Click"/>
+                        <CheckBox x:Name="NightTimeAlarmCheckBox3" Content="Alarm 3" Margin="1,296,0,0" VerticalAlignment="Top" Foreground="White" Grid.Column="1" Click="NightTimeAlarmCheckBox3_Click" FontSize="10"/>
                         <TextBox x:Name="NightTimeAlarm3Textbox" Height="15" Margin="4,296,4,0" TextWrapping="NoWrap" VerticalAlignment="Top" FontSize="11" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" PreviewTextInput="NumberValidationTextBox" LostFocus="NightTimeAlarm3Textbox_LostFocus" TextChanged="NightTimeAlarm3Textbox_TextChanged">
                             <TextBox.Resources>
                                 <Style TargetType="{x:Type Border}">
@@ -285,7 +285,7 @@
                             </TextBox.Resources>
                         </TextBox>
                         <Label x:Name="IRAlarmLabel" Content="Imperial Reset&#xD;&#xA; Alarm:" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Foreground="#FFF1F1F1" Background="#00000000" Margin="0,322,0,135" Grid.ColumnSpan="2"/>
-                        <CheckBox x:Name="ImperialResetCheckBox1" Content="Alarm 1" Margin="1,372,0,0" VerticalAlignment="Top" Foreground="White" Grid.Column="1" Click="ImperialResetCheckBox1_Click"/>
+                        <CheckBox x:Name="ImperialResetCheckBox1" Content="Alarm 1" Margin="1,372,0,0" VerticalAlignment="Top" Foreground="White" Grid.Column="1" Click="ImperialResetCheckBox1_Click" FontSize="10"/>
                         <TextBox x:Name="ImperialResetAlarm1Textbox" Height="15" Margin="4,372,4,0" TextWrapping="NoWrap" VerticalAlignment="Top" FontSize="11" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" PreviewTextInput="NumberValidationTextBox" LostFocus="ImperialResetAlarm1Textbox_LostFocus" TextChanged="ImperialResetAlarm1Textbox_TextChanged">
                             <TextBox.Resources>
                                 <Style TargetType="{x:Type Border}">
@@ -293,7 +293,7 @@
                                 </Style>
                             </TextBox.Resources>
                         </TextBox>
-                        <CheckBox x:Name="ImperialResetCheckBox2" Content="Alarm 2" Margin="1,392,0,0" VerticalAlignment="Top" Foreground="White" Grid.Column="1" Click="ImperialResetCheckBox2_Click"/>
+                        <CheckBox x:Name="ImperialResetCheckBox2" Content="Alarm 2" Margin="1,392,0,0" VerticalAlignment="Top" Foreground="White" Grid.Column="1" Click="ImperialResetCheckBox2_Click" FontSize="10"/>
                         <TextBox x:Name="ImperialResetAlarm2Textbox" Height="15" Margin="4,392,4,0" TextWrapping="NoWrap" VerticalAlignment="Top" FontSize="11" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" PreviewTextInput="NumberValidationTextBox" LostFocus="ImperialResetAlarm2Textbox_LostFocus" TextChanged="ImperialResetAlarm2Textbox_TextChanged">
                             <TextBox.Resources>
                                 <Style TargetType="{x:Type Border}">
@@ -301,7 +301,7 @@
                                 </Style>
                             </TextBox.Resources>
                         </TextBox>
-                        <CheckBox x:Name="ImperialResetCheckBox3" Content="Alarm 3" Margin="1,412,0,0" VerticalAlignment="Top" Foreground="White" Grid.Column="1" Click="ImperialResetCheckBox3_Click"/>
+                        <CheckBox x:Name="ImperialResetCheckBox3" Content="Alarm 3" Margin="1,412,0,0" VerticalAlignment="Top" Foreground="White" Grid.Column="1" Click="ImperialResetCheckBox3_Click" FontSize="10"/>
                         <TextBox x:Name="ImperialResetAlarm3Textbox" Height="15" Margin="4,412,4,0" TextWrapping="NoWrap" VerticalAlignment="Top" FontSize="11" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" PreviewTextInput="NumberValidationTextBox" LostFocus="ImperialResetAlarm3Textbox_LostFocus" TextChanged="ImperialResetAlarm3Textbox_TextChanged">
                             <TextBox.Resources>
                                 <Style TargetType="{x:Type Border}">

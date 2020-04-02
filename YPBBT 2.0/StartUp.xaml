@@ -436,7 +436,7 @@
                             </Style>
                         </Button.Resources>
                     </Button>
-                    <TextBox x:Name="S4L2" Margin="21,23,10,52" TextWrapping="Wrap" Background="#001E222A" BorderBrush="#001E222A" Foreground="#FFDC6B76" FontSize="22" BorderThickness="0" SelectionBrush="#000078D7" Text="NOTE:: if u cant find the client id Click Below " IsReadOnly="True" Cursor="Arrow" Grid.Column="1" Grid.ColumnSpan="3" Grid.RowSpan="2" Grid.Row="2" />
+                    <TextBox x:Name="S4L2" Margin="21,23,10,52" TextWrapping="Wrap" Background="#001E222A" BorderBrush="#001E222A" Foreground="#FFDC6B76" FontSize="22" BorderThickness="0" SelectionBrush="#000078D7" Text="NOTE:: if u cant find the Token Click Below " IsReadOnly="True" Cursor="Arrow" Grid.Column="1" Grid.ColumnSpan="3" Grid.RowSpan="2" Grid.Row="2" />
                     <Button x:Name="Step4HelpButton" Content="Help Cant Find The Token" Margin="6,14,10,0" FontFamily="/Menu Manager;component/font/#Droid Sans" Background="#FFA9A9AA" Foreground="#FF424242" FontWeight="Bold" BorderBrush="#19707070" Grid.Column="1" FontSize="18" Height="28" VerticalAlignment="Top" MouseEnter="Step4HelpButton_MouseEnter" MouseLeave="Step4HelpButton_MouseLeave" Click="Step4HelpButton_Click" Grid.ColumnSpan="3" Grid.Row="3">
                         <Button.Resources>
                             <Style TargetType="{x:Type Border}">

@@ -412,8 +412,8 @@ namespace YPBBT_2._0
             if (nSecondboss != "")
             { NBossNameLabel.Content = htmlDoc.DocumentNode.SelectSingleNode("/html/body/main/div[1]/div[1]/div[3]/div/div/div[1]").InnerText + " & " + nSecondboss; }
             NextBossTimeLabel.Content = htmlDoc.DocumentNode.SelectSingleNode("/html/body/main/div[1]/div[1]/div[3]/div/div/div[3]").InnerText;
-            NightInBdoTimeLabel.Content = htmlDoc.DocumentNode.SelectSingleNode("/html/body/main/div[1]/div[2]/div[1]/span[2]").InnerText;
-            IRTimeLabel.Content = htmlDoc.DocumentNode.SelectSingleNode("/html/body/main/div[1]/div[2]/div[2]/span").InnerText;
+            try { NightInBdoTimeLabel.Content = htmlDoc.DocumentNode.SelectSingleNode("/html/body/main/div[1]/div[2]/div[1]/div[1]/span[2]").InnerText; } catch (Exception) { }
+            try { IRTimeLabel.Content = htmlDoc.DocumentNode.SelectSingleNode("/html/body/main/div[1]/div[2]/div[2]/div[1]/span").InnerText; } catch (Exception) { }
             string DBR = htmlregionDB.Replace(" ", "");
             string[] DBRI = DBR.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
             RegionComboBox.Items.Clear();
@@ -802,8 +802,8 @@ namespace YPBBT_2._0
                     try { gridview1.SelectedIndex = SharedDay; } catch (Exception) { }
                     if (File.Exists(System.IO.Directory.GetCurrentDirectory() + "/Resources/TimeTable.png"))
                     { File.Delete(System.IO.Directory.GetCurrentDirectory() + "/Resources/TimeTable.png"); }
-                    //int width = int.Parse(gridview1.ActualWidth.ToString());
-                    //int height = int.Parse(gridview1.ActualHeight.ToString());
+                    int width = int.Parse(gridview1.ActualWidth.ToString());
+                    int height = int.Parse(gridview1.ActualHeight.ToString());
                     RenderTargetBitmap renderTargetBitmap =
                    new RenderTargetBitmap(1920, 1080, 180, 250, PixelFormats.Pbgra32);
                     renderTargetBitmap.Render(gridview1);
@@ -2185,8 +2185,8 @@ namespace YPBBT_2._0
                         try { gridview1.SelectedIndex = SharedDay; } catch (Exception) { }
                         if (File.Exists(System.IO.Directory.GetCurrentDirectory() + "/Resources/TimeTable.png"))
                         { File.Delete(System.IO.Directory.GetCurrentDirectory() + "/Resources/TimeTable.png"); }
-                        int width = int.Parse(gridview1.ActualWidth.ToString());
-                        int height = int.Parse(gridview1.ActualHeight.ToString());
+                        //int width = int.Parse(gridview1.ActualWidth.ToString());//error
+                        //int height = int.Parse(gridview1.ActualHeight.ToString());
                         RenderTargetBitmap renderTargetBitmap =
                        new RenderTargetBitmap(1920, 1080, 180, 250, PixelFormats.Pbgra32);
                         renderTargetBitmap.Render(gridview1);
