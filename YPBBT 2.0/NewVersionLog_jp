@@ -1,12 +1,14 @@
-﻿update 2.0
-● Remake of the application from vb.net to wpf/c#
-● 6 languages
-● all Regions
-● fixing all bugs since 1.1a
-● Implemnting Time table
-● auto bosses Update system
-● Overlay Mode
-● Imperial Reset/BDO Night time Alarms
-● Intervals control over notification
-● sound notifcation for users
-● and alot more functions
+﻿新しいアップデート2.1が利用可能になりました：
+
+●起動ウィンドウのセットアップにより、IDとトークンにulongと文字列が強制されます
+●新しいアップデートとパッチ通知システム
+●カスタムpingメッセージ
+●ボスの名前（customNames）を変更できるオプションを追加します
+●上司ごとの特定の役割の割り当て
+●ボットのセットアップにより、正しいデータ入力が保証されます*重要*
+●同じプロセッサがバックグラウンドで実行され、trueで終了した場合のメッセージボックス警告（YES：NO）
+●ボットをサーバーに招待するための接続ボタンのUI機能の変更
+●通知の間隔制御
+●メッセージボックスレポートエラーと考えられる解決策
+
+今すぐ最新のアップデートをダウンロードしますか？

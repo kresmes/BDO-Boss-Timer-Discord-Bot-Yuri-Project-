@@ -80,9 +80,6 @@ C:\Users\kresmes\Desktop\YPBBT\YPBBT 2.0\YPBBT 2.0\obj\Release\YPBBT 2.0.csproj.
 C:\Users\kresmes\Desktop\YPBBT\YPBBT 2.0\YPBBT 2.0\obj\Release\YPBBT 2.0.csproj.CopyComplete
 C:\Users\kresmes\Desktop\YPBBT\YPBBT 2.0\YPBBT 2.0\obj\Release\YPBBT 2.0.exe
 C:\Users\kresmes\Desktop\YPBBT\YPBBT 2.0\YPBBT 2.0\obj\Release\YPBBT 2.0.pdb
-D:\Projects\YPBBT\YPBBT 2.0\YPBBT 2.0\bin\Release\YPBBT 2.0.exe.config
-D:\Projects\YPBBT\YPBBT 2.0\YPBBT 2.0\bin\Release\YPBBT 2.0.exe
-D:\Projects\YPBBT\YPBBT 2.0\YPBBT 2.0\bin\Release\YPBBT 2.0.pdb
 D:\Projects\YPBBT\YPBBT 2.0\YPBBT 2.0\bin\Release\Discord.Net.Commands.dll
 D:\Projects\YPBBT\YPBBT 2.0\YPBBT 2.0\bin\Release\Discord.Net.Core.dll
 D:\Projects\YPBBT\YPBBT 2.0\YPBBT 2.0\bin\Release\Discord.Net.Rest.dll
@@ -150,15 +147,19 @@ D:\Projects\YPBBT\YPBBT 2.0\YPBBT 2.0\obj\Release\MainWindow.g.cs
 D:\Projects\YPBBT\YPBBT 2.0\YPBBT 2.0\obj\Release\OverlayModWindow.g.cs
 D:\Projects\YPBBT\YPBBT 2.0\YPBBT 2.0\obj\Release\StartUp.g.cs
 D:\Projects\YPBBT\YPBBT 2.0\YPBBT 2.0\obj\Release\App.g.cs
-D:\Projects\YPBBT\YPBBT 2.0\YPBBT 2.0\obj\Release\YPBBT 2.0_Content.g.cs
-D:\Projects\YPBBT\YPBBT 2.0\YPBBT 2.0\obj\Release\YPBBT 2.0_MarkupCompile.cache
-D:\Projects\YPBBT\YPBBT 2.0\YPBBT 2.0\obj\Release\YPBBT 2.0_MarkupCompile.lref
 D:\Projects\YPBBT\YPBBT 2.0\YPBBT 2.0\obj\Release\MainWindow.baml
 D:\Projects\YPBBT\YPBBT 2.0\YPBBT 2.0\obj\Release\OverlayModWindow.baml
 D:\Projects\YPBBT\YPBBT 2.0\YPBBT 2.0\obj\Release\StartUp.baml
-D:\Projects\YPBBT\YPBBT 2.0\YPBBT 2.0\obj\Release\YPBBT 2.0.g.resources
 D:\Projects\YPBBT\YPBBT 2.0\YPBBT 2.0\obj\Release\YPBBT_2._0.Properties.Resources.resources
 D:\Projects\YPBBT\YPBBT 2.0\YPBBT 2.0\obj\Release\YPBBT 2.0.csproj.GenerateResource.cache
 D:\Projects\YPBBT\YPBBT 2.0\YPBBT 2.0\obj\Release\YPBBT 2.0.csproj.CopyComplete
-D:\Projects\YPBBT\YPBBT 2.0\YPBBT 2.0\obj\Release\YPBBT 2.0.exe
-D:\Projects\YPBBT\YPBBT 2.0\YPBBT 2.0\obj\Release\YPBBT 2.0.pdb
+D:\Projects\YPBBT\YPBBT 2.0\YPBBT 2.0\obj\Release\YPBBT 2.0.csproj.CoreCompileInputs.cache
+D:\Projects\YPBBT\YPBBT 2.0\YPBBT 2.0\bin\Release\YPBBT.exe.config
+D:\Projects\YPBBT\YPBBT 2.0\YPBBT 2.0\bin\Release\YPBBT.exe
+D:\Projects\YPBBT\YPBBT 2.0\YPBBT 2.0\bin\Release\YPBBT.pdb
+D:\Projects\YPBBT\YPBBT 2.0\YPBBT 2.0\obj\Release\YPBBT_Content.g.cs
+D:\Projects\YPBBT\YPBBT 2.0\YPBBT 2.0\obj\Release\YPBBT_MarkupCompile.cache
+D:\Projects\YPBBT\YPBBT 2.0\YPBBT 2.0\obj\Release\YPBBT_MarkupCompile.lref
+D:\Projects\YPBBT\YPBBT 2.0\YPBBT 2.0\obj\Release\YPBBT.g.resources
+D:\Projects\YPBBT\YPBBT 2.0\YPBBT 2.0\obj\Release\YPBBT.exe
+D:\Projects\YPBBT\YPBBT 2.0\YPBBT 2.0\obj\Release\YPBBT.pdb

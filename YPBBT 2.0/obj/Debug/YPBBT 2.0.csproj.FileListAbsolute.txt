@@ -162,3 +162,4 @@ D:\Projects\YPBBT\YPBBT 2.0\YPBBT 2.0\obj\Debug\YPBBT 2.0.csproj.GenerateResourc
 D:\Projects\YPBBT\YPBBT 2.0\YPBBT 2.0\obj\Debug\YPBBT 2.0.csproj.CopyComplete
 D:\Projects\YPBBT\YPBBT 2.0\YPBBT 2.0\obj\Debug\YPBBT 2.0.exe
 D:\Projects\YPBBT\YPBBT 2.0\YPBBT 2.0\obj\Debug\YPBBT 2.0.pdb
+D:\Projects\YPBBT\YPBBT 2.0\YPBBT 2.0\obj\Debug\YPBBT 2.0.csproj.CoreCompileInputs.cache

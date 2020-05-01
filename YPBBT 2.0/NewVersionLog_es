@@ -1,12 +1,14 @@
-﻿update 2.0
-● Remake of the application from vb.net to wpf/c#
-● 6 languages
-● all Regions
-● fixing all bugs since 1.1a
-● Implemnting Time table
-● auto bosses Update system
-● Overlay Mode
-● Imperial Reset/BDO Night time Alarms
-● Intervals control over notification
-● sound notifcation for users
-● and alot more functions
+﻿La nueva actualización 2.1 ya está disponible:
+
+● configuración de la ventana de inicio forzar ulong y string para id's y token
+● Nueva actualización y sistema de notificación de parches
+● mensajes de ping personalizados
+● agregue la opción para poder cambiar los nombres de los jefes (nombres personalizados)
+● Asignación de roles específicos para cada jefe
+● Configuración de Bot asegura la entrada de datos correcta * Importante *
+● Advertencia de cuadro de mensaje (SÍ: NO) si el mismo proceso se ejecuta en segundo plano y se cierra en verdadero
+● cambio de la función ui del botón de conexión para invitar al bot al servidor
+● Intervalos de control sobre la notificación.
+● MessageBox Informe de error y posible solución
+
+¿Desea descargar la última actualización ahora?

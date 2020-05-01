@@ -2,10 +2,12 @@
 using Discord.WebSocket;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -30,6 +32,29 @@ namespace YPBBT_2._0
         int gate = 0;
         public StartUp()
         {
+            var exists = System.Diagnostics.Process.GetProcessesByName(System.IO.Path.GetFileNameWithoutExtension(System.Reflection.Assembly.GetEntryAssembly().Location)).Count() > 1;
+
+
+            if (System.Diagnostics.Process.GetProcessesByName(System.IO.Path.GetFileNameWithoutExtension(System.Reflection.Assembly.GetEntryAssembly().Location)).Count() > 1)
+            {
+                MessageBoxResult result = MessageBox.Show("The Application is already running in the background do you want to close it before continuing?", "WARNING", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                switch (result)
+                {
+                    case MessageBoxResult.Yes:
+                        System.Diagnostics.Process.Start(System.IO.Directory.GetCurrentDirectory() + "/ExtrenalAppRestart.exe");
+                        const string processName = "YPBBT"; // without '.exe'
+                        Process.GetProcesses()
+                                    .Where(pr => pr.ProcessName == processName)
+                                    .ToAsyncEnumerable()
+                                    .ForEachAsync(p => p.Kill());
+                        break;
+                    case MessageBoxResult.No:
+
+                        break;
+
+                }
+               
+            }
             if (File.Exists(System.IO.Directory.GetCurrentDirectory() + "/Resources/Profile"))
             {
                 MainWindow ma = new MainWindow();
@@ -296,7 +321,14 @@ namespace YPBBT_2._0
         {
             var bc = new BrushConverter();
             Step3CIDTextbox.BorderBrush = (Brush)bc.ConvertFrom("#FFABADB3");
-            if(Step3CIDTextbox.Text == "Client ID")
+            Regex regex = new Regex("[^0-9-]+");
+            string s = Step3CIDTextbox.Text.ToString();
+            foreach (char c in s)
+            {
+                if (regex.IsMatch(c.ToString()) == true)
+                { Step3CIDTextbox.Text = ""; }
+            }          
+            if (Step3CIDTextbox.Text == "Client ID")
             { Step3CIDTextbox.Text = ""; }
             if (Step3CIDTextbox.Text != "")
             {
@@ -589,11 +621,24 @@ namespace YPBBT_2._0
             int g = 0;
             if (Step5SIDTExtbox.Text != "Server ID" && Step5CIDTextbox.Text != "Channel ID")
             { g = 1; }
-          if (Step5SIDTExtbox.Text != "" && Step5CIDTextbox.Text != "" && g == 1)
+            Regex regex = new Regex("[^0-9-]+");
+            string s = Step5SIDTExtbox.Text.ToString();
+            foreach (char c in s)
+            {
+                if (regex.IsMatch(c.ToString()) == true)
+                { Step5SIDTExtbox.Text = ""; }
+            }
+            string s1 = Step5CIDTextbox.Text.ToString();
+            foreach (char c in s1)
+            {
+                if (regex.IsMatch(c.ToString()) == true)
+                { Step5CIDTextbox.Text = ""; }
+            }
+            if (Step5SIDTExtbox.Text != "" && Step5CIDTextbox.Text != "" && g == 1)
           {
-                if(Step5RoleTextbox.Text == "<@RoleID>")
-                { Step5RoleTextbox.Text = "Empty"; }
-                string data = defLang+"|"+ Step3CIDTextbox.Text+"|"+ Step4TokenTextbox.Text+"|"+ Step5SIDTExtbox.Text +"|"+ Step5CIDTextbox.Text+"|"+ Step5RoleTextbox.Text+"|<@Role>" + "|<@Role>" +"|5|30";                
+                if(Step5RoleTextbox.Text == "")
+                { Step5RoleTextbox.Text = "<@RoleID>"; }
+                string data = defLang+"|"+ Step3CIDTextbox.Text+"|"+ Step4TokenTextbox.Text+"|"+ Step5SIDTExtbox.Text +"|"+ Step5CIDTextbox.Text+"|"+ Step5RoleTextbox.Text+"|<@RoleID>" + "|<@RoleID>" +"|5|30";                
                 System.IO.File.WriteAllText(System.IO.Directory.GetCurrentDirectory() + "/Resources/Profile", data);
 
                 DoubleAnimation da = new DoubleAnimation();

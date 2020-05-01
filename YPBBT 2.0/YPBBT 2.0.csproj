@@ -8,7 +8,7 @@
     <ProjectGuid>{07FC3CFE-A916-4965-85FA-D5362F4FF9C6}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>YPBBT_2._0</RootNamespace>
-    <AssemblyName>YPBBT 2.0</AssemblyName>
+    <AssemblyName>YPBBT</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -345,6 +345,13 @@
     <Resource Include="font\Uni Sans Thin Italic.otf" />
     <Resource Include="font\Uni Sans Thin.otf" />
     <None Include="app.manifest" />
+    <None Include="CurrentVersion" />
+    <None Include="NewVersionLog_en" />
+    <None Include="NewVersionLog_es" />
+    <None Include="NewVersionLog_fr" />
+    <None Include="NewVersionLog_jp" />
+    <None Include="NewVersionLog_kr" />
+    <None Include="NewVersionLog_ru" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

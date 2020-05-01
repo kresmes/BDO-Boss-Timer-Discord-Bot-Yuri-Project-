@@ -1,12 +1,14 @@
-﻿update 2.0
-● Remake of the application from vb.net to wpf/c#
-● 6 languages
-● all Regions
-● fixing all bugs since 1.1a
-● Implemnting Time table
-● auto bosses Update system
-● Overlay Mode
-● Imperial Reset/BDO Night time Alarms
-● Intervals control over notification
-● sound notifcation for users
-● and alot more functions
+﻿Новое обновление 2.1 теперь доступно:
+
+● Окно запуска Настройка силы ulong и строка для идентификаторов и токена
+● Новая система уведомлений об обновлениях и исправлениях
+● пользовательские сообщения проверки связи
+● добавить опцию, чтобы иметь возможность изменять имена боссов (customNames)
+● конкретное назначение ролей для каждого босса
+● Bot Setup обеспечивает правильный ввод данных * Важно *
+● Предупреждение MessageBox (ДА: НЕТ), если один и тот же процессор работает в фоновом режиме и закрывается на true
+● изменение пользовательского интерфейса кнопки подключения, чтобы пригласить бота на сервер
+● Интервалы контроля над уведомлением
+● MessageBox Сообщить об ошибке и возможном решении
+
+Вы хотите загрузить последнее обновление прямо сейчас?

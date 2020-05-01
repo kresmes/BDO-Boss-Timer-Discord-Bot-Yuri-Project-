@@ -4,8 +4,10 @@ using HtmlAgilityPack;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -71,14 +73,43 @@ namespace YPBBT_2._0
         ulong DiscordNotifyBossSpwnID = 0;
         ulong DiscordNotifyNightTimeID = 0;
         ulong DiscordNotifyImperialResetID = 0;
+        string AppVersion = "2.1";
+        string CurrentVersion = "";
+        int checkversion = 0;
+        string currentbossrole1 = "";
+        string currentbossrole2 = "";
         
         public MainWindow()
         {
+          
             InitializeComponent();
+            mainWindow.Title = "YPBBT " + AppVersion;
+            string urlAddress = "https://raw.githubusercontent.com/kresmes/BDO-Boss-Timer-Discord-Bot-Yuri-Project-/master/YPBBT%202.0/CurrentVersion";
+
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(urlAddress);
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                Stream receiveStream = response.GetResponseStream();
+                StreamReader readStream = null;
+
+                if (String.IsNullOrWhiteSpace(response.CharacterSet))
+                    readStream = new StreamReader(receiveStream);
+                else
+                    readStream = new StreamReader(receiveStream, Encoding.GetEncoding(response.CharacterSet));
+
+                CurrentVersion = readStream.ReadToEnd();
+                try { CurrentVersion = CurrentVersion.Substring(0, CurrentVersion.IndexOf(".") + 2); } catch (Exception) { }
+                response.Close();
+                readStream.Close();
+            }
+           
             Tab0.Visibility = Visibility.Hidden;
             tab1.Visibility = Visibility.Hidden;
             tab2.Visibility = Visibility.Hidden;
             tab3.Visibility = Visibility.Hidden;
+            tab4.Visibility = Visibility.Hidden;
             TimeTableGrid.Visibility = Visibility.Hidden;
             
             Settings.Default["OverlayState"] = "0";
@@ -108,6 +139,7 @@ namespace YPBBT_2._0
             ImperialResetRole = ProfileCollection[7].ToString();
             UpdateMesssageInterval = int.Parse(ProfileCollection[8].ToString());
             AnouncmentMessageInterval = int.Parse(ProfileCollection[9].ToString());
+          
             LoadAlarmsSettings();
             LoadDefaultLanguage();
             string region = Settings.Default["DefaultRegion"].ToString();//get Last Saved Region
@@ -210,6 +242,97 @@ namespace YPBBT_2._0
             BUDLAbel.Content = LanguageCollection[67].ToString();
             RecLabel.Content = LanguageCollection[68].ToString();
             RMMLabel.Content = LanguageCollection[69].ToString();
+            BossListBossCustomNameLabel.Content = LanguageCollection[72].ToString();
+            BossListSpecificRoleForthisBossLabel.Content = LanguageCollection[73].ToString();
+            BSA1CMLabel.Content = LanguageCollection[74].ToString();
+            BSA1CMLabel1.Content = LanguageCollection[75].ToString();
+            BSA2CMLabel.Content = LanguageCollection[76].ToString();
+            BSA2CMLabel1.Content = LanguageCollection[77].ToString();
+            BSA3CMLabel.Content = LanguageCollection[78].ToString();
+            BSA3CMLabel1.Content = LanguageCollection[79].ToString();
+            NTA1CMLabel.Content = LanguageCollection[80].ToString();
+            NTA2CMLabel.Content = LanguageCollection[81].ToString();
+            NTA3CMLabel.Content = LanguageCollection[82].ToString();
+            IRA1CMLabel.Content = LanguageCollection[83].ToString();
+            IRA2CMLabel.Content = LanguageCollection[84].ToString();
+            IRA3CMLabel.Content = LanguageCollection[85].ToString();
+
+
+            if (Settings.Default["BSA1CM"].ToString() == "")
+            {
+                BSA1CMTextBox.Text = LanguageCollection[43].ToString();
+            }
+            else
+            {
+                BSA1CMTextBox.Text = Settings.Default["BSA1CM"].ToString();
+            }
+            if (Settings.Default["BSA2CM"].ToString() == "")
+            {
+                BSA2CMTextBox.Text = LanguageCollection[43].ToString();
+            }
+            else
+            {
+                BSA2CMTextBox.Text = Settings.Default["BSA2CM"].ToString();
+            }
+            if (Settings.Default["BSA3CM"].ToString() == "")
+            {
+                BSA3CMTextBox.Text = LanguageCollection[43].ToString();
+            }
+            else
+            {
+                BSA3CMTextBox.Text = Settings.Default["BSA3CM"].ToString();
+            }
+
+            if (Settings.Default["NTA1CM"].ToString() == "")
+            {
+                NTA1CMTextbBox.Text = LanguageCollection[44].ToString();
+            }
+            else
+            {
+                NTA1CMTextbBox.Text = Settings.Default["NTA1CM"].ToString();
+            }
+            if (Settings.Default["NTA2CM"].ToString() == "")
+            {
+                NTA2CMTextbBox.Text = LanguageCollection[44].ToString();
+            }
+            else
+            {
+                NTA2CMTextbBox.Text = Settings.Default["NTA2CM"].ToString();
+            }
+            if (Settings.Default["NTA3CM"].ToString() == "")
+            {
+                NTA3CMTextbBox.Text = LanguageCollection[44].ToString();
+            }
+            else
+            {
+                NTA3CMTextbBox.Text = Settings.Default["NTA3CM"].ToString();
+            }
+
+            if (Settings.Default["IRA1CM"].ToString() == "")
+            {
+                IRA1CMTextBox.Text = LanguageCollection[45].ToString();
+            }
+            else
+            {
+                IRA1CMTextBox.Text = Settings.Default["IRA1CM"].ToString();
+            }
+            if (Settings.Default["IRA2CM"].ToString() == "")
+            {
+                IRA2CMTextBox.Text = LanguageCollection[45].ToString();
+            }
+            else
+            {
+                IRA2CMTextBox.Text = Settings.Default["IRA2CM"].ToString();
+            }
+            if (Settings.Default["IRA3CM"].ToString() == "")
+            {
+                IRA3CMTextBox.Text = LanguageCollection[45].ToString();
+            }
+            else
+            {
+                IRA3CMTextBox.Text = Settings.Default["IRA3CM"].ToString();
+            }
+
         }
         private void LoadAlarmsSettings() //load Last Saved User Settings
         {
@@ -380,10 +503,12 @@ namespace YPBBT_2._0
             { TransparacySlider.Value = 100; }
             else { TransparacySlider.Value = double.Parse(Settings.Default["OverlayTransparency"].ToString()); }
 
+           
         }
         private async void GetTimeTable(string r)// creat TimeTable and Get Time Logs
         {
-
+            currentbossrole1 = "";
+            currentbossrole2 = "";
             timer1.Stop();
             MOTR = r;
             startupRS = 0;
@@ -553,6 +678,7 @@ namespace YPBBT_2._0
                 {
                     string[] bossdata = item.Split(',');
                     try { PBImageBox.Source = gm.GETIMAGE(bossdata[1].ToString()); } catch (Exception) { }
+                                              
                 }
                 if (CbossNameLabel.Content.ToString().Contains(bossName))
                 {
@@ -560,16 +686,165 @@ namespace YPBBT_2._0
                     try {
                         publicNbossimage = bossdata[1].ToString();
                         publicbossUrl = bossdata[2].ToString();
-                        NBImageBox.Source = gm.GETIMAGE(bossdata[1].ToString()); 
+                        NBImageBox.Source = gm.GETIMAGE(bossdata[1].ToString());
+                        //if (bossdata[3].ToString() != "")
+                        //{ CbossNameLabel.Content = bossdata[3].ToString(); }
                     } catch (Exception) { }
                 }
                 if (NBossNameLabel.Content.ToString().Contains(bossName))
                 {
                     string[] bossdata = item.Split(',');
                     try { LBImageBox.Source = gm.GETIMAGE(bossdata[1].ToString()); } catch (Exception) { }
+                    //if (bossdata[3].ToString() != "")
+                    //{ NBossNameLabel.Content = bossdata[3].ToString(); }
                 }
 
             }
+
+            if (PbossNamLabel.Content.ToString().Contains(" & "))
+            {
+                string fullbossname = "";
+                foreach (string item in BossesCollection)
+                {
+                    string[] bossdata = item.Split(',');
+                    string name = PbossNamLabel.Content.ToString();
+                    name = name.Substring(0, name.IndexOf("&"));
+                    if (name.Contains(bossdata[0].ToString()))
+                    {
+                        if (bossdata[3].ToString() != "")
+                        {
+                            fullbossname += bossdata[3].ToString() + " & ";
+                        }
+                    }
+                }
+                foreach (string item in BossesCollection)
+                {
+                    string[] bossdata = item.Split(',');
+                    string name = PbossNamLabel.Content.ToString();
+                    name = name.Substring(name.IndexOf("&") + 1);
+                    if (name.Contains(bossdata[0].ToString()))
+                    {
+                        if (bossdata[3].ToString() != "")
+                        {
+                            fullbossname += bossdata[3].ToString();
+                        }
+                    }
+                }
+                if(fullbossname != "")
+                {PbossNamLabel.Content = fullbossname; }
+                
+            }
+            else
+            {
+                foreach (string item in BossesCollection)
+                {
+                    string[] bossdata = item.Split(',');
+                    if (PbossNamLabel.Content.ToString().Contains(bossdata[0].ToString()))
+                    {                      
+                        if (bossdata[3].ToString() != "")
+                        { PbossNamLabel.Content = bossdata[3].ToString(); }
+                    }
+                   
+                }
+            }
+
+            if (CbossNameLabel.Content.ToString().Contains(" & "))
+            {
+                string fullbossname = "";
+                foreach (string item in BossesCollection)
+                {
+                    string[] bossdata = item.Split(',');
+                    string name = CbossNameLabel.Content.ToString();
+                    name = name.Substring(0, name.IndexOf("&"));
+                    if (name.Contains(bossdata[0].ToString()))
+                    {
+                        currentbossrole1 = bossdata[4].ToString();
+                        if (bossdata[3].ToString() != "")
+                        {
+                            fullbossname += bossdata[3].ToString() + " & ";
+                        }
+                    }
+                }
+                foreach (string item in BossesCollection)
+                {
+                    string[] bossdata = item.Split(',');
+                    string name = CbossNameLabel.Content.ToString();
+                    name = name.Substring(name.IndexOf("&") + 1);
+                    if (name.Contains(bossdata[0].ToString()))
+                    {
+                        currentbossrole2 = bossdata[4].ToString();
+                        if (bossdata[3].ToString() != "")
+                        {
+                            fullbossname += bossdata[3].ToString();
+                        }
+                    }
+                }
+                if (fullbossname != "")
+                { CbossNameLabel.Content = fullbossname; }
+            }
+            else
+            {
+                foreach (string item in BossesCollection)
+                {
+                    string[] bossdata = item.Split(',');
+                    if (CbossNameLabel.Content.ToString().Contains(bossdata[0].ToString()))
+                    {
+                        if (bossdata[3].ToString() != "")
+                        {
+                            currentbossrole1 = bossdata[4].ToString();
+                            CbossNameLabel.Content = bossdata[3].ToString();
+                        }
+                    }
+
+                }
+            }
+
+            if (NBossNameLabel.Content.ToString().Contains(" & "))
+            {
+                string fullbossname = "";
+                foreach (string item in BossesCollection)
+                {
+                    string[] bossdata = item.Split(',');
+                    string name = NBossNameLabel.Content.ToString();
+                    name = name.Substring(0, name.IndexOf("&"));
+                    if (name.Contains(bossdata[0].ToString()))
+                    {
+                        if (bossdata[3].ToString() != "")
+                        {
+                            fullbossname += bossdata[3].ToString() + " & ";
+                        }
+                    }
+                }
+                foreach (string item in BossesCollection)
+                {
+                    string[] bossdata = item.Split(',');
+                    string name = NBossNameLabel.Content.ToString();
+                    name = name.Substring(name.IndexOf("&") + 1);
+                    if (name.Contains(bossdata[0].ToString()))
+                    {
+                        if (bossdata[3].ToString() != "")
+                        {
+                            fullbossname += bossdata[3].ToString();
+                        }
+                    }
+                }
+                if (fullbossname != "")
+                { NBossNameLabel.Content = fullbossname; }
+            }
+            else
+            {
+                foreach (string item in BossesCollection)
+                {
+                    string[] bossdata = item.Split(',');
+                    if (NBossNameLabel.Content.ToString().Contains(bossdata[0].ToString()))
+                    {
+                        if (bossdata[3].ToString() != "")
+                        { NBossNameLabel.Content = bossdata[3].ToString(); }
+                    }
+
+                }
+            }
+
 
             SaveLatestTimeTable = 0;
             intervalMessageUpdate = UpdateMesssageInterval;
@@ -580,7 +855,7 @@ namespace YPBBT_2._0
                 var Message = await channel.GetMessageAsync(bossImageID) as IUserMessage;
                 var embed1 = new EmbedBuilder
                 {
-                    Title = CbossNameLabel.Content.ToString(),
+                    Title = CbossNameLabel.Content.ToString()+" <---"+ LanguageCollection[87].ToString(),
                     ImageUrl = publicNbossimage,
                     Color = Color.Blue,
                     Url = publicbossUrl
@@ -592,6 +867,65 @@ namespace YPBBT_2._0
         }
         void timer1_Tick(object sender, EventArgs e) //Timer Loop message Updates&others
         {
+            if(checkversion == 0)
+            {
+                timer1.Stop();
+                if (AppVersion != CurrentVersion)
+                {
+
+                    mainWindow.Title = "YPBBT " + AppVersion;
+                    GitHub.Content = "   YPBBT " + AppVersion;
+                    var bc = new BrushConverter();
+                    GitHub.Background = (Brush)bc.ConvertFrom("#99773139");
+
+                    DoubleAnimation da = new DoubleAnimation();
+                    da.From = 0.3;
+                    da.To = 1;
+                    da.Duration = new Duration(TimeSpan.FromSeconds(1));
+                    da.AutoReverse = true;
+                    da.RepeatBehavior = RepeatBehavior.Forever;
+                    GitHub.BeginAnimation(OpacityProperty, da);
+
+                    string urlAddress1 = "https://raw.githubusercontent.com/kresmes/BDO-Boss-Timer-Discord-Bot-Yuri-Project-/master/YPBBT%202.0/NewVersionLog_" + DefaultLanguage;
+
+                    HttpWebRequest request1 = (HttpWebRequest)WebRequest.Create(urlAddress1);
+                    HttpWebResponse response1 = (HttpWebResponse)request1.GetResponse();
+
+                    if (response1.StatusCode == HttpStatusCode.OK)
+                    {
+                        Stream receiveStream1 = response1.GetResponseStream();
+                        StreamReader readStream1 = null;
+
+                        if (String.IsNullOrWhiteSpace(response1.CharacterSet))
+                            readStream1 = new StreamReader(receiveStream1);
+                        else
+                            readStream1 = new StreamReader(receiveStream1, Encoding.GetEncoding(response1.CharacterSet));
+
+                        string NewVersionLog = readStream1.ReadToEnd();
+                        response1.Close();
+                        readStream1.Close();
+
+                        MessageBoxResult result = MessageBox.Show(NewVersionLog, "Update!", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
+                        switch (result)
+                        {
+                            case MessageBoxResult.Yes:
+                                System.Diagnostics.Process.Start("https://github.com/kresmes/BDO-Boss-Timer-Discord-Bot-Yuri-Project-/releases");
+                                GetTimeTable(MOTR);
+                                break;
+                            case MessageBoxResult.No:
+                                GetTimeTable(MOTR);
+                                break;
+                        }
+
+                    }                  
+                }
+                else
+                {
+                    timer1.Start();
+                }
+                checkversion = 1;                
+            }
+
             try
             {
                 startupRS = 0;
@@ -704,7 +1038,8 @@ namespace YPBBT_2._0
             #region "Boss Alert's"
             if (BossSpawnAlarmCheckBox1.IsChecked == true && CurrentBossTimeLabel.Content.ToString() == "00:" + BossSpawnAlarm1Textbox.Text + ":00")
             {
-                DiscordNotifyBossSpwn();
+                string message = BSA1CMTextBox.Text;
+                DiscordNotifyBossSpwn(message);
                 if (SoundOptionCheckBox.IsChecked == true)
                 {
                     playAudio pa = new playAudio();
@@ -714,7 +1049,8 @@ namespace YPBBT_2._0
 
             if (BossSpawnAlarmCheckBox2.IsChecked == true && CurrentBossTimeLabel.Content.ToString() == "00:" + BossSpawnAlarm2Textbox.Text + ":00")
             {
-                DiscordNotifyBossSpwn();
+                string message = BSA2CMTextBox.Text;
+                DiscordNotifyBossSpwn(message);
                 if (SoundOptionCheckBox.IsChecked == true)
                 {
                     playAudio pa = new playAudio();
@@ -724,7 +1060,8 @@ namespace YPBBT_2._0
 
             if (BossSpawnAlarmCheckBox3.IsChecked == true && CurrentBossTimeLabel.Content.ToString() == "00:" + BossSpawnAlarm3Textbox.Text + ":00")
             {
-                DiscordNotifyBossSpwn();
+                string message = BSA3CMTextBox.Text;
+                DiscordNotifyBossSpwn(message);
                 if (SoundOptionCheckBox.IsChecked == true)
                 {
                     playAudio pa = new playAudio();
@@ -735,7 +1072,8 @@ namespace YPBBT_2._0
             #region "NightTime Alert's"
             if (NightTimeAlarmCheckBox1.IsChecked == true && NightInBdoTimeLabel.Content.ToString() == "00:" + NightTimeAlarm1Textbox.Text + ":00")
             {
-                DiscordNotifyNightTime();
+                string message = NTA1CMTextbBox.Text;
+                DiscordNotifyNightTime(message);
                 if (NTSoundOptionCheckBox.IsChecked == true)
                 {
                     playAudio pa = new playAudio();
@@ -745,7 +1083,8 @@ namespace YPBBT_2._0
 
             if (NightTimeAlarmCheckBox2.IsChecked == true && NightInBdoTimeLabel.Content.ToString() == "00:" + NightTimeAlarm2Textbox.Text + ":00")
             {
-                DiscordNotifyNightTime();
+                string message = NTA2CMTextbBox.Text;
+                DiscordNotifyNightTime(message);
                 if (NTSoundOptionCheckBox.IsChecked == true)
                 {
                     playAudio pa = new playAudio();
@@ -755,7 +1094,8 @@ namespace YPBBT_2._0
 
             if (NightTimeAlarmCheckBox3.IsChecked == true && NightInBdoTimeLabel.Content.ToString() == "00:" + NightTimeAlarm3Textbox.Text + ":00")
             {
-                DiscordNotifyNightTime();
+                string message = NTA3CMTextbBox.Text;
+                DiscordNotifyNightTime(message);
                 if (NTSoundOptionCheckBox.IsChecked == true)
                 {
                     playAudio pa = new playAudio();
@@ -766,7 +1106,8 @@ namespace YPBBT_2._0
             #region "Imperial Reset Alert's"
             if (ImperialResetCheckBox1.IsChecked == true && IRTimeLabel.Content.ToString() == "00:" + ImperialResetAlarm1Textbox.Text + ":00")
             {
-                DiscordNotifyImperialReset();
+                string message = IRA1CMTextBox.Text;
+                DiscordNotifyImperialReset(message);
                 if (IRSoundOptionCheckBox.IsChecked == true)
                 {
                     playAudio pa = new playAudio();
@@ -776,7 +1117,8 @@ namespace YPBBT_2._0
 
             if (ImperialResetCheckBox2.IsChecked == true && IRTimeLabel.Content.ToString() == "00:" + ImperialResetAlarm2Textbox.Text + ":00")
             {
-                DiscordNotifyImperialReset();
+                string message = IRA2CMTextBox.Text;
+                DiscordNotifyImperialReset(message);
                 if (IRSoundOptionCheckBox.IsChecked == true)
                 {
                     playAudio pa = new playAudio();
@@ -786,7 +1128,8 @@ namespace YPBBT_2._0
 
             if (ImperialResetCheckBox3.IsChecked == true && IRTimeLabel.Content.ToString() == "00:" + ImperialResetAlarm3Textbox.Text + ":00")
             {
-                DiscordNotifyImperialReset();
+                string message = IRA3CMTextBox.Text;
+                DiscordNotifyImperialReset(message);
                 if (IRSoundOptionCheckBox.IsChecked == true)
                 {
                     playAudio pa = new playAudio();
@@ -1186,6 +1529,8 @@ namespace YPBBT_2._0
                         AddSaveBossPictureBox.Source = new BitmapImage(new Uri(System.IO.Directory.GetCurrentDirectory() + "/Resources/Boss.png"));
                         try { AddSaveBossPictureBox.Source = gm.GETIMAGE(bossdata[1].ToString()); } catch (Exception) { DisplayImageLinkextBox.BorderBrush = Brushes.Red; }
                         BossSpawnLocationLinkTextBox.Text = bossdata[2].ToString();
+                        CBNTextbox.Text = bossdata[3].ToString();
+                        SRFTBTextbox.Text = bossdata[4].ToString();
                     }
                 }
             }
@@ -1309,11 +1654,12 @@ namespace YPBBT_2._0
                         i++;
 
                     }
-                    BossesCollection[r] = AddSaveBossNameTextBox.Text + "," + DisplayImageLinkextBox.Text + "," + BossSpawnLocationLinkTextBox.Text;
+                    BossesCollection[r] = AddSaveBossNameTextBox.Text + "," + DisplayImageLinkextBox.Text + "," + BossSpawnLocationLinkTextBox.Text + "," + CBNTextbox.Text + "," + SRFTBTextbox.Text;
+                    MessageBox.Show(LanguageCollection[86].ToString());
                 }
                 else
                 {
-                    BossesCollection.Add(AddSaveBossNameTextBox.Text + "," + DisplayImageLinkextBox.Text + "," + BossSpawnLocationLinkTextBox.Text);
+                    BossesCollection.Add(AddSaveBossNameTextBox.Text + "," + DisplayImageLinkextBox.Text + "," + BossSpawnLocationLinkTextBox.Text + "," + CBNTextbox.Text + "," + SRFTBTextbox.Text);
                     BossCollectionListBox.Items.Add(AddSaveBossNameTextBox.Text);
                 }
             }
@@ -1331,6 +1677,7 @@ namespace YPBBT_2._0
         private void BossesListButton_Click(object sender, RoutedEventArgs e)//change tabcontrol
         {
             tabcontrol1.SelectedIndex = 2;
+            try { BossCollectionListBox.SelectedIndex = 0; } catch (Exception) { }        
             try
             {
                 gridview1.SelectedIndex = SharedDay;
@@ -1694,32 +2041,13 @@ namespace YPBBT_2._0
 
         private void appRestartButton_Click(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start(System.IO.Directory.GetCurrentDirectory() + "/YPBBT 2.0.exe");
+            System.Diagnostics.Process.Start(System.IO.Directory.GetCurrentDirectory() + "/YPBBT.exe");
             this.Close();
         }
 
-        private async void ConnectDiscordBotButton_Click(object sender, RoutedEventArgs e)
+        private void ConnectDiscordBotButton_Click(object sender, RoutedEventArgs e)
         {
-            var bc = new BrushConverter();
-            try
-            {
-                DiscordBotConnectionStatusLabel.Foreground = (Brush)bc.ConvertFrom("#FFF1F1F1");
-                DiscordBotConnectionStatusLabel.Content = LanguageCollection[37].ToString();
-                await discord.LoginAsync(TokenType.Bot, Token);
-                await discord.StartAsync();
-            }
-            catch (Exception)
-            {
-                DiscordBotConnectionStatusLabel.Foreground = (Brush)bc.ConvertFrom("#FFBB3D3D");
-                DiscordBotConnectionStatusLabel.Content = LanguageCollection[38].ToString();
-            }
-
-            if (DiscordBotConnectionStatusLabel.Content.ToString() == LanguageCollection[37].ToString())
-            {
-                DiscordBotConnectionStatusLabel.Foreground = (Brush)bc.ConvertFrom("#FF70BB88");
-                DiscordBotConnectionStatusLabel.Content = LanguageCollection[39].ToString();
-            }
-
+            System.Diagnostics.Process.Start("https://discordapp.com/oauth2/authorize?&client_id=" + ClientID + "&scope=bot&permissions=0");
         }
         private async void DisconnectDiscordBot_Click(object sender, RoutedEventArgs e)
         {
@@ -1816,6 +2144,7 @@ namespace YPBBT_2._0
             UpdateMesssageInterval = int.Parse(MIUTextbox.Text);
             AnouncmentMessageInterval = int.Parse(RMmtextbox.Text);
             File.WriteAllText(System.IO.Directory.GetCurrentDirectory() + "/Resources/Profile", DefaultLanguage + "|" + CidTextbox.Text + "|" + TokenTextbox.Text + "|" + SidTextbox.Text + "|" + ChidTextbox.Text + "|" + BSTextbox.Text + "|" + NTtextbox.Text + "|" + IRTextbox.Text + "|" + MIUTextbox.Text+"|"+ RMmtextbox.Text);
+            //StartPosting();
             tabcontrol1.SelectedIndex = 0;
             try
             {
@@ -1860,6 +2189,7 @@ namespace YPBBT_2._0
                 startupRS = 1;
             }
             catch (Exception) { }
+           
         }
 
         private async void HrdResetAppButton_Click(object sender, RoutedEventArgs e)// format app saved data
@@ -1888,6 +2218,24 @@ namespace YPBBT_2._0
                     Settings.Default["IRPlaySoundSetting"] = "";
                     Settings.Default.Save();
                     Settings.Default["DisplayTimeTableSetting"] = "";
+                    Settings.Default.Save();
+                    Settings.Default["BSA1CM"] = "";
+                    Settings.Default.Save();
+                    Settings.Default["BSA2CM"] = "";
+                    Settings.Default.Save();
+                    Settings.Default["BSA3CM"] = "";
+                    Settings.Default.Save();
+                    Settings.Default["NTA1CM"] = "";
+                    Settings.Default.Save();
+                    Settings.Default["NTA2CM"] = "";
+                    Settings.Default.Save();
+                    Settings.Default["NTA3CM"] = "";
+                    Settings.Default.Save();
+                    Settings.Default["IRA1CM"] = "";
+                    Settings.Default.Save();
+                    Settings.Default["IRA2CM"] = "";
+                    Settings.Default.Save();
+                    Settings.Default["IRA3CM"] = "";
                     Settings.Default.Save();
                     await discord.StopAsync();
                     System.Diagnostics.Process.Start(System.IO.Directory.GetCurrentDirectory() + "/YPBBT 2.0.exe");
@@ -2136,7 +2484,7 @@ namespace YPBBT_2._0
 
                     var embed1 = new EmbedBuilder
                     {
-                        Title = CbossNameLabel.Content.ToString(),
+                        Title = CbossNameLabel.Content.ToString()+" <---" + LanguageCollection[87].ToString(),
                         ImageUrl = publicNbossimage,
                         Color = Color.Blue,
                         Url = publicbossUrl
@@ -2165,7 +2513,22 @@ namespace YPBBT_2._0
 
                 }
             }
-            catch (Exception) { StartPosting(); }
+            catch (Exception s) {
+                var bc = new BrushConverter();
+                DiscordBotConnectionStatusLabel.Foreground = (Brush)bc.ConvertFrom("#FFBB3D3D");
+                DiscordBotConnectionStatusLabel.Content = LanguageCollection[38].ToString();
+
+                Clipboard.SetText(s.Message.ToString());
+
+                string warning = "";
+                if(s.Message.ToString().Contains("403"))
+                { warning = LanguageCollection[71].ToString(); }              
+                if (warning == "")
+                { MessageBox.Show(s.Message); }
+                else
+                { MessageBox.Show(warning); }
+               
+                /*StartPosting();*/ }
         }
        
         private void StartPostingButton_Click(object sender, RoutedEventArgs e)
@@ -2234,7 +2597,7 @@ namespace YPBBT_2._0
             }
         }
         #region "Discord Notify By ping"
-        private async void DiscordNotifyBossSpwn()
+        private async void DiscordNotifyBossSpwn(string bossmessage)
         {
             try
             {
@@ -2242,14 +2605,14 @@ namespace YPBBT_2._0
                 {
                     var guild = discord.GetGuild(ServerID);
                     var channel = guild.GetTextChannel(ChannelID);
-                    var message = await channel.SendMessageAsync(">" + " " + BossSpawnRole + " " + CbossNameLabel.Content.ToString() +" " +LanguageCollection[43].ToString());
+                    var message = await channel.SendMessageAsync(">" + " " + BossSpawnRole + " " + currentbossrole1 + " " + currentbossrole2 +" " + CbossNameLabel.Content.ToString() +" " +bossmessage);
                     DiscordNotifyBossSpwnID = message.Id;
                     AnouncmentIntervalToDeleteMessages = 0;
                 }
             }
             catch (Exception) { }
         }
-        private async void DiscordNotifyNightTime()
+        private async void DiscordNotifyNightTime(string custommessage)
         {
             try
             {
@@ -2257,14 +2620,14 @@ namespace YPBBT_2._0
                 {
                     var guild = discord.GetGuild(ServerID);
                     var channel = guild.GetTextChannel(ChannelID);
-                    var message = await channel.SendMessageAsync(">" + " " + NightTimeRole + " " + LanguageCollection[44].ToString());
+                    var message = await channel.SendMessageAsync(">" + " " + NightTimeRole + " " + custommessage);
                     DiscordNotifyNightTimeID = message.Id;
                     AnouncmentIntervalToDeleteMessages = 0;
                 }
             }
             catch (Exception) { }
         }
-        private async void DiscordNotifyImperialReset()
+        private async void DiscordNotifyImperialReset(string custommessage)
         {
             try
             {
@@ -2272,7 +2635,7 @@ namespace YPBBT_2._0
                 {
                     var guild = discord.GetGuild(ServerID);
                     var channel = guild.GetTextChannel(ChannelID);
-                    var message = await channel.SendMessageAsync(">" + " " + ImperialResetRole + " " + LanguageCollection[45].ToString());
+                    var message = await channel.SendMessageAsync(">" + " " + ImperialResetRole + " " + custommessage);
                     DiscordNotifyImperialResetID = message.Id;
                     AnouncmentIntervalToDeleteMessages = 0;
                 }
@@ -2318,7 +2681,175 @@ namespace YPBBT_2._0
 
         private void GitHub_Click(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start("https://github.com/kresmes/BDO-Boss-Timer-Discord-Bot-Yuri-Project-");
+            System.Diagnostics.Process.Start("https://github.com/kresmes/BDO-Boss-Timer-Discord-Bot-Yuri-Project-/releases");
+        }
+
+        private void GlobalSettingNextButton_Click(object sender, RoutedEventArgs e)
+        {
+
+            tabcontrol1.SelectedIndex = 4;
+            try
+            {
+                DoubleAnimation da = new DoubleAnimation();
+                da.From = 0;
+                da.To = 1;
+                da.Duration = new Duration(TimeSpan.FromSeconds(1));
+                da.AutoReverse = false;
+                tabcontrol1.BeginAnimation(OpacityProperty, da);
+            }
+            catch (Exception) { }
+        }
+
+        private void SaveSettings2Button_Click(object sender, RoutedEventArgs e)
+        {
+            if(BSA1CMTextBox.Text == "")
+            {
+                BSA1CMTextBox.Text = LanguageCollection[43].ToString();
+            }
+            if (BSA1CMTextBox.Text == LanguageCollection[43].ToString())
+            {
+                Settings.Default["BSA1CM"] = "";
+                Settings.Default.Save();
+            }
+            else
+            {
+                Settings.Default["BSA1CM"] = BSA1CMTextBox.Text;
+                Settings.Default.Save();
+            }
+
+            if (BSA2CMTextBox.Text == "")
+            {
+                BSA2CMTextBox.Text = LanguageCollection[43].ToString();
+            }
+            if (BSA2CMTextBox.Text == LanguageCollection[43].ToString())
+            {
+                Settings.Default["BSA2CM"] = "";
+                Settings.Default.Save();
+            }
+            else
+            {
+                Settings.Default["BSA2CM"] = BSA2CMTextBox.Text;
+                Settings.Default.Save();
+            }
+
+            if (BSA3CMTextBox.Text == "")
+            {
+                BSA3CMTextBox.Text = LanguageCollection[43].ToString();
+            }
+            if (BSA3CMTextBox.Text == LanguageCollection[43].ToString())
+            {
+                Settings.Default["BSA3CM"] = "";
+                Settings.Default.Save();
+            }
+            else
+            {
+                Settings.Default["BSA3CM"] = BSA3CMTextBox.Text;
+                Settings.Default.Save();
+            }
+
+
+            if (NTA1CMTextbBox.Text == "")
+            {
+                NTA1CMTextbBox.Text = LanguageCollection[44].ToString();
+            }
+            if (NTA1CMTextbBox.Text == LanguageCollection[44].ToString())
+            {
+                Settings.Default["NTA1CM"] = "";
+                Settings.Default.Save();
+            }
+            else
+            {
+                Settings.Default["NTA1CM"] = NTA1CMTextbBox.Text;
+                Settings.Default.Save();
+            }
+
+            if (NTA2CMTextbBox.Text == "")
+            {
+                NTA2CMTextbBox.Text = LanguageCollection[44].ToString();
+            }
+            if (NTA2CMTextbBox.Text == LanguageCollection[44].ToString())
+            {
+                Settings.Default["NTA2CM"] = "";
+                Settings.Default.Save();
+            }
+            else
+            {
+                Settings.Default["NTA2CM"] = NTA2CMTextbBox.Text;
+                Settings.Default.Save();
+            }
+
+            if (NTA3CMTextbBox.Text == "")
+            {
+                NTA3CMTextbBox.Text = LanguageCollection[44].ToString();
+            }
+            if (NTA3CMTextbBox.Text == LanguageCollection[44].ToString())
+            {
+                Settings.Default["NTA3CM"] = "";
+                Settings.Default.Save();
+            }
+            else
+            {
+                Settings.Default["NTA3CM"] = NTA3CMTextbBox.Text;
+                Settings.Default.Save();
+            }
+
+
+            if (IRA1CMTextBox.Text == "")
+            {
+                IRA1CMTextBox.Text = LanguageCollection[45].ToString();
+            }
+            if (IRA1CMTextBox.Text == LanguageCollection[45].ToString())
+            {
+                Settings.Default["IRA1CM"] = "";
+                Settings.Default.Save();
+            }
+            else
+            {
+                Settings.Default["IRA1CM"] = IRA1CMTextBox.Text;
+                Settings.Default.Save();
+            }
+
+            if (IRA2CMTextBox.Text == "")
+            {
+                IRA2CMTextBox.Text = LanguageCollection[45].ToString();
+            }
+            if (IRA2CMTextBox.Text == LanguageCollection[45].ToString())
+            {
+                Settings.Default["IRA2CM"] = "";
+                Settings.Default.Save();
+            }
+            else
+            {
+                Settings.Default["IRA2CM"] = IRA2CMTextBox.Text;
+                Settings.Default.Save();
+            }
+
+            if (IRA3CMTextBox.Text == "")
+            {
+                IRA3CMTextBox.Text = LanguageCollection[45].ToString();
+            }
+            if (IRA3CMTextBox.Text == LanguageCollection[45].ToString())
+            {
+                Settings.Default["IRA3CM"] = "";
+                Settings.Default.Save();
+            }
+            else
+            {
+                Settings.Default["IRA3CM"] = IRA3CMTextBox.Text;
+                Settings.Default.Save();
+            }              
+
+            tabcontrol1.SelectedIndex = 3;
+            try
+            {
+                DoubleAnimation da = new DoubleAnimation();
+                da.From = 0;
+                da.To = 1;
+                da.Duration = new Duration(TimeSpan.FromSeconds(1));
+                da.AutoReverse = false;
+                tabcontrol1.BeginAnimation(OpacityProperty, da);
+            }
+            catch (Exception) { }
         }
     }
 }

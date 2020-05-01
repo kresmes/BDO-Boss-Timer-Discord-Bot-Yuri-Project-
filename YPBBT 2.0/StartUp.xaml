@@ -43,7 +43,7 @@
                         <ColumnDefinition Width="528*"/>
                         <ColumnDefinition Width="135*"/>
                     </Grid.ColumnDefinitions>
-                    <Label Content="YPBBT 2.0" FontSize="36" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Margin="10,-3,311,0" Foreground="#FFF1F1F1" Height="49" VerticalAlignment="Top" Background="#00000000" Grid.Column="2"/>
+                    <Label Content="YPBBT 2.1" FontSize="36" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Margin="10,-3,311,0" Foreground="#FFF1F1F1" Height="49" VerticalAlignment="Top" Background="#00000000" Grid.Column="2"/>
                     <Button x:Name="Tc0NextButton" Content="Next" Margin="0,0,5,10" FontFamily="/Menu Manager;component/font/#Droid Sans" Background="#FFA9A9AA" Foreground="#FF424242" FontWeight="Bold" BorderBrush="#19707070" HorizontalAlignment="Right" Width="127" Height="39" VerticalAlignment="Bottom" Grid.Column="3" Grid.Row="1" FontSize="18" MouseEnter="Tc0NextButton_MouseEnter" MouseLeave="Tc0NextButton_MouseLeave" Click="Tc0NextButton_Click">
                         <Button.Resources>
                             <Style TargetType="{x:Type Border}">
@@ -138,7 +138,7 @@
                         <ColumnDefinition Width="155*"/>
                         <ColumnDefinition Width="137*"/>
                     </Grid.ColumnDefinitions>
-                    <Label Content="YPBBT 2.0" FontSize="36" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Margin="134,0,0,0" Foreground="#FFF1F1F1" Background="#00000000" Grid.Row="4" Height="58" VerticalAlignment="Bottom"/>
+                    <Label Content="YPBBT 2.1" FontSize="36" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Margin="134,0,0,0" Foreground="#FFF1F1F1" Background="#00000000" Grid.Row="4" Height="58" VerticalAlignment="Bottom"/>
                     <Label x:Name="S1L0" Content="Step 1" FontSize="36" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Margin="0,0,171,0" Foreground="#FFF1F1F1" Height="49" VerticalAlignment="Top" Background="#00000000" Grid.Column="1"/>
                     <Button x:Name="Step1_1Button" Content="Click Me" Margin="10,7,0,0" FontFamily="/Menu Manager;component/font/#Droid Sans" Background="#FFA9A9AA" Foreground="#FF424242" FontWeight="Bold" BorderBrush="#19707070" HorizontalAlignment="Left" Width="159" Grid.Column="1" FontSize="18" MouseEnter="Step1_1Button_MouseEnter" MouseLeave="Step1_1Button_MouseLeave" Height="28" VerticalAlignment="Top" Click="Step1_1Button_Click" Grid.Row="1">
                         <Button.Resources>
@@ -229,7 +229,7 @@
                         <ColumnDefinition Width="320*"/>
                         <ColumnDefinition Width="703*"/>
                     </Grid.ColumnDefinitions>
-                    <Label Content="YPBBT 2.0" FontSize="36" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Margin="134,0,4,0" Foreground="#FFF1F1F1" Background="#00000000" Height="58" VerticalAlignment="Bottom" Grid.Row="3"/>
+                    <Label Content="YPBBT 2.1" FontSize="36" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Margin="134,0,4,0" Foreground="#FFF1F1F1" Background="#00000000" Height="58" VerticalAlignment="Bottom" Grid.Row="3"/>
                     <Label x:Name="S2L0" Content="Step 2" FontSize="36" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Margin="32,0,464,0" Foreground="#FFF1F1F1" Height="49" VerticalAlignment="Top" Background="#00000000" Grid.Column="1"/>
                     <TextBox x:Name="S2L1" Margin="32,62,0,3" TextWrapping="Wrap" Background="#001E222A" BorderBrush="#001E222A" Foreground="#FFF1F1F1" FontSize="22" BorderThickness="0" SelectionBrush="#000078D7" Text="- in this Step you well need to Create the Bot And its Token &#xD;&#xA;you can do that by clicking on  Bot Button then click on &#xD;&#xA;Add Bot if u having issue finding the buttons click below" IsReadOnly="True" Cursor="Arrow" Grid.Column="1" />
                     <Button x:Name="Step2HelpButton" Content="Help" Margin="32,2.5,0,0" FontFamily="/Menu Manager;component/font/#Droid Sans" Background="#FFA9A9AA" Foreground="#FF424242" FontWeight="Bold" BorderBrush="#19707070" HorizontalAlignment="Left" Width="634" FontSize="18" Height="28" VerticalAlignment="Top" Grid.Column="1" Grid.Row="1" MouseEnter="Step2HelpButton_MouseEnter" MouseLeave="Step2HelpButton_MouseLeave" Click="Step2HelpButton_Click">
@@ -300,7 +300,7 @@
                         <ColumnDefinition Width="118*"/>
                         <ColumnDefinition Width="140*"/>
                     </Grid.ColumnDefinitions>
-                    <Label Content="YPBBT 2.0" FontSize="36" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Margin="134,0,1,0" Foreground="#FFF1F1F1" Background="#00000000" Height="58" VerticalAlignment="Bottom" Grid.Row="5"/>
+                    <Label Content="YPBBT 2.1" FontSize="36" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Margin="134,0,1,0" Foreground="#FFF1F1F1" Background="#00000000" Height="58" VerticalAlignment="Bottom" Grid.Row="5"/>
                     <Label x:Name="S3L0" Content="Step 3" FontSize="36" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Margin="35,0,206,0" Foreground="#FFF1F1F1" Height="49" VerticalAlignment="Top" Background="#00000000" Grid.Column="1" Grid.ColumnSpan="2"/>
                     <TextBox x:Name="S3L1" Margin="35,10,0,1" TextWrapping="Wrap" Background="#001E222A" BorderBrush="#001E222A" Foreground="#FFF1F1F1" FontSize="22" BorderThickness="0" SelectionBrush="#000078D7" Text="- This step you well need to invite the Bot to your Discord Server&#xD;&#xA;  all u need to do is just put the Bot Client ID in the Box Below&#xD;&#xA;  then click on Invite Button to invite the Bot to Your Discord" IsReadOnly="True" Cursor="Arrow" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" />
                     <TextBox x:Name="Step3CIDTextbox" Grid.Column="1" HorizontalAlignment="Left" Height="31" Margin="35,6,0,0" Grid.Row="2" TextWrapping="NoWrap" Text="Client ID" VerticalAlignment="Top" Width="409" FontSize="20" GotFocus="Step2CIDTextbox_GotFocus" Grid.ColumnSpan="2" PreviewTextInput="NumberValidationTextBox">
@@ -402,7 +402,7 @@
                         <ColumnDefinition Width="111*"/>
                         <ColumnDefinition Width="145*"/>
                     </Grid.ColumnDefinitions>
-                    <Label Content="YPBBT 2.0" FontSize="36" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Margin="134,0,4,0" Foreground="#FFF1F1F1" Background="#00000000" Height="58" VerticalAlignment="Bottom" Grid.Row="4"/>
+                    <Label Content="YPBBT 2.1" FontSize="36" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Margin="134,0,4,0" Foreground="#FFF1F1F1" Background="#00000000" Height="58" VerticalAlignment="Bottom" Grid.Row="4"/>
                     <Label x:Name="S4L0" Content="Step 4" FontSize="36" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Margin="31,0,208.5,0" Foreground="#FFF1F1F1" Height="49" VerticalAlignment="Top" Background="#00000000" Grid.Column="1"/>
                     <TextBox x:Name="S4L1" Margin="31,62,0,33" TextWrapping="Wrap" Background="#001E222A" BorderBrush="#001E222A" Foreground="#FFF1F1F1" FontSize="22" BorderThickness="0" SelectionBrush="#000078D7" Text="- Now you well need the bot token paste it in the box below&#xD;&#xA;  then click test to check if the token is correct " IsReadOnly="True" Cursor="Arrow" Grid.Column="1" Grid.ColumnSpan="3" Grid.RowSpan="2" />
                     <TextBox x:Name="Step4TokenTextbox" Grid.Column="1" HorizontalAlignment="Left" Height="32" Margin="31,12,0,0" TextWrapping="NoWrap" Text="Token" VerticalAlignment="Top" Width="409" FontSize="20" GotFocus="Step4TokenTextbox_GotFocus" Grid.Row="1">
@@ -504,7 +504,7 @@
                         <ColumnDefinition Width="222*"/>
                         <ColumnDefinition Width="127*"/>
                     </Grid.ColumnDefinitions>
-                    <Label Content="YPBBT 2.0" FontSize="36" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Margin="134,0,8,0" Foreground="#FFF1F1F1" Background="#00000000" Height="58" VerticalAlignment="Bottom" Grid.Row="5"/>
+                    <Label Content="YPBBT 2.1" FontSize="36" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Margin="134,0,8,0" Foreground="#FFF1F1F1" Background="#00000000" Height="58" VerticalAlignment="Bottom" Grid.Row="5"/>
                     <Label x:Name="S5L0" Content="Step 5" FontSize="36" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Margin="27,0,228,0" Foreground="#FFF1F1F1" Height="49" VerticalAlignment="Top" Background="#00000000" Grid.Column="1"/>
                     <TextBox x:Name="S5L1" Margin="27,62,0,12" TextWrapping="Wrap" Background="#001E222A" BorderBrush="#001E222A" Foreground="#FFF1F1F1" FontSize="22" BorderThickness="0" SelectionBrush="#000078D7" Text="- Now you well need the to set the Server ID and the channel ID&#xD;&#xA;  where the bot well post its notification and set the role you want &#xD;&#xA;  your members to be pinged whit " IsReadOnly="True" Cursor="Arrow" Grid.Column="1" Grid.ColumnSpan="2" />
                     <TextBox x:Name="Step5SIDTExtbox" Grid.Column="1" Height="32" Margin="27,6,8,0" TextWrapping="NoWrap" Text="Server ID" VerticalAlignment="Top" FontSize="20" Grid.Row="1" GotFocus="Step5SIDTExtbox_GotFocus" PreviewTextInput="NumberValidationTextBox">
@@ -588,7 +588,7 @@
                         <ColumnDefinition Width="341*"/>
                         <ColumnDefinition Width="361*"/>
                     </Grid.ColumnDefinitions>
-                    <Label Content="YPBBT 2.0" FontSize="36" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Margin="134,0,5,0" Foreground="#FFF1F1F1" Background="#00000000" Height="58" VerticalAlignment="Bottom" Grid.Row="1"/>
+                    <Label Content="YPBBT 2.1" FontSize="36" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Margin="134,0,5,0" Foreground="#FFF1F1F1" Background="#00000000" Height="58" VerticalAlignment="Bottom" Grid.Row="1"/>
                     <Label x:Name="S6L0" Content="Final Step" FontSize="36" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Margin="30,0,121.5,0" Foreground="#FFF1F1F1" Height="49" VerticalAlignment="Top" Background="#00000000" Grid.Column="1"/>
                     <TextBox x:Name="S6L1" Margin="30,62,0,8" TextWrapping="Wrap" Background="#001E222A" BorderBrush="#001E222A" Foreground="#FFF1F1F1" FontSize="22" BorderThickness="0" SelectionBrush="#000078D7" Text="- Your all done now if u have any problem or have any questions join our discord and we'll try our best to help Enjoy c:" IsReadOnly="True" Cursor="Arrow" Grid.Column="1" Grid.ColumnSpan="2" />
                     <Image Grid.Column="2" Cursor="Hand" HorizontalAlignment="Left" Height="185" RenderOptions.BitmapScalingMode="HighQuality" Margin="60,77,0,0" Grid.Row="1" VerticalAlignment="Top" Width="188" Source="Resources/Start.png" MouseLeftButtonDown="Image_MouseLeftButtonDown_1"/>
@@ -602,7 +602,7 @@
                         <ColumnDefinition Width="162*"/>
                         <ColumnDefinition Width="349*"/>
                     </Grid.ColumnDefinitions>
-                    <Label Content="YPBBT 2.0" FontSize="36" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Margin="134,0,8,0" Foreground="#FFF1F1F1" Background="#00000000" Height="58" VerticalAlignment="Bottom"/>
+                    <Label Content="YPBBT 2.1" FontSize="36" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Margin="134,0,8,0" Foreground="#FFF1F1F1" Background="#00000000" Height="58" VerticalAlignment="Bottom"/>
                     <Label x:Name="SetLanguageLabel" HorizontalContentAlignment="Center" Content="Select Language" FontSize="36" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Margin="10,80,0,0" Foreground="#FFF1F1F1" Height="54" VerticalAlignment="Top" Background="#00000000" Grid.Column="1"/>
                     <Button x:Name="frButton" Cursor="Hand" VerticalAlignment="Top" Height="146" FontFamily="/Menu Manager;component/font/#Droid Sans" Margin="47,206,448,0" Background="#0013A76B" Foreground="#00000000" BorderBrush="#00707070" Grid.Column="1" MouseEnter="frButton_MouseEnter" Click="frButton_Click">
 
