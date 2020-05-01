@@ -1,15 +1,14 @@
 New update 2.0 is Now Available: 
 
-● Remake of the application from vb.net to wpf/c#
-● 6 languages
-● all Regions
-● fixing all bugs since 1.1a
-● Implemnting Time table
-● auto bosses Update system
-● Overlay Mode
-● Imperial Reset/BDO Night time Alarms
+● startup window Setup force ulong and string for id's and token
+● New Update and patches notifcation system
+● custom ping messages
+● add the option to be able to change the bosses names(customNames)
+● specific Roles assigment for each boss
+● Bot Setup insure correct data input *Important*
+● MessageBox Warning (YES:NO) if same processore runing in the background and close on true
+● changing ui function of connect button to invite bot to server
 ● Intervals control over notification
-● sound notifcation for users
-● and alot more functions
+● MessageBox Report error and possible solution
 
 do you want to download latest update right now? 
