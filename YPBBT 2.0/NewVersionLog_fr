@@ -1,0 +1,14 @@
+﻿La nouvelle mise à jour 2.1 est maintenant disponible:
+
+● Configuration de la fenêtre de démarrage forcer ulong et chaîne pour les identifiants et le jeton
+● Nouveau système de mise à jour et de notification des correctifs
+● messages ping personnalisés
+● ajouter l'option pour pouvoir changer les noms des boss (customNames)
+● Attribution de rôles spécifiques pour chaque boss
+● La configuration du bot assure une saisie correcte des données * Important *
+● MessageBox Warning (YES: NO) si le même processeur s'exécute en arrière-plan et se ferme sur true
+● modification de la fonction ui du bouton de connexion pour inviter le bot au serveur
+● Contrôle des intervalles sur la notification
+● MessageBox Rapport d'erreur et solution possible
+
+voulez-vous télécharger la dernière mise à jour maintenant?
