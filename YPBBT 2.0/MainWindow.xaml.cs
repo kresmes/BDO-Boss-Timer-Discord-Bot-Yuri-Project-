@@ -104,7 +104,6 @@ namespace YPBBT_2._0
                     readStream = new StreamReader(receiveStream, Encoding.GetEncoding(response.CharacterSet));
 
                 CurrentVersion = readStream.ReadToEnd();
-                try { CurrentVersion = CurrentVersion.Substring(0, CurrentVersion.IndexOf(".") + 2); } catch (Exception) { }
                 response.Close();
                 readStream.Close();
             }
@@ -876,8 +875,8 @@ namespace YPBBT_2._0
             if(checkversion == 0)
             {
                 timer1.Stop();
-                if (AppVersion != CurrentVersion)
-                {                  
+                if (AppVersion != CurrentVersion) 
+                {
                     var bc = new BrushConverter();
                     GitHub.Background = (Brush)bc.ConvertFrom("#99773139");
 
