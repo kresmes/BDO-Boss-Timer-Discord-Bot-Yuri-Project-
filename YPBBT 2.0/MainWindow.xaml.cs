@@ -73,7 +73,7 @@ namespace YPBBT_2._0
         ulong DiscordNotifyBossSpwnID = 0;
         ulong DiscordNotifyNightTimeID = 0;
         ulong DiscordNotifyImperialResetID = 0;
-        string AppVersion = "2.1";
+        string AppVersion = "2.1a";
         string CurrentVersion = "";
         int checkversion = 0;
         string currentbossrole1 = "";
@@ -84,6 +84,8 @@ namespace YPBBT_2._0
           
             InitializeComponent();
 
+            string fversion = AppVersion;
+            try { fversion = fversion.Substring(0, fversion.IndexOf(".") + 2); } catch (Exception) { }
             mainWindow.Title = "YPBBT " + AppVersion;
             GitHub.Content = "   YPBBT " + AppVersion;
             string urlAddress = "https://raw.githubusercontent.com/kresmes/BDO-Boss-Timer-Discord-Bot-Yuri-Project-/master/YPBBT%202.0/CurrentVersion";
@@ -757,13 +759,13 @@ namespace YPBBT_2._0
                 {
                     string[] bossdata = item.Split(',');
                     string name = CbossNameLabel.Content.ToString();
-                    name = name.Substring(0, name.IndexOf("&"));
+                    name = name.Substring(0, name.IndexOf("&"));                  
                     if (name.Contains(bossdata[0].ToString()))
                     {
                         currentbossrole1 = bossdata[4].ToString();
                         if (bossdata[3].ToString() != "")
                         {
-                            fullbossname += bossdata[3].ToString() + " & ";
+                            fullbossname += bossdata[3].ToString() + " & ";                              
                         }
                     }
                 }
@@ -777,30 +779,33 @@ namespace YPBBT_2._0
                         currentbossrole2 = bossdata[4].ToString();
                         if (bossdata[3].ToString() != "")
                         {
-                            fullbossname += bossdata[3].ToString();
+                            fullbossname += bossdata[3].ToString();                           
                         }
                     }
                 }
                 if (fullbossname != "")
-                { CbossNameLabel.Content = fullbossname; }
+                { CbossNameLabel.Content = fullbossname; }               
             }
             else
             {
                 foreach (string item in BossesCollection)
                 {
-                    string[] bossdata = item.Split(',');
+                    string[] bossdata = item.Split(',');                    
                     if (CbossNameLabel.Content.ToString().Contains(bossdata[0].ToString()))
                     {
                         if (bossdata[3].ToString() != "")
                         {
                             currentbossrole1 = bossdata[4].ToString();
-                            CbossNameLabel.Content = bossdata[3].ToString();
+                            CbossNameLabel.Content = bossdata[3].ToString();                            
+                        }
+                        else
+                        {                          
+                            currentbossrole1 = bossdata[4].ToString();
                         }
                     }
 
                 }
             }
-
             if (NBossNameLabel.Content.ToString().Contains(" & "))
             {
                 string fullbossname = "";
@@ -847,7 +852,6 @@ namespace YPBBT_2._0
                 }
             }
 
-
             SaveLatestTimeTable = 0;
             intervalMessageUpdate = UpdateMesssageInterval;
             try
@@ -873,10 +877,7 @@ namespace YPBBT_2._0
             {
                 timer1.Stop();
                 if (AppVersion != CurrentVersion)
-                {
-
-                    mainWindow.Title = "YPBBT " + AppVersion;
-                    GitHub.Content = "   YPBBT " + AppVersion;
+                {                  
                     var bc = new BrushConverter();
                     GitHub.Background = (Brush)bc.ConvertFrom("#99773139");
 
