@@ -172,7 +172,7 @@ namespace YPBBT_2._0 {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/YPBBT 2.0;component/overlaymodwindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/YPBBT;component/overlaymodwindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\OverlayModWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

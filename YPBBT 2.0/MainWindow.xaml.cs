@@ -86,8 +86,8 @@ namespace YPBBT_2._0
 
             string fversion = AppVersion;
             try { fversion = fversion.Substring(0, fversion.IndexOf(".") + 2); } catch (Exception) { }
-            mainWindow.Title = "YPBBT " + AppVersion;
-            GitHub.Content = "   YPBBT " + AppVersion;
+            mainWindow.Title = "YPBBT " + fversion;
+            GitHub.Content = "   YPBBT " + fversion;
             string urlAddress = "https://raw.githubusercontent.com/kresmes/BDO-Boss-Timer-Discord-Bot-Yuri-Project-/master/YPBBT%202.0/CurrentVersion";
 
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(urlAddress);
