@@ -1,6 +1,5 @@
 [AppVersion]2.1a[/AppVersion]
-[TimeTable]
-[PS4-ASIA]
+[TimeTable][PS4-ASIA]
 00:30|01:00|11:00|14:00|16:00|17:00|18:00|19:00|20:00|23:30
 ||Kzarka,Nouver||||Karanda,Kutum||Kzarka,Nouver|Karanda,Kutum
 ||Karanda,Kutum||||Kzarka,Nouver||Karanda,Kutum|Kzarka,Nouver
@@ -129,5 +128,4 @@ Quint,Muraka|Kzarka,Kutum|Karanda|Kzarka,Kutum|Garmoth|Kzarka,Kutum
 |Kzarka,Nouver|Offin,Kutum|Nouver,Karanda|Kzarka,Kutum|Quint,Muraka
 Garmoth|Kzarka,Kutum|Karanda,Kutum|Offin|Kzarka,Nouver|
 |Karanda,Nouver|Kzarka,Nouver|Vell|Karanda,Kutum|Offin
-[/TW]
-[/TimeTable]
+[/TW][/TimeTable]
