@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30002.166
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YPBBT", "YPBBT\YPBBT.csproj", "{2F9BF334-F3B1-4109-9A7A-31488850B97F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		AutoUpdate|Any CPU = AutoUpdate|Any CPU
+		AutoUpdate|x86 = AutoUpdate|x86
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2F9BF334-F3B1-4109-9A7A-31488850B97F}.AutoUpdate|Any CPU.ActiveCfg = AutoUpdate|Any CPU
+		{2F9BF334-F3B1-4109-9A7A-31488850B97F}.AutoUpdate|Any CPU.Build.0 = AutoUpdate|Any CPU
+		{2F9BF334-F3B1-4109-9A7A-31488850B97F}.AutoUpdate|x86.ActiveCfg = Debug|x86
+		{2F9BF334-F3B1-4109-9A7A-31488850B97F}.AutoUpdate|x86.Build.0 = Debug|x86
+		{2F9BF334-F3B1-4109-9A7A-31488850B97F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F9BF334-F3B1-4109-9A7A-31488850B97F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F9BF334-F3B1-4109-9A7A-31488850B97F}.Debug|x86.ActiveCfg = Debug|x86
+		{2F9BF334-F3B1-4109-9A7A-31488850B97F}.Debug|x86.Build.0 = Debug|x86
+		{2F9BF334-F3B1-4109-9A7A-31488850B97F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F9BF334-F3B1-4109-9A7A-31488850B97F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F9BF334-F3B1-4109-9A7A-31488850B97F}.Release|x86.ActiveCfg = Release|x86
+		{2F9BF334-F3B1-4109-9A7A-31488850B97F}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5A129F52-B958-4FEE-916D-939C68EE97FA}
+	EndGlobalSection
+EndGlobal

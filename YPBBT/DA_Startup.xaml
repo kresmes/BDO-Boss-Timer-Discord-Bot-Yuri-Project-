@@ -1,0 +1,921 @@
+﻿<Window x:Class="YPBBT.DA_Startup"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:YPBBT"
+        mc:Ignorable="d"
+        Title="StartUp" Height="626.75" Width="1028.5" WindowStartupLocation="CenterScreen" MouseDown="Window_MouseDown" ResizeMode="NoResize" WindowStyle="None" Closing="Window_Closing" Background="#FF28282B">
+    <Window.Resources>
+        <Style x:Key="theComboBoxItem" TargetType="{x:Type ComboBoxItem}">
+            <Setter Property="SnapsToDevicePixels" Value="true" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="VerticalAlignment" Value="Stretch" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="OverridesDefaultStyle" Value="true"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ComboBoxItem}">
+                        <Border
+                            x:Name="Border"
+                            Padding="5"
+                            Margin="2"
+                            BorderThickness="2,0,0,0"
+                            CornerRadius="0"
+                            Background="Transparent"
+                            BorderBrush="Transparent">
+                            <TextBlock TextAlignment="Left"><InlineUIContainer>
+                                    <ContentPresenter />
+                                </InlineUIContainer></TextBlock>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsHighlighted" Value="true">
+                                <Setter TargetName="Border" Property="BorderBrush" Value="#FFEAEAEA"/>
+                                <Setter TargetName="Border" Property="Background" Value="#CC57575B"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ComboBoxToggleButton" TargetType="{x:Type ToggleButton}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ToggleButton}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="30" />
+                            </Grid.ColumnDefinitions>
+                            <Border
+                                x:Name="Border"
+                                Grid.ColumnSpan="2"
+                                CornerRadius="15"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="#004C4C53"
+                                BorderThickness="1" 
+                        />
+
+                            <Path
+                                x:Name="Arrow"
+                                Grid.Column="1"    
+                                Fill="{TemplateBinding Foreground}"
+                                Stroke="{TemplateBinding Foreground}"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Data="M 0 0 L 4 4 L 8 0 Z" Height="3.583" Margin="10,12.167,11.5,12.25" Stretch="Fill" Width="8.5"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <ControlTemplate x:Key="ComboBoxTextBox" TargetType="{x:Type TextBox}">
+            <Border x:Name="PART_ContentHost" Focusable="True" />
+        </ControlTemplate>
+
+        <Style x:Key="theComboBox" TargetType="{x:Type ComboBox}">
+            <Setter Property="Foreground" Value="#333" />
+            <Setter Property="BorderBrush" Value="Gray" />
+            <Setter Property="Background" Value="White" />
+            <Setter Property="SnapsToDevicePixels" Value="true"/>
+            <Setter Property="OverridesDefaultStyle" Value="true"/>
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
+            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Disabled"/>
+            <Setter Property="ScrollViewer.CanContentScroll" Value="true"/>
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="MinWidth" Value="150"/>
+            <Setter Property="MinHeight" Value="28"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ComboBox}">
+                        <Grid>
+                            <ToggleButton
+                                Cursor="Hand"
+                                x:Name="ToggleButton"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                Background="{TemplateBinding Background}"
+                                Foreground="{TemplateBinding Foreground}"
+                                Style="{StaticResource ComboBoxToggleButton}"
+                                Grid.Column="2"
+                                Focusable="false"
+                                IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                ClickMode="Press"/>
+
+                            <ContentPresenter
+                                x:Name="ContentSite"
+                                IsHitTestVisible="False"
+                                Content="{TemplateBinding SelectionBoxItem}"
+                                ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                Margin="10,3,30,3"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Left" />
+                            <TextBox x:Name="PART_EditableTextBox"
+                                Style="{x:Null}"
+                                Template="{StaticResource ComboBoxTextBox}"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Margin="3,3,23,3"
+                                Focusable="True"                               
+                                Visibility="Hidden"
+                                IsReadOnly="{TemplateBinding IsReadOnly}"/>
+                            <Popup
+                                x:Name="Popup"
+                                Placement="Bottom"
+                                IsOpen="{TemplateBinding IsDropDownOpen}"
+                                AllowsTransparency="True"
+                                Focusable="False"
+                                PopupAnimation="Slide">
+                                <Grid
+                                    x:Name="DropDown"
+                                    SnapsToDevicePixels="True"               
+                                    MinWidth="{TemplateBinding ActualWidth}"
+                                    MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                    <Border
+                                        CornerRadius="8"
+                                        x:Name="DropDownBorder"
+                                        Background="#FF28282B"
+                                        BorderThickness="0"
+                                        BorderBrush="#FF28282B"
+                                    />
+                                    <ScrollViewer Margin="4,6,4,6" SnapsToDevicePixels="True">
+                                        <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" />
+                                    </ScrollViewer>
+                                </Grid>
+                            </Popup>
+
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="HasItems" Value="false">
+                                <Setter TargetName="DropDownBorder" Property="MinHeight" Value="95"/>
+                            </Trigger>
+                            <Trigger Property="IsGrouping" Value="true">
+                                <Setter Property="ScrollViewer.CanContentScroll" Value="false"/>
+                            </Trigger>
+                            <Trigger Property="IsEditable" Value="true">
+                                <Setter Property="IsTabStop" Value="false"/>
+                                <Setter TargetName="PART_EditableTextBox" Property="Visibility" Value="Visible"/>
+                                <Setter TargetName="ContentSite" Property="Visibility" Value="Hidden"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Window.Loaded">
+            <BeginStoryboard>
+                <Storyboard>
+                    <DoubleAnimation Storyboard.TargetProperty="(Window.Opacity)"
+                                 From="0.0" To="1.0" Duration="0:0:3"
+                                 AutoReverse="False"/>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Window.Triggers>
+
+    <Grid>
+        <MediaElement x:Name="mediaElement" Source="" Stretch="Fill" UnloadedBehavior="Manual" IsMuted="True" MediaEnded="mediaElement_MediaEnded"/>
+        <TabControl x:Name="Tabcontrol1" Background="Transparent" BorderBrush="#00ACACAC">
+            <!--<EventTrigger RoutedEvent="SelectionChanged"></EventTrigger>-->
+            <TabItem x:Name="tab0" Header="TabItem">
+                <Grid Background="#00E5E5E5">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label x:Name="AppVersionLabel1" Content="YPBBT 2.1" FontSize="36" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Margin="10,8,646,0" Foreground="#FFF1F1F1" Height="49" VerticalAlignment="Top" Background="#00000000"/>
+                    <Viewbox Margin="0,62,0,63" HorizontalAlignment="Left">
+                        <TextBox x:Name="S0Label0" Margin="10,80,360,151" TextWrapping="Wrap" Background="#001E222A" BorderBrush="#001E222A" Foreground="#FFF1F1F1" FontSize="22" BorderThickness="0" SelectionBrush="#000078D7" Text="● Welcome to yuri project bdo boss Timer here well help you &#xA;   setup your bot step by step. &#xA;&#xA;- If you allready have Bot setup you can click Skip to start filling&#xA;   the Required information &#xA;&#xA;- If u never made bot before click next and well walk you through&#xA;   it and make it as easy as possible for you ^^" IsReadOnly="True" Cursor="Arrow" />
+                    </Viewbox>
+                    <Button x:Name="SelectedlangButton" Cursor="Hand" VerticalAlignment="Top" Height="146" FontFamily="/Menu Manager;component/font/#Droid Sans" Margin="815,10,5,0" Background="#0013A76B" Foreground="#00000000" BorderBrush="#00707070" MouseEnter="frButton_MouseEnter" Click="SelectedlangButton_Click">
+
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Background" Value="#FF13A76B"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border Background="{TemplateBinding Background}">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#FF056644"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        <StackPanel Orientation="Horizontal">
+                            <Image x:Name="selctedlangImg" Height="128" Width="187" Source="Resources/fr.png" RenderOptions.BitmapScalingMode="HighQuality" Stretch="Uniform"/>
+                        </StackPanel>
+
+                    </Button>
+                    <Button x:Name="Tc0SkipButton" Content="Skip" Margin="691,0,181,10" FontFamily="/Menu Manager;component/font/#Droid Sans" Foreground="#FF424242" FontWeight="Bold" BorderBrush="#19707070" Height="45" VerticalAlignment="Bottom" FontSize="18" RenderTransformOrigin="0.5,0.5" Click="Tc0SkipButton_Click" Width="150">
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="25"/>
+
+                            </Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Background" Value="#FF64B0C1"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border Background="{TemplateBinding Background}">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#FF5494A2"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Resources>
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-0.084"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
+
+                    </Button>
+                    <Button x:Name="Tc0NextButton" Content="Next" Margin="858,0,14,10" FontFamily="/Menu Manager;component/font/#Droid Sans" Foreground="#FF424242" FontWeight="Bold" BorderBrush="#19707070" Height="45" VerticalAlignment="Bottom" FontSize="18" RenderTransformOrigin="0.5,0.5" Click="Tc0NextButton_Click" Width="150">
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="25"/>
+
+                            </Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Background" Value="#FF8B81FC"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border Background="{TemplateBinding Background}">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#FF6D64C9"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Resources>
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-0.084"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
+
+                    </Button>
+
+                </Grid>
+
+            </TabItem>
+            <TabItem x:Name="tab1" Header="TabItem">
+                <Grid Background="#00E5E5E5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="599"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label x:Name="S1L0" Content="Step 1" FontSize="36" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Margin="10,7,703,0" Foreground="#FFF1F1F1" Height="49" VerticalAlignment="Top" Background="#00000000"/>
+                    <MediaElement x:Name="Step1_2MediaElement" HorizontalAlignment="Left" Height="294" Margin="10,296,0,0" VerticalAlignment="Top" Width="665" Source="Resources/img/Step1.2.mp4" MediaEnded="Step1_2MediaElement_MediaEnded" UnloadedBehavior="Manual" MouseLeftButtonDown="Step1_2MediaElement_MouseLeftButtonDown" IsMuted="True"/>
+                    <Viewbox Margin="10,61,337,413">
+                        <TextBox x:Name="S1L1" TextWrapping="Wrap" Background="#001E222A" BorderBrush="#001E222A" Foreground="#FFF1F1F1" FontSize="22" BorderThickness="0" SelectionBrush="#000078D7" Text="1.1 - you will need To go to discord Developer To create the Bot&#xA;you can go there by Clicking on the discord Developer logo ---&gt; " IsReadOnly="True" Cursor="Arrow" />
+                    </Viewbox>
+                    <Viewbox Margin="10,186,0,308" HorizontalAlignment="Left" Width="960">
+                        <TextBox x:Name="Step1_2Label" TextWrapping="Wrap" Background="#001E222A" BorderBrush="#001E222A" Foreground="#FFF1F1F1" FontSize="22" BorderThickness="0" SelectionBrush="#000078D7" Text="1.2 - Login then Click on New Application and give your Bot a &#xA;name and Then click Create like so if u cant find the button&#xA;click on the video below for more details" IsReadOnly="True" Cursor="Arrow" />
+                    </Viewbox>
+                    <Button x:Name="Step1_OpenDiscordDevUrl_Button" Cursor="Hand" VerticalAlignment="Top" Height="146" FontFamily="/Menu Manager;component/font/#Droid Sans" Margin="663,40,5,0" Background="#0013A76B" Foreground="#00000000" BorderBrush="#00707070" Click="Step1_OpenDiscordDevUrl_Button_Click">
+
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Background" Value="#FF13A76B"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border Background="{TemplateBinding Background}">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#FF056644"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        <StackPanel Orientation="Horizontal" Width="320">
+                            <Image Height="138" Width="316" Source="Resources/ddpbuttonimg.png" RenderOptions.BitmapScalingMode="HighQuality" Stretch="Uniform">
+                                <Image.OpacityMask>
+                                    <ImageBrush ImageSource="Resources/ddpbuttonimg.png"/>
+                                </Image.OpacityMask>
+                            </Image>
+                        </StackPanel>
+
+                    </Button>
+                    <Button x:Name="Step1NextButton" Content="Next" Margin="858,0,14,10" FontFamily="/Menu Manager;component/font/#Droid Sans" Foreground="#FF424242" FontWeight="Bold" BorderBrush="#19707070" Height="45" VerticalAlignment="Bottom" FontSize="18" RenderTransformOrigin="0.5,0.5" Click="Step1NextButton_Click" Width="150">
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="25"/>
+
+                            </Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Background" Value="#FF8B81FC"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border Background="{TemplateBinding Background}">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#FF6D64C9"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Resources>
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-0.084"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
+
+                    </Button>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="tab2" Header="TabItem">
+                <Grid Background="#00E5E5E5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label x:Name="S2L0" Content="Step 2" FontSize="36" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Margin="10,9,806,0" Foreground="#FFF1F1F1" Height="49" VerticalAlignment="Top" Background="#00000000"/>
+                    <Viewbox HorizontalAlignment="Left" Margin="10,63,0,428" Width="968">
+                        <TextBox x:Name="S2L1" TextWrapping="Wrap" Background="#001E222A" BorderBrush="#001E222A" Foreground="#FFF1F1F1" FontSize="22" BorderThickness="0" SelectionBrush="#000078D7" Text="- in this Step you well need to Create the Bot And its Token &#xA;you can do that by clicking on  Bot Button then click on &#xA;Add Bot if u having issue finding the buttons click below" IsReadOnly="True" Cursor="Arrow" />
+                    </Viewbox>
+                    <MediaElement x:Name="Step2MediaElement" Margin="10,193,222,10" Source="Resources/img/Step2MakeBot.mp4" UnloadedBehavior="Manual" MediaEnded="Step2MediaElement_MediaEnded" MouseLeftButtonDown="Step2MediaElement_MouseLeftButtonDown" IsMuted="True"/>
+                    <Button x:Name="Step2NextButton" Content="Next" Margin="858,0,14,10" FontFamily="/Menu Manager;component/font/#Droid Sans" Foreground="#FF424242" FontWeight="Bold" BorderBrush="#19707070" Height="45" VerticalAlignment="Bottom" FontSize="18" RenderTransformOrigin="0.5,0.5" Click="Step2NextButton_Click" Width="150">
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="25"/>
+
+                            </Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Background" Value="#FF8B81FC"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border Background="{TemplateBinding Background}">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#FF6D64C9"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Resources>
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-0.084"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
+
+                    </Button>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="tab3" Header="TabItem">
+                <Grid Background="#00E5E5E5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label x:Name="S3L0" Content="Step 3" FontSize="36" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Margin="10,7,805,0" Foreground="#FFF1F1F1" Height="49" VerticalAlignment="Top" Background="#00000000"/>
+                    <Viewbox HorizontalAlignment="Left" Margin="10,61,0,414" Width="963">
+                        <TextBox x:Name="S3L1" TextWrapping="Wrap" Background="#001E222A" BorderBrush="#001E222A" Foreground="#FFF1F1F1" FontSize="22" BorderThickness="0" SelectionBrush="#000078D7" Text="- This step you well need to invite the Bot to your Discord Server&#xA;  all u need to do is just put the Bot Client ID in the Box Below&#xA;  then click on Invite Button to invite the Bot to Your Discord Server" IsReadOnly="True" Cursor="Arrow" />
+                    </Viewbox>
+                    <MediaElement x:Name="Step3MediaElement" Margin="10,254,342,12" Source="Resources/img/Step2CID.mp4" UnloadedBehavior="Manual" MouseLeftButtonDown="Step3MediaElement_MouseLeftButtonDown" MediaEnded="Step3MediaElement_MediaEnded" IsMuted="True"/>
+                    <Button x:Name="Step3InviteBotButton" Content="Invite" Margin="426,0,446,361" FontFamily="/Menu Manager;component/font/#Droid Sans" Foreground="#FF424242" FontWeight="Bold" BorderBrush="#19707070" Height="32" VerticalAlignment="Bottom" FontSize="18" RenderTransformOrigin="0.5,0.5" Click="Step3InviteBotButton_Click" Width="150" Background="#FF64B0C1">
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="15"/>
+
+                            </Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Background" Value="#FF5494A2"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border Background="{TemplateBinding Background}">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#71c796"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Resources>
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-0.084"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
+
+                    </Button>
+                    <Button x:Name="Step3NextButton" Content="Next" Margin="858,0,14,10" FontFamily="/Menu Manager;component/font/#Droid Sans" Foreground="#FF424242" FontWeight="Bold" BorderBrush="#19707070" Height="45" VerticalAlignment="Bottom" FontSize="18" RenderTransformOrigin="0.5,0.5" Click="Step3NextButton_Click" Width="150">
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="25"/>
+
+                            </Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Background" Value="#FF8B81FC"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border Background="{TemplateBinding Background}">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#FF6D64C9"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Resources>
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-0.084"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
+
+                    </Button>
+                    <Grid HorizontalAlignment="Left" Height="35" Margin="10,205,0,0" VerticalAlignment="Top" Width="409">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="190*"/>
+                            <ColumnDefinition Width="219*"/>
+                        </Grid.ColumnDefinitions>
+                        <Rectangle Fill="#FF28282B" RadiusY="15" RadiusX="15" Stroke="#FF434349" Grid.ColumnSpan="2" Margin="0,0,4,0"/>
+                        <Label x:Name="ClientIDLABEL" VerticalContentAlignment="Center"  Content="Client ID:" FontSize="20" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Foreground="#FF72727A" Background="#00000000" Margin="6,0,0,0"/>
+                        <TextBox x:Name="Step3CIDTextbox" Margin="0,6,17,4" TextWrapping="NoWrap" BorderThickness="0" PreviewTextInput="NumberValidationTextBox" Background="Transparent" BorderBrush="#00ABADB3" Foreground="#FFEEEEEE" Grid.Column="1" Text="Client ID" FontSize="16" GotFocus="Step3CIDTextbox_GotFocus">
+                            <TextBox.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="0"/>
+                                </Style>
+                            </TextBox.Resources>
+                        </TextBox>
+
+                    </Grid>
+
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="tab4" Header="TabItem">
+                <Grid Background="#00E5E5E5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label x:Name="S4L0" Content="Step 4" FontSize="36" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Margin="6,7,809,0" Foreground="#FFF1F1F1" Height="49" VerticalAlignment="Top" Background="#00000000"/>
+                    <Viewbox Margin="10,56,0,448" HorizontalAlignment="Left">
+                    <TextBox x:Name="S4L1"  TextWrapping="Wrap" Background="#001E222A" BorderBrush="#001E222A" Foreground="#FFF1F1F1" FontSize="22" BorderThickness="0" SelectionBrush="#000078D7" Text="- Now you well need the bot token paste it in the box below&#xA;  then click test to check if the token is correct " IsReadOnly="True" Cursor="Arrow" />
+                    </Viewbox>
+                    <Button x:Name="Step4TestTokenButton" Content="Test Token" Margin="420,158,0,0" FontFamily="/Menu Manager;component/font/#Droid Sans" Background="#FFA9A9AA" Foreground="#FF424242" FontWeight="Bold" BorderBrush="#19707070" HorizontalAlignment="Left" Width="135" FontSize="18" Height="32" VerticalAlignment="Top" MouseEnter="Step4TestTokenButton_MouseEnter" MouseLeave="Step4TestTokenButton_MouseLeave" Click="Step4TestTokenButton_Click">
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="15"/>
+                            </Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Background" Value="Green"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border Background="{TemplateBinding Background}">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="DarkGoldenrod"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                    <MediaElement x:Name="Step4MediaElement" Margin="7,196,230,10" Source="Resources/img/Step4GetToken.mp4" UnloadedBehavior="Manual" MediaEnded="Step4MediaElement_MediaEnded" MouseLeftButtonDown="Step4MediaElement_MouseLeftButtonDown" IsMuted="True"/>
+                    <Button x:Name="Step4NextButton" Content="Next" Margin="858,0,14,10" FontFamily="/Menu Manager;component/font/#Droid Sans" Foreground="#FF424242" FontWeight="Bold" BorderBrush="#19707070" Height="45" VerticalAlignment="Bottom" FontSize="18" RenderTransformOrigin="0.5,0.5" Click="Step4NextButton_Click" Width="150">
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="25"/>
+
+                            </Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Background" Value="#FF8B81FC"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border Background="{TemplateBinding Background}">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#FF6D64C9"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Resources>
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-0.084"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
+
+                    </Button>
+                    <Grid HorizontalAlignment="Left" Height="35" Margin="6,156,0,0" VerticalAlignment="Top" Width="409">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="138*"/>
+                            <ColumnDefinition Width="271*"/>
+                        </Grid.ColumnDefinitions>
+                        <Rectangle Fill="#FF28282B" RadiusY="15" RadiusX="15" Stroke="#FF434349" Grid.ColumnSpan="2" Margin="0,0,4,0"/>
+                        <Label x:Name="TokenLabel" VerticalContentAlignment="Center"  Content="Token:" FontSize="20" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Foreground="#FF72727A" Background="#00000000" Margin="6,0,0,0"/>
+                        <TextBox x:Name="Step4TokenTextbox" Margin="0,7,17,3" TextWrapping="NoWrap" BorderThickness="0" Background="Transparent" BorderBrush="#00ABADB3" Foreground="#FFEEEEEE" Grid.Column="1" Text="Token" FontSize="16" GotFocus="Step4TokenTextbox_GotFocus" KeyUp="Step4TokenTextbox_KeyUp">
+                            <TextBox.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="0"/>
+                                </Style>
+                            </TextBox.Resources>
+                        </TextBox>
+
+                    </Grid>
+
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="tab5" Header="TabItem">
+                <Grid Background="#00E5E5E5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="322*"/>
+                        <RowDefinition Height="277*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label x:Name="S5L0" Content="Step 5" FontSize="36" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Margin="10,3,823,0" Foreground="#FFF1F1F1" Height="49" VerticalAlignment="Top" Background="#00000000"/>
+                    <Viewbox Margin="10,52,0,123" HorizontalAlignment="Left" Width="953">
+                    <TextBox x:Name="S5L1" TextWrapping="Wrap" Background="#001E222A" BorderBrush="#001E222A" Foreground="#FFF1F1F1" FontSize="22" BorderThickness="0" SelectionBrush="#000078D7" Text="- Now you well need the to select the Server ID and the channel ID&#xA;  where the bot well post its notifications " IsReadOnly="True" Cursor="Arrow" />
+                    </Viewbox>
+                    <TextBox x:Name="S5L2" Margin="10,28,10,187" TextWrapping="Wrap" Background="#001E222A" BorderBrush="#001E222A" Foreground="#FFDC6B76" FontSize="22" BorderThickness="0" SelectionBrush="#000078D7" Text="NOTE:: dont forget to give the Bot admin privilege" IsReadOnly="True" Cursor="Arrow" Grid.Row="1" />
+                    <Button x:Name="Step5NextButton" Content="Next" Margin="858,0,14,10" FontFamily="/Menu Manager;component/font/#Droid Sans" Foreground="#FF424242" FontWeight="Bold" BorderBrush="#19707070" Height="45" VerticalAlignment="Bottom" FontSize="18" RenderTransformOrigin="0.5,0.5" Click="Step5NextButton_Click" Grid.Row="1">
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="25"/>
+
+                            </Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Background" Value="#FF8B81FC"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border Background="{TemplateBinding Background}">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#FF6D64C9"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Resources>
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-0.084"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
+
+                    </Button>
+                    <Grid HorizontalAlignment="Left" Height="32" Margin="10,204,0,0" VerticalAlignment="Top" Width="409">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="219*"/>
+                            <ColumnDefinition Width="190*"/>
+                        </Grid.ColumnDefinitions>
+                        <Rectangle Fill="#FF28282B" RadiusY="15" RadiusX="15" Stroke="#FF434349" Grid.ColumnSpan="2" Margin="0,0,4,0"/>
+                        <Viewbox HorizontalAlignment="Left">
+                            <Label x:Name="ServerIDLAbel" VerticalContentAlignment="Center" Content="Server ID:" FontSize="20" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Foreground="#FF72727A" Background="#00000000" Margin="6,0,0,1"/>
+                        </Viewbox>
+                        <ComboBox x:Name="SidCombobox" HorizontalContentAlignment="Center" Background="#FF28282B" BorderBrush="#00ACACAC" Foreground="#FFF1F1F1" FontFamily="/YPBBT 2.0;component/font/#Droid Sans"
+                            FontSize="16"
+                            Style="{DynamicResource theComboBox}"
+                            Padding="15,5,15,5"   
+                            MinWidth="100"
+                            MaxWidth="375"                        
+                            ItemContainerStyle="{DynamicResource theComboBoxItem}" Grid.Column="1" Margin="0,0,4,0" DropDownClosed="SidCombobox_DropDownClosed"/>
+
+                    </Grid>
+                    <Grid x:Name="CIDGRID" HorizontalAlignment="Left" Height="32" Margin="10,243,0,0" VerticalAlignment="Top" Width="409">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="219*"/>
+                            <ColumnDefinition Width="190*"/>
+                        </Grid.ColumnDefinitions>
+                        <Rectangle Fill="#FF28282B" RadiusY="15" RadiusX="15" Stroke="#FF434349" Grid.ColumnSpan="2" Margin="0,0,4,0"/>
+                        <Viewbox HorizontalAlignment="Left">
+                            <Label x:Name="ChannelIDLabel" VerticalContentAlignment="Center" Content="Channel ID:" FontSize="20" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Foreground="#FF72727A" Background="#00000000" Margin="6,0,0,1"/>
+                        </Viewbox>
+                        <ComboBox x:Name="CidCombobox" HorizontalContentAlignment="Center" Background="#FF28282B" BorderBrush="#00ACACAC" Foreground="#FFF1F1F1" FontFamily="/YPBBT 2.0;component/font/#Droid Sans"
+                            FontSize="16"
+                            Style="{DynamicResource theComboBox}"
+                            Padding="15,5,15,5"   
+                            MinWidth="100"
+                            MaxWidth="375"                        
+                            ItemContainerStyle="{DynamicResource theComboBoxItem}" Grid.Column="1" Margin="0,0,4,0" DropDownClosed="CidCombobox_DropDownClosed" DropDownOpened="CidCombobox_DropDownOpened"/>
+
+                    </Grid>
+                    <Grid x:Name="AlertCIDGRID" HorizontalAlignment="Left" Height="32" Margin="10,281,0,0" VerticalAlignment="Top" Width="409">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="219*"/>
+                            <ColumnDefinition Width="190*"/>
+                        </Grid.ColumnDefinitions>
+                        <Rectangle Fill="#FF28282B" RadiusY="15" RadiusX="15" Stroke="#FF434349" Grid.ColumnSpan="2" Margin="0,0,4,0"/>
+                        <Viewbox HorizontalAlignment="Left">
+                            <Label x:Name="AlertChannelIDLabel" VerticalContentAlignment="Center" Content="Alert Channel ID:" FontSize="20" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Foreground="#FF72727A" Background="#00000000" Margin="6,0,0,1"/>
+                        </Viewbox>
+                        <ComboBox x:Name="AlertCidCombobox" HorizontalContentAlignment="Center" Background="#FF28282B" BorderBrush="#00ACACAC" Foreground="#FFF1F1F1" FontFamily="/YPBBT 2.0;component/font/#Droid Sans"
+                            FontSize="16"
+                            Style="{DynamicResource theComboBox}"
+                            Padding="15,5,15,5"   
+                            MinWidth="100"
+                            MaxWidth="375"                        
+                            ItemContainerStyle="{DynamicResource theComboBoxItem}" Grid.Column="1" Margin="0,0,4,0" DropDownClosed="AlertCidCombobox_DropDownClosed" DropDownOpened="AlertCidCombobox_DropDownOpened"/>
+
+                    </Grid>
+
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="tab6" Header="TabItem">
+                <Grid Background="#00E5E5E5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label x:Name="S6L0" Content="Final Step" FontSize="36" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Margin="10,33,0,0" Foreground="#FFF1F1F1" Height="49" VerticalAlignment="Top" Background="#00000000" HorizontalAlignment="Center"/>
+                    <TextBox x:Name="S6L1" Margin="0,95,0,383" TextWrapping="Wrap" Background="#001E222A" BorderBrush="#001E222A" Foreground="#FFF1F1F1" FontSize="22" BorderThickness="0" SelectionBrush="#000078D7" Text="- Your all done now if u have any problem or have any questions join our discord and we'll try our best to help, Enjoy c:" IsReadOnly="True" Cursor="Arrow" />
+                    <Image x:Name="Startappbutton" Cursor="Hand" Height="328" RenderOptions.BitmapScalingMode="HighQuality" Margin="342,216,342,0" VerticalAlignment="Top" Source="Resources/Start.png" MouseLeftButtonDown="Image_MouseLeftButtonDown_1">
+
+                    </Image>
+
+                    <Image Cursor="Hand" HorizontalAlignment="Right" Height="98" RenderOptions.BitmapScalingMode="HighQuality" Margin="0,501,924,0" VerticalAlignment="Top" Width="98" Source="Resources/Disclogo.png" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
+
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="tab7" Header="TabItem">
+                <Grid Background="#00E5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label x:Name="AppVersionLabel0" Content="YPBBT 2.1" FontSize="36" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Margin="780,0,10,10" Foreground="#FFF1F1F1" Background="#00000000" Height="58" VerticalAlignment="Bottom"/>
+                    <Label x:Name="SetLanguageLabel" HorizontalContentAlignment="Center" Content="Select Language" FontSize="36" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Margin="0,71,0,0" Foreground="#FFF1F1F1" Height="54" VerticalAlignment="Top" Background="#00000000"/>
+                    <Grid x:Name="LangaugeButtonsGrid" Height="217" Margin="6,165,0,0" VerticalAlignment="Top">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="40*"/>
+                            <ColumnDefinition Width="158*"/>
+                            <ColumnDefinition Width="154*"/>
+                            <ColumnDefinition Width="155*"/>
+                            <ColumnDefinition Width="158*"/>
+                            <ColumnDefinition Width="150*"/>
+                            <ColumnDefinition Width="169*"/>
+                            <ColumnDefinition Width="33*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button x:Name="frButton" Cursor="Hand" VerticalAlignment="Top" Height="146" FontFamily="/Menu Manager;component/font/#Droid Sans" Margin="5,36,2,0" Background="#0013A76B" Foreground="#00000000" BorderBrush="#00707070" MouseEnter="frButton_MouseEnter" Click="frButton_Click" Grid.Column="1">
+
+                            <Button.Style>
+                                <Style TargetType="{x:Type Button}">
+                                    <Setter Property="Background" Value="#FF13A76B"/>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type Button}">
+                                                <Border Background="{TemplateBinding Background}">
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#FF056644"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                            <StackPanel Orientation="Horizontal">
+                                <Image x:Name="FRbuttoninnerimage" Height="128" Width="114" Source="Resources/fr.png" RenderOptions.BitmapScalingMode="HighQuality" Stretch="Uniform"/>
+                            </StackPanel>
+
+                        </Button>
+                        <Button x:Name="esButton" Cursor="Hand" VerticalAlignment="Top" Height="146" FontFamily="/Menu Manager;component/font/#Droid Sans" Margin="4,36,1,0" Background="#0013A76B" Foreground="#00000000" BorderBrush="#00707070" MouseEnter="esButton_MouseEnter" Click="esButton_Click" Grid.Column="3">
+
+                            <Button.Style>
+                                <Style TargetType="{x:Type Button}">
+                                    <Setter Property="Background" Value="#FF13A76B"/>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type Button}">
+                                                <Border Background="{TemplateBinding Background}">
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#FF056644"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Height="128" Width="114" Source="Resources/sp.png" RenderOptions.BitmapScalingMode="HighQuality" Stretch="Uniform"/>
+                            </StackPanel>
+
+                        </Button>
+                        <Button x:Name="ruButton" Cursor="Hand" VerticalAlignment="Top" Height="146" FontFamily="/Menu Manager;component/font/#Droid Sans" Margin="4,36,3,0" Background="#0013A76B" Foreground="#00000000" BorderBrush="#00707070" MouseEnter="ruButton_MouseEnter" Click="ruButton_Click" Grid.Column="4">
+
+                            <Button.Style>
+                                <Style TargetType="{x:Type Button}">
+                                    <Setter Property="Background" Value="#FF13A76B"/>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type Button}">
+                                                <Border Background="{TemplateBinding Background}">
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#FF056644"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Height="128" Width="114" Source="Resources/ru.png" RenderOptions.BitmapScalingMode="HighQuality" Stretch="Uniform"/>
+                            </StackPanel>
+
+                        </Button>
+                        <Button x:Name="jpButton" Cursor="Hand" VerticalAlignment="Top" Height="146" FontFamily="/Menu Manager;component/font/#Droid Sans" Margin="0,36,1,0" Background="#0013A76B" Foreground="#00000000" BorderBrush="#00707070" MouseEnter="jpButton_MouseEnter" Click="jpButton_Click" Grid.Column="5">
+
+                            <Button.Style>
+                                <Style TargetType="{x:Type Button}">
+                                    <Setter Property="Background" Value="#FF13A76B"/>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type Button}">
+                                                <Border Background="{TemplateBinding Background}">
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#FF056644"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Height="128" Width="114" Source="Resources/jp.png" RenderOptions.BitmapScalingMode="HighQuality" Stretch="Uniform"/>
+                            </StackPanel>
+
+                        </Button>
+                        <Button x:Name="krButton" Cursor="Hand" VerticalAlignment="Top" Height="146" FontFamily="/Menu Manager;component/font/#Droid Sans" Margin="5,36,13,0" Background="#0013A76B" Foreground="#00000000" BorderBrush="#00707070" MouseEnter="krButton_MouseEnter" Click="krButton_Click" Grid.Column="6">
+
+                            <Button.Style>
+                                <Style TargetType="{x:Type Button}">
+                                    <Setter Property="Background" Value="#FF13A76B"/>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type Button}">
+                                                <Border Background="{TemplateBinding Background}">
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#FF056644"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Height="128" Width="114" Source="Resources/kr.png" RenderOptions.BitmapScalingMode="HighQuality" Stretch="Uniform"/>
+                            </StackPanel>
+
+                        </Button>
+                        <Button x:Name="enButton" Cursor="Hand" VerticalAlignment="Top" Height="146" FontFamily="/Menu Manager;component/font/#Droid Sans" Margin="3,36,1,0" Background="#0013A76B" Foreground="#00000000" BorderBrush="#00707070" MouseEnter="enButton_MouseEnter" Click="enButton_Click" Grid.Column="2">
+
+                            <Button.Style>
+                                <Style TargetType="{x:Type Button}">
+                                    <Setter Property="Background" Value="#FF13A76B"/>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type Button}">
+                                                <Border Background="{TemplateBinding Background}">
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#FF056644"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Height="128" Width="114" Source="Resources/en.png" RenderOptions.BitmapScalingMode="HighQuality" Stretch="Uniform"/>
+                            </StackPanel>
+
+                        </Button>
+                    </Grid>
+
+
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</Window>

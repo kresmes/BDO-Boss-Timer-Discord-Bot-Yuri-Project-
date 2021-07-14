@@ -1,0 +1,11 @@
+﻿<Application x:Class="YPBBT.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:YPBBT"
+             StartupUri="DA_StartUp.xaml">
+    <Application.Resources>
+        <SolidColorBrush x:Key="MainColor" />
+        <SolidColorBrush x:Key="SubColor" />
+        <SolidColorBrush x:Key="HeaderColor" />
+    </Application.Resources>
+</Application>
