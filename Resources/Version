@@ -11,14 +11,14 @@ Offin||Kzarka,Nouver||Karanda,Kutum|Quint,Muraka||Kzarka,Nouver||
 Karanda,Kutum||Karanda,Kutum|Offin|Kzarka,Nouver||||Karanda,Kutum|Kzarka,Nouver
 [/PS4-ASIA]
 [EU]
-00:15|02:00|05:00|09:00|12:00|14:00|16:00|17:00|19:00|22:15|23:15
-Kutum,SB Karanda|Karanda|Kzarka|Kzarka|Offin||Kutum||BS Nouver|Kzarka|
-Karanda|Kutum|Kzarka|Nouver|Kutum||BS Nouver||SB Karanda|Garmoth|
-Kzarka|Karanda|Kzarka|Kzarka|||Kutum,Offin||Vell|Karanda,NM Kzarka|Quint,Muraka
-Nouver|Kutum|Nouver|Kutum|Nouver||Kzarka||Kutum|Garmoth|
-Kzarka,Karanda|Nouver|Karanda|Kutum|Karanda||BS Nouver||Kzarka|Kutum,Karanda|
-Karanda|Offin|Nouver|Kutum|Nouver|Garmoth|Quint,Muraka|Vell|Karanda,SB Karanda||
-Nouver,Kutum|Kzarka|Kutum|Nouver|NM Kzarka||Vell||Garmoth|NM Kzarka,Nouver|
+00:15|02:00|05:00|09:00|12:00|16:00|19:00|22:15|23:15
+Kutum,Karanda|Karanda|Kzarka|Kzarka|Offin|Kutum|Nouver|Kzarka|
+Karanda|Kutum|Kzarka|Nouver|Kutum|Nouver|Karanda|Garmoth|
+Kzarka,Kutum|Karanda|Kzarka|Karanda||Kutum,Offin|Vell|Karanda,Kzarka|Quint,Muraka
+Nouver|Kutum|Nouver|Kutum|Nouver|Kzarka|Kutum|Garmoth|
+Kzarka,Karanda|Nouver|Karanda|Kutum|Karanda|Nouver|Kzarka|Kzarka,Kutum|
+Karanda|Offin|Nouver|Kutum|Nouver|Quint,Muraka|Karanda,Karanda||
+Nouver,Kutum|Kzarka|Kutum|Nouver|Kzarka|Vell|Garmoth|Kzarka,Nouver|
 [/EU]
 [PS4-XBOX-EU]
 00:00|08:00|12:00|14:00|15:00|16:00|17:00|18:00|21:15|22:00|23:15
@@ -61,14 +61,14 @@ Vell|Kzarka|Kzarka,Nouver|Karanda,Kutum|||Nouver,Kutum|Garmoth
 |Karanda|Kzarka,Nouver|Karanda,Kutum|Vell||Nouver,Kutum|Garmoth
 [/MENA]
 [NA]
-00:00|03:00|07:00|10:00|12:00|14:00|15:00|17:00|20:15|21:15|22:15
-Karanda|Kzarka|Kzarka|Offin||Kutum||BS Nouver|Kzarka||SB Karanda
-Kutum|Kzarka|Nouver|Kutum||Nouver||SB Karanda|Garmoth||Kutum,Kzarka
-Karanda||Karanda|Nouver||Kutum,Offin||Vell|NM Kzarka,Karanda|Quint,Muraka|BS Nouver
-Kutum|Kzarka|Kutum|Nouver||Kzarka||Kutum|Garmoth||Karanda,Kzarka
-Nouver|Karanda|Kutum|Karanda||Nouver||Kzarka|Kutum,Kzarka||Karanda
-Offin|Nouver|Kutum|BS Nouver|Garmoth|Quint,Muraka|Vell|Kzarka,SB Karanda|||Nouver,Kutum
-Kzarka|Kutum|Nouver|NM Kzarka||Vell||Garmoth|NM Kzarka,Nouver||Karanda,Kutum
+00:00|03:00|07:00|10:00|14:00|17:00|20:15|21:15|22:15
+Karanda|Kzarka|Kzarka|Offin|Kutum|Nouver|Kzarka||Karanda
+Kutum|Kzarka|Nouver|Kutum|Nouver|Karanda|Garmoth||Kzarka,Kutum
+Karanda||Karanda|Nouver|Kutum,Offin|Vell|Kzarka,Karanda|Quint,Muraka|Nouver
+Kutum|Kzarka|Kutum|Nouver|Kzarka|Kutum|Garmoth||Karanda,Kzarka
+Nouver|Karanda|Kutum|Karanda|Nouver|Kzarka|Kutum,Kzarka||Karanda
+Offin|Nouver|Kutum|Nouver|Quint,Muraka|Kzarka,Karanda|||Nouver,Kutum
+Kzarka|Kutum|Nouver|Kzarka|Vell|Garmoth|Kzarka,Nouver||Karanda,Kutum
 [/NA]
 [PS4-XBOX-NA]
 07:00|11:00|13:00|14:00|15:00|16:00|17:00|20:15|21:00|22:15|23:00
@@ -131,3 +131,17 @@ Garmoth|Kzarka,Kutum|Karanda,Kutum|Offin|Kzarka,Nouver|
 |Karanda,Nouver|Kzarka,Nouver|Vell|Karanda,Kutum|Offin
 [/TW]
 [/TimeTable]
+[Bosses]
+Kzarka,https://bdocodex.com/items/ui_artwork/ic_04082.png,http://www.somethinglovely.net/bdo/#worldbosses/kzarka,,{,<Local>/Resources/Bosses_img/Kzarka.png
+NM Kzarka,https://bdocodex.com/items/ui_artwork/ic_04082.png,http://www.somethinglovely.net/bdo/#worldbosses/kzarka,,{,<Local>/Resources/Bosses_img/Kzarka.png
+Nouver,https://bdocodex.com/items/ui_artwork/ic_04920.png,http://www.somethinglovely.net/bdo/#worldbosses/nouver,,{,<Local>/Resources/Bosses_img/Nouver.png
+BS Nouver,https://bdocodex.com/items/ui_artwork/ic_04920.png,http://www.somethinglovely.net/bdo/#worldbosses/nouver,,{,<Local>/Resources/Bosses_img/Nouver.png
+Karanda,https://bdocodex.com/items/ui_artwork/ic_04370.png,http://www.somethinglovely.net/bdo/#worldbosses/karanda,,{,<Local>/Resources/Bosses_img/Karanda.png
+SB Karanda,https://bdocodex.com/items/ui_artwork/ic_04370.png,http://www.somethinglovely.net/bdo/#worldbosses/karanda,,{,<Local>/Resources/Bosses_img/Karanda.png
+Kutum,https://bdocodex.com/items/ui_artwork/ic_04389.png,http://www.somethinglovely.net/bdo/#worldbosses/ancient-kutum,,{,<Local>/Resources/Bosses_img/Kutum.png
+Offin,https://bdobosstimer.com/img/bosses/offin.png,http://www.somethinglovely.net/bdo/#worldbosses/offin-tett,,{,<Local>/Resources/Bosses_img/Offin.png
+Garmoth,https://bdobosstimer.com/img/bosses/garmoth.png,http://www.somethinglovely.net/bdo/#worldbosses/garmoth,,{,<Local>/Resources/Bosses_img/Garmoth.png
+Quint,https://bdobosstimer.com/img/bosses/quint.png,http://www.somethinglovely.net/bdo/#worldbosses/quint,,{,<Local>/Resources/Bosses_img/Quint.png
+Muraka,https://bdobosstimer.com/img/bosses/muraka.png,http://www.somethinglovely.net/bdo/#worldbosses/muraka,,{,<Local>/Resources/Bosses_img/Muraka.png
+Vell,https://bdocodex.com/images/icon_vell.png,http://www.somethinglovely.net/bdo/#worldbosses/vell,,{,<Local>/Resources/Bosses_img/Vell.png
+[/Bosses]
