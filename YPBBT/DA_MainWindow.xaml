@@ -1115,6 +1115,7 @@
                                     <Label x:Name="PostSettingsLabel" Content="Post Settings:" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Foreground="#FFF1F1F1" Background="#00000000" Margin="0,0,0,65" FontSize="11"/>
                                     <CheckBox x:Name="DisplayTimeTableSetting" Style="{DynamicResource CheckBoxStyle1}" Content="Display Time Table" Margin="0,0,0,48" VerticalAlignment="Bottom" Foreground="White" Click="DisplayTimeTableSetting_Click" FontSize="10" Height="16"/>
                                     <CheckBox x:Name="ScarletModeTimeTableSetting_CheckBox" IsEnabled="True" ToolTip="Coming Soon" Style="{DynamicResource CheckBoxStyle1}" Content="Scarlet Mode" Margin="0,0,0,27" VerticalAlignment="Bottom" Foreground="White" FontSize="10" Height="16" Click="ScarletModeTimeTableSetting_CheckBox_Click"/>
+                                    <CheckBox x:Name="OverlayTheGameOnly_Checkbox" IsEnabled="True" ToolTip="Coming Soon" Style="{DynamicResource CheckBoxStyle1}" Content="Overlay only the Game" Margin="0,0,0,6" VerticalAlignment="Bottom" Foreground="White" FontSize="10" Height="16" Click="OverlayTheGameOnly_Checkbox_Click"/>
 
                                 </Grid>
                             </TabItem>

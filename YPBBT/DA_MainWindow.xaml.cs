@@ -52,7 +52,11 @@ namespace YPBBT
         static extern int SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
         private const int GWL_EX_STYLE = -20;
         private const int WS_EX_APPWINDOW = 0x00040000, WS_EX_TOOLWINDOW = 0x00000080;
+        [DllImport("user32.dll")]
+        public static extern IntPtr GetForegroundWindow();
 
+        [DllImport("user32.dll", SetLastError = true)]
+        public static extern uint GetWindowThreadProcessId(IntPtr hWnd, out uint lpdwProcessId);
         public DA_MainWindow() => InitializeComponent();
 
         private System.Windows.Forms.NotifyIcon MyNotifyIcon;
@@ -97,7 +101,7 @@ namespace YPBBT
         public string publicNbossimage;
         public string publicbossUrl;
         public ulong bossImageID;
-        public string AppVersion = "3.13b";
+        public string AppVersion = "3.14";
         public string CurrentVersion = "";
         string currentbossrole1 = "";
         string currentbossrole2 = "";
@@ -491,14 +495,22 @@ namespace YPBBT
                 
                 if(AUTCheckbox.IsChecked == true)
                 { File.WriteAllText(Directory.GetCurrentDirectory() + "/Resources/LYPBBTTT", File.ReadAllText(Directory.GetCurrentDirectory() + "/Resources/LYPBBTTT_Origin")); }
-                              
-                new Thread(() =>
+                BossesListButton.IsEnabled = false;
+                SelfRollingButton.IsEnabled = false;
+                SettingsButton.IsEnabled = false;
+                if (Token != "0AZ")
                 {
-                    Thread.CurrentThread.IsBackground = true;
-                    Discord_Bot Bot = new Discord_Bot();
-                    Bot.GetDiscordData(this);
-                    Bot.StartPosting_Cooldown(this);
-                }).Start();
+                    BossesListButton.IsEnabled = true;
+                    SelfRollingButton.IsEnabled = true;
+                    SettingsButton.IsEnabled = true;
+                    new Thread(() =>
+                    {                       
+                        Thread.CurrentThread.IsBackground = true;
+                        Discord_Bot Bot = new Discord_Bot();
+                        Bot.GetDiscordData(this);
+                        Bot.StartPosting_Cooldown(this);
+                    }).Start();                  
+                }
                 startupRS = 1;
                 string region = Settings.Default["DefaultRegion"].ToString();//get Last Saved Region  
                 if (region == "")
@@ -751,7 +763,7 @@ namespace YPBBT
             //LanguageCollection[146].ToString(); is Restart: New Update is ready to install
             AUTTLabel.Content = LanguageCollection[147].ToString(); //Auto Update Time Tables:
             AUTTLabel.ToolTip = LanguageCollection[148].ToString(); //Auto Update Time Tablesfrom online source
-
+            OverlayTheGameOnly_Checkbox.Content = LanguageCollection[149].ToString();
 
             if (Settings.Default["BSA1CM"].ToString() == "")
             {
@@ -1234,6 +1246,14 @@ namespace YPBBT
             {
                 AUTCheckbox.IsChecked = bool.Parse(Settings.Default["AutoUpdateTable"].ToString());
             }
+            if (Settings.Default["OnlyOverlayGame"].ToString() == "")
+            {
+                OverlayTheGameOnly_Checkbox.IsChecked = true;
+                Settings.Default["OnlyOverlayGame"] = "true";
+                Settings.Default.Save();
+            }
+            else
+            { OverlayTheGameOnly_Checkbox.IsChecked = bool.Parse(Settings.Default["OnlyOverlayGame"].ToString()); }
         }     
         private async void GetTimeTable(string r)// creat TimeTable and Get Time Logs
         {
@@ -1831,6 +1851,24 @@ namespace YPBBT
                     BitmapImage img = new BitmapImage();
                     img = NBImageBox.Source as BitmapImage;
                     omw.UpdateData(BRILabel.Content.ToString() , img, CbossLabel.Content.ToString(), CbossNameLabel.Content.ToString(), CurrentBossTimeLabel.Content.ToString(), NILabel.Content.ToString(), NightInBdoTimeLabel.Content.ToString(), IRILabel.Content.ToString(), IRTimeLabel.Content.ToString(), BRTimeLabel.Content.ToString(), SoundOptionCheckBox.Content.ToString(), NTSoundOptionCheckBox.Content.ToString(), IRSoundOptionCheckBox.Content.ToString(), BRSoundOptionCheckBox.Content.ToString(), ITRSoundOptionCheckBox.Content.ToString(), PlaySoundOnLabel.Content.ToString(), ITRILabel.Content.ToString(), ITRITimeLabel.Content.ToString());
+                    try
+                    {
+                        IntPtr hWnd = GetForegroundWindow();
+                        uint procId = 0;
+                        GetWindowThreadProcessId(hWnd, out procId);
+                        var proc = Process.GetProcessById((int)procId);
+                        //Console.WriteLine(proc.ProcessName);
+                        if (OverlayTheGameOnly_Checkbox.IsChecked == false)
+                        { omw.WindowOv.Topmost = true; }
+                        else
+                        {
+                            if (proc.ProcessName.Contains("BlackDesert"))
+                            { omw.WindowOv.Topmost = true; }
+                            else
+                            { omw.WindowOv.Topmost = false; }
+                        }
+                    }
+                    catch (Exception) { }
                 }
                 catch (Exception) { }
 
@@ -3759,6 +3797,7 @@ namespace YPBBT
             Settings.Default["ScarletMode"] = "";
             Settings.Default["SelfRolling"] = "";
             Settings.Default["AutoUpdateTable"] = "";
+            Settings.Default["OnlyOverlayGame"] = "";
             Settings.Default.Save();
             await discord.StopAsync();
             File.Delete(System.IO.Directory.GetCurrentDirectory() + "/Resources/DA_Profile");
@@ -5233,10 +5272,10 @@ namespace YPBBT
                         UtcValue = +3;
                         break;
                     case 6:
-                        UtcValue = -8;
+                        UtcValue = -7;
                         break;
                     case 7:
-                        UtcValue = -8;
+                        UtcValue = -7;
                         break;
                     case 8:
                         UtcValue = +3;
@@ -8064,6 +8103,11 @@ namespace YPBBT
             Settings.Default.Save();
         }
 
+        private void OverlayTheGameOnly_Checkbox_Click(object sender, RoutedEventArgs e)
+        {
+            Settings.Default["OnlyOverlayGame"] = ScarletModeTimeTableSetting_CheckBox.IsChecked.ToString();
+            Settings.Default.Save();
+        }
         private void SelfRolling_RoleMessage_KeyUp(object sender, KeyEventArgs e)
         { if (SelfRolling_Messages_ListBox_SelectedIndex > -1) { Save_CurrentSelfRolling_RoleSettings(); } }
 

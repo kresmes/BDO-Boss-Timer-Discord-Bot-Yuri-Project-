@@ -220,41 +220,7 @@
                         </StackPanel>
 
                     </Button>
-                    <Button x:Name="Tc0SkipButton" Content="Skip" Margin="691,0,181,10" FontFamily="/Menu Manager;component/font/#Droid Sans" Foreground="#FF424242" FontWeight="Bold" BorderBrush="#19707070" Height="45" VerticalAlignment="Bottom" FontSize="18" RenderTransformOrigin="0.5,0.5" Click="Tc0SkipButton_Click" Width="150">
-                        <Button.Resources>
-                            <Style TargetType="{x:Type Border}">
-                                <Setter Property="CornerRadius" Value="25"/>
-
-                            </Style>
-                            <Style TargetType="{x:Type Button}">
-                                <Setter Property="Background" Value="#FF64B0C1"/>
-                                <Setter Property="Template">
-                                    <Setter.Value>
-                                        <ControlTemplate TargetType="{x:Type Button}">
-                                            <Border Background="{TemplateBinding Background}">
-                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                            </Border>
-                                        </ControlTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#FF5494A2"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Resources>
-                        <Button.RenderTransform>
-                            <TransformGroup>
-                                <ScaleTransform/>
-                                <SkewTransform/>
-                                <RotateTransform Angle="-0.084"/>
-                                <TranslateTransform/>
-                            </TransformGroup>
-                        </Button.RenderTransform>
-
-                    </Button>
-                    <Button x:Name="Tc0NextButton" Content="Next" Margin="858,0,14,10" FontFamily="/Menu Manager;component/font/#Droid Sans" Foreground="#FF424242" FontWeight="Bold" BorderBrush="#19707070" Height="45" VerticalAlignment="Bottom" FontSize="18" RenderTransformOrigin="0.5,0.5" Click="Tc0NextButton_Click" Width="150">
+                    <Button x:Name="Tc0NextButton" Content="Full Setup&#xD;&#xA;for Discord" Margin="809,0,14,10" FontFamily="/Menu Manager;component/font/#Droid Sans" Foreground="#FF424242" FontWeight="Bold" BorderBrush="#19707070" Height="45" VerticalAlignment="Bottom" FontSize="18" RenderTransformOrigin="0.5,0.5" Click="Tc0NextButton_Click">
                         <Button.Resources>
                             <Style TargetType="{x:Type Border}">
                                 <Setter Property="CornerRadius" Value="25"/>
@@ -274,6 +240,40 @@
                                 <Style.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
                                         <Setter Property="Background" Value="#FF6D64C9"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Resources>
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-0.084"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
+
+                    </Button>
+                    <Button x:Name="DesktopSetupButton" Content="Desktop Only" Margin="596,0,227,10" FontFamily="/Menu Manager;component/font/#Droid Sans" Foreground="#FF424242" FontWeight="Bold" BorderBrush="#19707070" Height="45" VerticalAlignment="Bottom" FontSize="18" RenderTransformOrigin="0.5,0.5" Click="DesktopSetupButton_Click">
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="25"/>
+
+                            </Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Background" Value="#FF65D18C"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border Background="{TemplateBinding Background}">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#FF59B67B"/>
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
@@ -358,6 +358,40 @@
                                 <Style.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
                                         <Setter Property="Background" Value="#FF6D64C9"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Resources>
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-0.084"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
+
+                    </Button>
+                    <Button x:Name="Tc0SkipButton" Content="Skip" Margin="694,0,178,10" FontFamily="/Menu Manager;component/font/#Droid Sans" Foreground="#FF424242" FontWeight="Bold" BorderBrush="#19707070" Height="45" VerticalAlignment="Bottom" FontSize="18" RenderTransformOrigin="0.5,0.5" Click="Tc0SkipButton_Click" Width="150">
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="25"/>
+
+                            </Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Background" Value="#FF64B0C1"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border Background="{TemplateBinding Background}">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#FF5494A2"/>
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
@@ -533,7 +567,7 @@
                     </Grid.ColumnDefinitions>
                     <Label x:Name="S4L0" Content="Step 4" FontSize="36" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Margin="6,7,809,0" Foreground="#FFF1F1F1" Height="49" VerticalAlignment="Top" Background="#00000000"/>
                     <Viewbox Margin="10,56,0,448" HorizontalAlignment="Left">
-                    <TextBox x:Name="S4L1"  TextWrapping="Wrap" Background="#001E222A" BorderBrush="#001E222A" Foreground="#FFF1F1F1" FontSize="22" BorderThickness="0" SelectionBrush="#000078D7" Text="- Now you well need the bot token paste it in the box below&#xA;  then click test to check if the token is correct " IsReadOnly="True" Cursor="Arrow" />
+                        <TextBox x:Name="S4L1"  TextWrapping="Wrap" Background="#001E222A" BorderBrush="#001E222A" Foreground="#FFF1F1F1" FontSize="22" BorderThickness="0" SelectionBrush="#000078D7" Text="- Now you well need the bot token paste it in the box below&#xA;  then click test to check if the token is correct " IsReadOnly="True" Cursor="Arrow" />
                     </Viewbox>
                     <Button x:Name="Step4TestTokenButton" Content="Test Token" Margin="420,158,0,0" FontFamily="/Menu Manager;component/font/#Droid Sans" Background="#FFA9A9AA" Foreground="#FF424242" FontWeight="Bold" BorderBrush="#19707070" HorizontalAlignment="Left" Width="135" FontSize="18" Height="32" VerticalAlignment="Top" MouseEnter="Step4TestTokenButton_MouseEnter" MouseLeave="Step4TestTokenButton_MouseLeave" Click="Step4TestTokenButton_Click">
                         <Button.Resources>
@@ -624,7 +658,7 @@
                     </Grid.ColumnDefinitions>
                     <Label x:Name="S5L0" Content="Step 5" FontSize="36" FontFamily="/YPBBT 2.0;component/font/#Droid Sans" Margin="10,3,823,0" Foreground="#FFF1F1F1" Height="49" VerticalAlignment="Top" Background="#00000000"/>
                     <Viewbox Margin="10,52,0,123" HorizontalAlignment="Left" Width="953">
-                    <TextBox x:Name="S5L1" TextWrapping="Wrap" Background="#001E222A" BorderBrush="#001E222A" Foreground="#FFF1F1F1" FontSize="22" BorderThickness="0" SelectionBrush="#000078D7" Text="- Now you well need the to select the Server ID and the channel ID&#xA;  where the bot well post its notifications " IsReadOnly="True" Cursor="Arrow" />
+                        <TextBox x:Name="S5L1" TextWrapping="Wrap" Background="#001E222A" BorderBrush="#001E222A" Foreground="#FFF1F1F1" FontSize="22" BorderThickness="0" SelectionBrush="#000078D7" Text="- Now you well need the to select the Server ID and the channel ID&#xA;  where the bot well post its notifications " IsReadOnly="True" Cursor="Arrow" />
                     </Viewbox>
                     <TextBox x:Name="S5L2" Margin="10,28,10,187" TextWrapping="Wrap" Background="#001E222A" BorderBrush="#001E222A" Foreground="#FFDC6B76" FontSize="22" BorderThickness="0" SelectionBrush="#000078D7" Text="NOTE:: dont forget to give the Bot admin privilege" IsReadOnly="True" Cursor="Arrow" Grid.Row="1" />
                     <Button x:Name="Step5NextButton" Content="Next" Margin="858,0,14,10" FontFamily="/Menu Manager;component/font/#Droid Sans" Foreground="#FF424242" FontWeight="Bold" BorderBrush="#19707070" Height="45" VerticalAlignment="Bottom" FontSize="18" RenderTransformOrigin="0.5,0.5" Click="Step5NextButton_Click" Grid.Row="1">

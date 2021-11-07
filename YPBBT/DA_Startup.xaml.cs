@@ -31,7 +31,7 @@ namespace YPBBT
         List<string> ServersCollection = new List<string>();/// List of Server ID's Collected using Discord_Client
         List<string> ChannelsCollection = new List<string>();/// List of Channel ID's Collected using Discord_Client
         List<string> AlertChannelsCollection = new List<string>();
-        string AppVersion = "3.13b";/// Current App Version
+        string AppVersion = "3.14";/// Current App Version
         string Default_Language;/// String for Default Selected Langauge
         bool Profile_Setup_IsCompleted = false;///make sure if the setup if completed so when its closed it opens MainWindow
         public DA_Startup()
@@ -148,6 +148,7 @@ namespace YPBBT
             AlertChannelIDLabel.Content = LanguageLinesCollection[26].ToString(); //Alert Channel ID:
             //LanguageLinesCollection[27].ToString() is > **Welcome To Yuri Project Bdo Boss Timer Self Rolling Settings**
             //LanguageLinesCollection[28].ToString() is > **U can customize all the settings on the self rolling menu**
+            DesktopSetupButton.Content = LanguageLinesCollection[29].ToString();
 
 
             #region"animate Selected Language Tab"
@@ -429,6 +430,38 @@ namespace YPBBT
                                + Environment.NewLine + "[StartMessage]"+ LanguageLinesCollection[27].ToString() + "[/StartMessage]"
                                + Environment.NewLine + "[MessageRoles][/MessageRoles]"
                                + Environment.NewLine + "[EndMessage]"+ LanguageLinesCollection[28].ToString() + "[/EndMessage]"
+                               + Environment.NewLine + "[MainMessageID][/MainMessageID]";
+            File.WriteAllText(Directory.GetCurrentDirectory() + "/Resources/SelfRolling", SelfRolling);
+
+            DoubleAnimation da = new DoubleAnimation();
+            da.From = 0;
+            da.To = 1;
+            da.Duration = new Duration(TimeSpan.FromSeconds(2));
+            da.AutoReverse = false;
+            Tabcontrol1.BeginAnimation(OpacityProperty, da);
+            Tabcontrol1.SelectedIndex = 6;
+        }
+        private void DesktopSetupButton_Click(object sender, RoutedEventArgs e)
+        {
+            string data = Default_Language + "|"
+               + "0" + "|"
+               + "0AZ"
+               + "|" + "None" + "{" + "0"
+               + "|" + "None" + "{" + "0"
+               + "|" + "@everyone{@everyone|"
+               + "@everyone{@everyone|"
+               + "@everyone{@everyone"
+               + "|2|30|"
+               + "@everyone{@everyone|"
+               + "@everyone{@everyone"
+               + "|" + "None" + "{" + "0";
+            File.WriteAllText(Directory.GetCurrentDirectory() + "/Resources/DA_Profile", data);
+            File.WriteAllText(Directory.GetCurrentDirectory() + "/Resources/DA_Bosses", File.ReadAllText(Directory.GetCurrentDirectory() + "/Resources/BossesOrigin"));
+            File.WriteAllText(Directory.GetCurrentDirectory() + "/Resources/LYPBBTTT", File.ReadAllText(Directory.GetCurrentDirectory() + "/Resources/LYPBBTTT_Origin"));
+            string SelfRolling = "[Channel]{[/Channel]"
+                               + Environment.NewLine + "[StartMessage]" + LanguageLinesCollection[27].ToString() + "[/StartMessage]"
+                               + Environment.NewLine + "[MessageRoles][/MessageRoles]"
+                               + Environment.NewLine + "[EndMessage]" + LanguageLinesCollection[28].ToString() + "[/EndMessage]"
                                + Environment.NewLine + "[MainMessageID][/MainMessageID]";
             File.WriteAllText(Directory.GetCurrentDirectory() + "/Resources/SelfRolling", SelfRolling);
 

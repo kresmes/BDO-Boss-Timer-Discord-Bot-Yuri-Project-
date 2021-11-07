@@ -17,8 +17,8 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{2F9BF334-F3B1-4109-9A7A-31488850B97F}.AutoUpdate|Any CPU.ActiveCfg = AutoUpdate|Any CPU
 		{2F9BF334-F3B1-4109-9A7A-31488850B97F}.AutoUpdate|Any CPU.Build.0 = AutoUpdate|Any CPU
-		{2F9BF334-F3B1-4109-9A7A-31488850B97F}.AutoUpdate|x86.ActiveCfg = Debug|x86
-		{2F9BF334-F3B1-4109-9A7A-31488850B97F}.AutoUpdate|x86.Build.0 = Debug|x86
+		{2F9BF334-F3B1-4109-9A7A-31488850B97F}.AutoUpdate|x86.ActiveCfg = AutoUpdate|x86
+		{2F9BF334-F3B1-4109-9A7A-31488850B97F}.AutoUpdate|x86.Build.0 = AutoUpdate|x86
 		{2F9BF334-F3B1-4109-9A7A-31488850B97F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2F9BF334-F3B1-4109-9A7A-31488850B97F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2F9BF334-F3B1-4109-9A7A-31488850B97F}.Debug|x86.ActiveCfg = Debug|x86
