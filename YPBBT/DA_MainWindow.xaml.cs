@@ -101,7 +101,7 @@ namespace YPBBT
         public string publicNbossimage;
         public string publicbossUrl;
         public ulong bossImageID;
-        public string AppVersion = "3.14";
+        public string AppVersion = "3.15";
         public string CurrentVersion = "";
         string currentbossrole1 = "";
         string currentbossrole2 = "";
@@ -3011,7 +3011,7 @@ namespace YPBBT
 
         private void appRestartButton_Click(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start(System.IO.Directory.GetCurrentDirectory() + "/ExternalAppRestart.exe");
+            System.Diagnostics.Process.Start(System.IO.Directory.GetCurrentDirectory() + "/Launcher.exe");
         }
 
         private void ConnectDiscordBotButton_Click(object sender, RoutedEventArgs e)

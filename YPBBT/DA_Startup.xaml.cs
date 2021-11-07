@@ -31,7 +31,7 @@ namespace YPBBT
         List<string> ServersCollection = new List<string>();/// List of Server ID's Collected using Discord_Client
         List<string> ChannelsCollection = new List<string>();/// List of Channel ID's Collected using Discord_Client
         List<string> AlertChannelsCollection = new List<string>();
-        string AppVersion = "3.14";/// Current App Version
+        string AppVersion = "3.15";/// Current App Version
         string Default_Language;/// String for Default Selected Langauge
         bool Profile_Setup_IsCompleted = false;///make sure if the setup if completed so when its closed it opens MainWindow
         public DA_Startup()
